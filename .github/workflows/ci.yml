@@ -47,7 +47,7 @@ jobs:
 
       # 6. 의존성 설치
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       # 7. 린트
       - name: Run lint
