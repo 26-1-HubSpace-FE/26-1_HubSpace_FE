@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import RootLayout from './layout/RootLayout'
+import AdminLayout from './layout/RootLayout'
 import LoginPage from '../pages/loginPage/entry/LoginPage'
 import DashBoardPage from '../pages/dashBoardPage/entry/dashBoardPage'
 import CSVCreatePage from '../pages/CSVCreatePage/entry/CSVCreatePage'
@@ -16,7 +16,7 @@ export const AppRouter = createBrowserRouter([
   { path: '/result', element: <UserResultPage /> },
   {
     path: '/',
-    element: <RootLayout />,
+    element: <AdminLayout />,
     children: [
       {
         path: 'dashboard',
