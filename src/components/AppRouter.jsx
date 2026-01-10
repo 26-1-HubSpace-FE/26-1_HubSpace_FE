@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import AdminLayout from './layout/RootLayout'
+import AdminLayout from './layout/AdminLayout'
 import LoginPage from '../pages/loginPage/entry/LoginPage'
 import DashBoardPage from '../pages/dashBoardPage/entry/dashBoardPage'
 import CSVCreatePage from '../pages/CSVCreatePage/entry/CSVCreatePage'
