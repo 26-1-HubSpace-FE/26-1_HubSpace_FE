@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom'
+import Header from '../header/Header'
 
 export default function AdminLayout() {
   return (
     <div>
-      <div>Header</div>
+      <Header />
       <Outlet />
     </div>
   )
