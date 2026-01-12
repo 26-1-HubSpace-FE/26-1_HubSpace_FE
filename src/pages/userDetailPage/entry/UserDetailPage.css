@@ -1,0 +1,139 @@
+/* 전체 배경 컨테이너 */
+.user-detail {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #b6cae2;
+
+  /* 중앙 배치 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  /* 화면 전체 채움 (가로 스크롤 방지) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* 중앙 흰색 카드 */
+.user-detail__card {
+  width: 100%;
+  max-width: 665px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* 페이지 제목 */
+.user-detail__title {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+
+  margin-bottom: 12px;
+}
+
+/* 설명 텍스트 */
+.user-detail__description {
+  color: #49454f;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* 폼 전체 컨테이너 */
+.user-detail__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 입력 필드 그룹 */
+.user-detail__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 라벨 스타일 */
+.user-detail__label {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* 입력 필드 스타일 */
+.user-detail__input {
+  color: #acacac;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  border-radius: 5px;
+  border: 1px solid #4f4f4f;
+  padding: 18px 20px;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 입력 필드 클릭 시 */
+.user-detail__input:focus {
+  outline: none;
+  border-color: #acacac;
+}
+
+/* placeholder 스타일 */
+.user-detail__input::placeholder {
+  color: #acacac;
+}
+
+/* 조회하기 버튼 */
+.user-detail__button {
+  color: #e4f0ff;
+  font-family: 'NEXON Lv2 Gothic';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  border-radius: 10px;
+  background: #3b82f6;
+  display: flex;
+  width: 445px;
+  height: 65px;
+  padding: 16px 22px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border: none;
+  margin: 16px auto 0;
+
+  transition: background-color 0.2s;
+}
+
+/* 버튼 클릭 시 */
+.user-detail__button:active {
+  background-color: #e4f0ff;
+}
