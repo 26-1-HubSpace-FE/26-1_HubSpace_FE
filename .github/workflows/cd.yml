@@ -12,13 +12,14 @@ jobs:
       - name: Send Dispatch to Fork
         run: |
           response=$(curl -X POST \
-            "https://github.com/Eine0322/26-1_HubSpace_FE" \
+            "https://api.github.com/repos/Eine0322/26-1_HubSpace_FE/dispatches" \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: token ${{ secrets.HS_FE_26_1 }}" \
+            -H "Authorization: Bearer ${{ secrets.HS_FE_26_1 }}" \
             -H "Content-Type: application/json" \
             -d '{"event_type":"sync"}' \
             -v \
             -w "\n%{http_code}" \
             -s)
-          echo "Full Response Headers and Body:"
+
+          echo "Full Response:"
           echo "$response"
