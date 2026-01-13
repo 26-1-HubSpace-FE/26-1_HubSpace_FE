@@ -1,0 +1,9 @@
+@media (min-width: var(--lg)) {
+  .container {
+  }
+}
+
+@media (min-width: var(--sm)) {
+  .container {
+  }
+}

@@ -1,0 +1,10 @@
+:root {
+  /* mobile screen */
+  --sm: 640px;
+
+  /* tablet screen */
+  --md: 768px;
+
+  /* desktop screen */
+  --lg: 1024px;
+}
