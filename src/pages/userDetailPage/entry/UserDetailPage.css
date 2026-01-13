@@ -1,7 +1,7 @@
 /* 전체 배경 컨테이너 */
 .user-detail {
-  width: 100%;
-  min-height: 100vh;
+  width: 100vw;
+  min-height: 100svh;
   background-color: #b6cae2;
 
   /* 중앙 배치 */
@@ -120,7 +120,8 @@
   border-radius: 10px;
   background: #3b82f6;
   display: flex;
-  width: 445px;
+  width: 100%;
+  max-width: 445px;
   height: 65px;
   padding: 16px 22px;
   justify-content: center;
@@ -136,4 +137,47 @@
 /* 버튼 클릭 시 */
 .user-detail__button:active {
   background-color: #e4f0ff;
+}
+
+/* 모바일 */
+@media (max-width: 400px) {
+  .user-detail {
+    padding: 12px;
+  }
+
+  .user-detail__card {
+    width: 90%;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .user-detail__title {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .user-detail__description {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .user-detail__form {
+    gap: 16px;
+  }
+
+  .user-detail__label {
+    font-size: 15px;
+  }
+
+  .user-detail__input {
+    font-size: 15px;
+    padding: 12px 14px;
+  }
+
+  .user-detail__button {
+    font-size: 17px;
+    height: 52px;
+    padding: 12px 18px;
+    margin-top: 12px;
+  }
 }
