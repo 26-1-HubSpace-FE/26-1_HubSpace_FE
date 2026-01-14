@@ -1,5 +1,5 @@
 import './FormCreatePage.css'
-import EventInput from '../../../components/eventInput/eventInput'
+import EventInput from '../../../components/eventInput/EventInput'
 import EventDropdown from '../../../components/eventDropdown/EventDropdown'
 import EventButton from '../../../components/eventButton/EventButton'
 
