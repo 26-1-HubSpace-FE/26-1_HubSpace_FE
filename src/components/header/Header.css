@@ -6,16 +6,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: red;
   height: 100px;
+  background-color: red;
 }
 
 /* 태블릿 */
 @media (min-width: 768px) {
   .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-color: yellow;
   }
 }
@@ -23,9 +20,6 @@
 /* 데스크탑 */
 @media (min-width: 1024px) {
   .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-color: aqua;
   }
 }
