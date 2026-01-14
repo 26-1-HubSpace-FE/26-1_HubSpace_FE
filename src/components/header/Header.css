@@ -1,9 +1,30 @@
-@media (min-width: var(--lg)) {
-  .container {
+/* 화면 구분을 위해 색깔 다르게 표시함 */
+/* 모바일: 빨, 태블릿: 노, 데스크탑: 파 */
+
+/* 모바일 - 기본 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: red;
+}
+
+/* 태블릿 */
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: yellow;
   }
 }
 
-@media (min-width: var(--sm)) {
-  .container {
+/* 데스크탑 */
+@media (min-width: 1024px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: aqua;
   }
 }
