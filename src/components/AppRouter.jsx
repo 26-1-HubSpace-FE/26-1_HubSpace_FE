@@ -31,11 +31,11 @@ export const AppRouter = createBrowserRouter([
         element: <FormCreatePage />,
       },
       {
-        path: 'editcsv',
+        path: 'editcsv/:id',
         element: <CSVDetailPage />,
       },
       {
-        path: 'editform',
+        path: 'editform/:id',
         element: <FormDetailPage />,
       },
       {

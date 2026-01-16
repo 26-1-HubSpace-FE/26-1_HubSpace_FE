@@ -1,5 +1,7 @@
 import DeleteButton from '../../../components/deleteButton/DeleteButton'
 import EventButton from '../../../components/eventButton/EventButton'
+import EventDropdown from '../../../components/eventDropdown/EventDropdown'
+import EventInput from '../../../components/eventInput/EventInput'
 import './FormDetailPage.css'
 
 export default function FormDetailPage() {
