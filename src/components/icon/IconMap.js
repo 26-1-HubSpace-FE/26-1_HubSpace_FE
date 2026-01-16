@@ -9,6 +9,8 @@ import dashboardCsv from '../../assets/dashboard/dashboard-csv.svg?react'
 import dashboardDate from '../../assets/dashboard/dashboard-date.svg?react'
 import dashboardDisable from '../../assets/dashboard/dashboard-disable.svg?react'
 import dashboardForm from '../../assets/dashboard/dashboard-form.svg?react'
+import dashboardImageForm from '../../assets/dashboard/dashboard-image-form.svg?react'
+import dashboardImageCsv from '../../assets/dashboard/dashboard-image-csv.svg?react'
 import dashboardView from '../../assets/dashboard/dashboard-view.svg?react'
 
 /* default 기본 이미지, 로고 등 */
@@ -24,6 +26,8 @@ export const IconMap = {
   'dashboard-date': dashboardDate,
   'dashboard-disable': dashboardDisable,
   'dashboard-form': dashboardForm,
+  'dashboard-image-form': dashboardImageForm,
+  'dashboard-image-csv': dashboardImageCsv,
   'dashboard-view': dashboardView,
   'default-logo': defaultLogo,
   'default-profile': defaultProfile,

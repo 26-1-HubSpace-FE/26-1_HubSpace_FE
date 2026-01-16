@@ -3,8 +3,15 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { formatDate, makeSearchUrl, formatViews } from '../utils/formatStrings'
 import { Icon } from '../../../components/icon/Icon'
+import { useNavigate } from 'react-router-dom'
 
 export default function EventItem({ event }) {
+  const navigate = useNavigate()
+
+  const handleMoreClick = () => {
+    navigate(`/edit${event.eventType === 'FORM' ? 'form' : 'csv'}/${event.id}`)
+  }
+
   const handleCopyUrl = (url) => {
     navigator.clipboard
       .writeText(url)
@@ -43,7 +50,13 @@ export default function EventItem({ event }) {
             {formatViews(event.count)}
           </div>
         </div>
-        <Icon name='button-more' width={1} height={13} className='event-item__more' />
+        <Icon
+          name='button-more'
+          width={1}
+          height={13}
+          className='event-item__more'
+          onClick={handleMoreClick}
+        />
       </div>
       <div className='event-links'>
         <div className='event-search'>
