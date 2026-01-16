@@ -1,5 +1,6 @@
 import './DashBoardPage.css'
 import EventItem from '../component/EventItem'
+import { events } from '../utils/DashBoardDummy'
 
 export default function DashBoardPage() {
   return (
@@ -12,7 +13,9 @@ export default function DashBoardPage() {
         <div className='dashBoard-header__button--new'>+ 새 이벤트</div>
       </div>
       <div className='dashBoard-eventList'>
-        <EventItem />
+        {events.data.events.map((event, index) => (
+          <EventItem key={index} event={event} />
+        ))}
       </div>
     </div>
   )
