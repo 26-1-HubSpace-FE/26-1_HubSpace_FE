@@ -5,7 +5,7 @@
   justify-content: space-between;
   height: 100px;
   padding: 11px 22px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: var(--color-white);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 }
 
@@ -16,7 +16,7 @@
 }
 
 .header-title__title {
-  color: rgba(5, 0, 100, 1);
+  color: var(--color-text);
   font-size: 32px;
 }
 
@@ -35,11 +35,12 @@
 
 .header-account__nickname {
   font-size: 16px;
+  color: var(--color-text);
 }
 
 .header-account__email {
   font-size: 14px;
-  color: rgba(89, 89, 89, 1);
+  color: var(--color-text-additional);
 }
 
 /* 태블릿 */
