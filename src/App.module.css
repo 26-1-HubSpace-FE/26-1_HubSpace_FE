@@ -5,4 +5,5 @@
   max-width: 1600px;
   overflow: hidden;
   font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-weight: var(--font-regular);
 }
