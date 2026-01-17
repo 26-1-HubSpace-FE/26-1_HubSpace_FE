@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className='header'>
       <div className='header-title'>
-        <Icon name='default-profile' width={60} height={60} className='header-title__logo' />
+        <Icon name='default-logo' height={85} className='header-title__logo' />
         <div className='header-title__title'>HubSpace</div>
       </div>
       <div className='header-account'>

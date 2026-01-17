@@ -1,7 +1,7 @@
 import './EventItem.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { formatDate, makeSearchUrl, formatViews } from '../utils/formatStrings'
+import { formatDate, makeSearchUrl } from '../utils/formatStrings'
 import { Icon } from '../../../components/icon/Icon'
 import { useNavigate } from 'react-router-dom'
 
@@ -47,7 +47,7 @@ export default function EventItem({ event }) {
           </div>
           <div className='event-info__views'>
             <Icon name='dashboard-view' height={10} className='event-info__views--icon' />
-            {formatViews(event.count)}
+            {`${event.count} 조회`}
           </div>
         </div>
         <Icon
