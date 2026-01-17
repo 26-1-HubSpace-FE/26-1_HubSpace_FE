@@ -17,6 +17,11 @@ import dashboardView from '../../assets/dashboard/dashboard-view.svg?react'
 import defaultLogo from '../../assets/default/default-logo.svg?react'
 import defaultProfile from '../../assets/default/default-profile.svg?react'
 
+/* detail 이벤트 상세 페이지 아이콘 */
+import detailCopy from '../../assets/detail/detail-copy.svg?react'
+import detailField from '../../assets/detail/detail-field.svg?react'
+import detailInput from '../../assets/detail/detail-input.svg?react'
+
 export const IconMap = {
   'button-copy-form': buttonCopyForm,
   'button-copy-search': buttonCopySearch,
@@ -31,4 +36,7 @@ export const IconMap = {
   'dashboard-view': dashboardView,
   'default-logo': defaultLogo,
   'default-profile': defaultProfile,
+  'detail-copy': detailCopy,
+  'detail-field': detailField,
+  'detail-input': detailInput,
 }

@@ -1,9 +1,11 @@
 import './EventButton.css'
 
-export default function EventButton() {
+export default function EventButton({ text, onClick }) {
   return (
     <div>
-      <div className='eventButton-button'>이벤트 생성</div>
+      <button className='eventButton-button' onClick={onClick}>
+        {text}
+      </button>
     </div>
   )
 }

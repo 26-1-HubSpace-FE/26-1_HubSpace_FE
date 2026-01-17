@@ -15,9 +15,3 @@ export function makeSearchUrl(id) {
 
   return `https://formsite.google.com/${id}`
 }
-
-export function formatViews(count) {
-  if (!count) return ''
-
-  return `${count} 조회`
-}
