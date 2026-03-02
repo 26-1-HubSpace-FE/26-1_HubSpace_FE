@@ -23,6 +23,8 @@ export const useFetchEventDetail = (eventId) => {
       return
     }
 
+    let isCurrentRequest = true // Race condition 방지
+
     // 실제 데이터 가져옴
     const fetchEventDetail = async () => {
       setLoading(true)
@@ -45,15 +47,22 @@ export const useFetchEventDetail = (eventId) => {
         // setEventDetail(foundEvent)
 
         const res = await apiGetPublic(`/v1/events/${eventId}/summary`)
-        setEventDetail(res.data.data)
+        // 중간에 eventId 안 바뀌었는지 확인
+        if (isCurrentRequest) {
+          setEventDetail(res.data.data || null)
+        }
       } catch (err) {
-        setError(err?.message)
+        if (isCurrentRequest) setError(err?.message)
       } finally {
-        setLoading(false)
+        if (isCurrentRequest) setLoading(false)
       }
     }
 
     fetchEventDetail()
+
+    return () => {
+      isCurrentRequest = false
+    } // eventId가 바뀌면 이전 실헹 무시
   }, [eventId]) // eventID 변경될 때만 다시 실행
 
   return { eventDetail, loading, error }
