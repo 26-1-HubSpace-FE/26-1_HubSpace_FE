@@ -1,13 +1,5 @@
 import { useState, useEffect } from 'react'
-// import { apiGetPublic } from '../../../utils/ApiUtil'
-
-// 더미 데이터 import
-import {
-  userCsvThreeFields,
-  userCsvTwoFields,
-  userFormThreeFields,
-  userFormTwoFields,
-} from '../../userResultPage/utils/UserResultDummy'
+import { apiGetPublic } from '../../../utils/ApiUtil'
 
 // 데이터만 담당
 export const useFetchEventDetail = (eventId) => {
@@ -19,7 +11,9 @@ export const useFetchEventDetail = (eventId) => {
   // eventID 변경될 때마다 실행
   useEffect(() => {
     if (!eventId) {
+      setEventDetail(null)
       setLoading(false)
+      setError('이벤트 ID가 없습니다')
       return
     }
 
@@ -28,26 +22,17 @@ export const useFetchEventDetail = (eventId) => {
       setLoading(true)
       setError(null)
       try {
-        // 임시 더미 데이터
-        const dummyEvents = [
-          userCsvThreeFields,
-          userCsvTwoFields,
-          userFormThreeFields,
-          userFormTwoFields,
-        ]
+        const res = await apiGetPublic(`/v1/events/${eventId}/summary`)
+        const payload = res?.data ?? res
 
-        const foundEvent = dummyEvents.find((event) => event.id === Number(eventId))
-
-        if (!foundEvent) {
-          throw new Error('해당 이벤트를 찾을 수 없습니다')
+        if (!payload || !Array.isArray(payload.searchColumns)) {
+          throw new Error('이벤트 정보를 불러오지 못했습니다')
         }
 
-        setEventDetail(foundEvent)
-
-        // const res = await apiGetPublic(`/v1/events/${eventId}/summary`)
-        // setEventDetail(res.data.data)
+        setEventDetail(payload)
       } catch (err) {
-        setError(err?.message)
+        setError(err?.response?.data?.message || err?.message || '이벤트 조회에 실패했습니다')
+        setEventDetail(null)
       } finally {
         setLoading(false)
       }
