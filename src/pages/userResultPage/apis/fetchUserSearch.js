@@ -10,6 +10,14 @@ export const fetchUserSearch = async (eventId, userSearchData) => {
     }
   })
 
-  const res = await apiGetPublic(`/v1/events/${eventId}/search?${query.toString()}`)
-  return res?.data ?? res
+  const requestUrl = `/v1/events/${eventId}/search?${query.toString()}`
+  console.debug('[UserSearch][Request]', {
+    eventId,
+    query: Object.fromEntries(query.entries()),
+    requestUrl,
+  })
+
+  const res = await apiGetPublic(requestUrl)
+  console.debug('[UserSearch][Response]', res)
+  return res
 }

@@ -10,6 +10,11 @@ export const userFieldPlaceholders = {
 export const processUserResult = (userApiResponse, eventDetail, userSearchData) => {
   const { searchColumns } = eventDetail
   const isSuccess = userApiResponse?.isSuccess ?? userApiResponse?.success ?? false
+  console.debug('[UserSearch][Process]', {
+    isSuccess,
+    searchColumns,
+    userApiResponse,
+  })
 
   // 조회 실패
   if (!isSuccess) {
@@ -22,6 +27,7 @@ export const processUserResult = (userApiResponse, eventDetail, userSearchData) 
 
   // 조회 성공
   const answers = userApiResponse?.data?.answers || {}
+  console.debug('[UserSearch][Answers]', answers)
 
   return {
     userResultType: 'detail',

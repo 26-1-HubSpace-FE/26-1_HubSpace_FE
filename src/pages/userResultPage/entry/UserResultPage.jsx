@@ -19,6 +19,12 @@ export default function UserResultPage() {
   const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
+    console.debug('[UserResultPage][InitState]', {
+      eventId,
+      eventDetail,
+      userSearchData,
+    })
+
     if (!eventId || !eventDetail || !userSearchData) {
       setErrorMessage('잘못된 접근입니다. 조회 페이지에서 다시 시도해주세요.')
       setLoading(false)
@@ -30,9 +36,11 @@ export default function UserResultPage() {
       try {
         const userApiResponse = await fetchUserSearch(eventId, userSearchData)
         const processResult = processUserResult(userApiResponse, eventDetail, userSearchData)
+        console.debug('[UserResultPage][ProcessedResult]', processResult)
         setUserSearchResult(processResult)
         setErrorMessage('')
       } catch (err) {
+        console.error('[UserResultPage][FetchError]', err)
         setErrorMessage(err?.response?.data?.message || err?.message || '조회 실패')
       } finally {
         setLoading(false)
