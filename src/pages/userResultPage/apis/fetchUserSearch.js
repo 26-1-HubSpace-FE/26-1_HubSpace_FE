@@ -1,12 +1,15 @@
-// import {apiGetPublic} from '../../../utils/ApiUtil'
+import { apiGetPublic } from '../../../utils/ApiUtil'
 
-import { getUserSearchResult } from '../utils/UserResultDummy'
+export const fetchUserSearch = async (eventId, userSearchData) => {
+  const query = new URLSearchParams()
 
-export const fetchUserSearch = async (eventId, userSearchData, eventDetail) => {
-  // const searchQuery = new URLSearchParams(userSearchData)
-  // const res = await apiGetPublic(`/v1/events/${eventId}/search${searchQuery.toString()}`)
-  // return res.data
+  Object.entries(userSearchData || {}).forEach(([key, value]) => {
+    const trimmedValue = typeof value === 'string' ? value.trim() : value
+    if (trimmedValue !== '' && trimmedValue !== undefined && trimmedValue !== null) {
+      query.append(key, trimmedValue)
+    }
+  })
 
-  // 더미 데이터
-  return getUserSearchResult(userSearchData, eventDetail)
+  const res = await apiGetPublic(`/v1/events/${eventId}/search?${query.toString()}`)
+  return res?.data ?? res
 }

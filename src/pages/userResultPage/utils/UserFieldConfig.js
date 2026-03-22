@@ -9,18 +9,19 @@ export const userFieldPlaceholders = {
 // 사용자 조회 결과 처리
 export const processUserResult = (userApiResponse, eventDetail, userSearchData) => {
   const { searchColumns } = eventDetail
+  const isSuccess = userApiResponse?.isSuccess ?? userApiResponse?.success ?? false
 
   // 조회 실패
-  if (!userApiResponse.isSuccess) {
+  if (!isSuccess) {
     return {
       userResultType: 'notFound',
       userDisplayName: userSearchData[searchColumns[0]] || '000',
-      userResultMessage: userApiResponse.message || '해당 정보로 조회된 기록이 없습니다.',
+      userResultMessage: userApiResponse?.message || '해당 정보로 조회된 기록이 없습니다.',
     }
   }
 
   // 조회 성공
-  const { answers } = userApiResponse.data
+  const answers = userApiResponse?.data?.answers || {}
 
   return {
     userResultType: 'detail',

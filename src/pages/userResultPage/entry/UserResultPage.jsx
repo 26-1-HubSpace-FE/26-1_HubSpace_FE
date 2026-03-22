@@ -13,31 +13,34 @@ export default function UserResultPage() {
   const navigate = useNavigate()
   const location = useLocation() // state로 넘긴 data 받음
 
-  const { eventDetail, userSearchData } = location.state || {}
+  const { eventId, eventDetail, userSearchData } = location.state || {}
   const [userSearchResult, setUserSearchResult] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
+    if (!eventId || !eventDetail || !userSearchData) {
+      setErrorMessage('잘못된 접근입니다. 조회 페이지에서 다시 시도해주세요.')
+      setLoading(false)
+      return
+    }
+
     const fetchData = async () => {
       setLoading(true)
       try {
-        // 임시로 더미 데이터 반환
-        const userApiResponse = await fetchUserSearch(
-          eventDetail.eventId,
-          userSearchData,
-          eventDetail,
-        )
+        const userApiResponse = await fetchUserSearch(eventId, userSearchData)
         const processResult = processUserResult(userApiResponse, eventDetail, userSearchData)
         setUserSearchResult(processResult)
+        setErrorMessage('')
       } catch (err) {
-        console.error('조회 실패:', err)
+        setErrorMessage(err?.response?.data?.message || err?.message || '조회 실패')
       } finally {
         setLoading(false)
       }
     }
 
     fetchData()
-  }, [eventDetail.userSearchData])
+  }, [eventId, eventDetail, userSearchData])
 
   // 로딩 중
   if (loading) {
@@ -55,7 +58,7 @@ export default function UserResultPage() {
     return (
       <GradientLayout>
         <div className='user-result__container'>
-          <p>조회 결과를 불러올 수 없습니다</p>
+          <p>{errorMessage || '조회 결과를 불러올 수 없습니다'}</p>
         </div>
       </GradientLayout>
     )
