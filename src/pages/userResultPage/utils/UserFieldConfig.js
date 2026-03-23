@@ -1,13 +1,5 @@
-// 필드별 placeholder 매핑
-export const userFieldPlaceholders = {
-  이름: '이름을 입력해주세요.',
-  학번: '학번 10자리를 입력해주세요.',
-  전화번호: '전화번호 11자리를 입력해주세요.',
-  생년월일: '생년월일 6자리를 입력해주세요.',
-}
-
 export const getUserFieldPlaceholder = (columnName) => {
-  return userFieldPlaceholders[columnName] || `${columnName} 을(를) 입력해주세요.`
+  return `${columnName}을(를) 입력해주세요.`
 }
 
 // 사용자 조회 결과 처리
