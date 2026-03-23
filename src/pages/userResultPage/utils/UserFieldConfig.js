@@ -6,6 +6,10 @@ export const userFieldPlaceholders = {
   생년월일: '생년월일 6자리를 입력해주세요.',
 }
 
+export const getUserFieldPlaceholder = (columnName) => {
+  return userFieldPlaceholders[columnName] || `${columnName} 을(를) 입력해주세요.`
+}
+
 // 사용자 조회 결과 처리
 export const processUserResult = (userApiResponse, eventDetail, userSearchData) => {
   const { searchColumns } = eventDetail

@@ -3,7 +3,7 @@ import GradientButton from '../../../components/gradientButton/GradientButton'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
-import { userFieldPlaceholders } from '../../userResultPage/utils/UserFieldConfig'
+import { getUserFieldPlaceholder } from '../../userResultPage/utils/UserFieldConfig'
 import { useFetchEventDetail } from '../apis/fetchEventDetail'
 
 // 사용자 이벤트 신청 조회 페이지
@@ -97,7 +97,7 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
                 id={columnName}
                 name={columnName}
                 className='user-detail__input'
-                placeholder={userFieldPlaceholders[columnName]}
+                placeholder={getUserFieldPlaceholder(columnName)}
                 value={userFormData[columnName]}
                 onChange={handlerUserInput}
                 required
