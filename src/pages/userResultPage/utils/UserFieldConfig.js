@@ -16,7 +16,6 @@ export const processUserResult = (userApiResponse, eventDetail, userSearchData) 
   if (!isSuccess) {
     return {
       userResultType: 'notFound',
-      userDisplayName: userSearchData[searchColumns[0]] || '000',
       userResultMessage: userApiResponse?.message || '해당 정보로 조회된 기록이 없습니다.',
     }
   }
@@ -27,7 +26,6 @@ export const processUserResult = (userApiResponse, eventDetail, userSearchData) 
 
   return {
     userResultType: 'detail',
-    userSearchColumns: searchColumns,
     userDetailInfo: answers,
   }
 }

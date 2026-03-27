@@ -38,18 +38,6 @@
 }
 
 /* 페이지 제목 */
-.user-result__title__01 {
-  color: var(--color-text);
-  font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 16px;
-
-  font-weight: var(--font-bold);
-  line-height: normal;
-
-  text-align: center;
-  margin-bottom: 26px;
-}
-
 .user-result__title__02 {
   color: var(--color-text-additional);
   font-family: 'SpoqaHanSansNeo', sans-serif;
@@ -59,7 +47,7 @@
   line-height: normal;
 
   text-align: center;
-  margin-bottom: 37px;
+  margin-bottom: 24px;
 }
 
 .user-result__box {
@@ -85,6 +73,15 @@
 
   font-weight: var(--font-regular);
   line-height: normal;
+}
+
+.user-result__notice {
+  color: var(--color-text-additional);
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 13px;
+  font-weight: var(--font-regular);
+  line-height: 1.5;
+  text-align: center;
 }
 
 .user-result__button {
@@ -115,14 +112,9 @@
     margin-bottom: 48px;
   }
 
-  .user-result__title__01 {
-    font-size: 20px;
-    margin-bottom: 33px;
-  }
-
   .user-result__title__02 {
     font-size: 16px;
-    margin-bottom: 46px;
+    margin-bottom: 30px;
   }
 
   .user-result__box {
@@ -138,6 +130,10 @@
     width: 18px;
     height: 18px;
     margin-right: 9px;
+  }
+
+  .user-result__notice {
+    font-size: 15px;
   }
 }
 
@@ -158,14 +154,9 @@
     margin-bottom: 64px;
   }
 
-  .user-result__title__01 {
-    font-size: 26px;
-    margin-bottom: 44px;
-  }
-
   .user-result__title__02 {
     font-size: 20px;
-    margin-bottom: 61.5px;
+    margin-bottom: 40px;
   }
 
   .user-result__box {
@@ -185,5 +176,9 @@
     width: 20px;
     height: 20px;
     margin-right: 10px;
+  }
+
+  .user-result__notice {
+    font-size: 18px;
   }
 }

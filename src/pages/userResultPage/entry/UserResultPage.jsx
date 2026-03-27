@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import GradientButton from '../../../components/gradientButton/GradientButton'
 import backIcon from '../../../assets/auth/auth-back-icon.svg'
@@ -71,21 +71,10 @@ export default function UserResultPage() {
       </GradientLayout>
     )
   }
-
-  //사용자 이름 설정
-  let userName = '000'
-  if (userSearchResult.userResultType === 'notFound') {
-    userName = userSearchResult.userDisplayName
-  } else if (userSearchResult.userResultType === 'detail') {
-    // answers에서 첫 번째 칼럼 값 사용
-    userName = userSearchResult.userDetailInfo[userSearchResult.userSearchColumns[0]]
-  }
-
-  // 메세지 설정
-  const userMessage =
-    userSearchResult.userResultType === 'notFound'
-      ? userSearchResult.userResultMessage
-      : '정보가 아래와 같이 조회되었습니다.'
+  const detailEntries =
+    userSearchResult.userResultType === 'detail'
+      ? Object.entries(userSearchResult.userDetailInfo || {})
+      : []
 
   // 돌아가기 버튼 클릭 시 실행
   const handleGoBack = () => {
@@ -100,21 +89,21 @@ export default function UserResultPage() {
         <div className='user-result__logo'></div>
         {/* 중앙 흰색 결과 카드 */}
         <div className='user-result__card'>
-          <h1 className='user-result__title__01'>{userName}님</h1>
-          <h2 className='user-result__title__02'>{userMessage}</h2>
+          <h2 className='user-result__title__02'>조회가 완료되었습니다.</h2>
 
           {/* 사용자 상세 정보 */}
           {userSearchResult.userResultType === 'detail' && (
             <div className='user-result__box'>
-              {userSearchResult.userSearchColumns.map((columnName) => (
-                <>
-                  <span key={`label-${columnName}`}>{columnName}:</span>
-                  <span key={`value-${columnName}`}>
-                    {userSearchResult.userDetailInfo[columnName]}
-                  </span>
-                </>
+              {detailEntries.map(([columnName, value]) => (
+                <Fragment key={columnName}>
+                  <span>{columnName}:</span>
+                  <span>{value}</span>
+                </Fragment>
               ))}
             </div>
+          )}
+          {userSearchResult.userResultType === 'notFound' && (
+            <p className='user-result__notice'>{userSearchResult.userResultMessage}</p>
           )}
         </div>
         <div className='user-result__button'>
