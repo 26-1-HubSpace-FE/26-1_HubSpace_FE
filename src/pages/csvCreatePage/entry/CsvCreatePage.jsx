@@ -153,8 +153,6 @@ export default function CsvCreatePage() {
           <div className='csvCreate-file__header'>
             <div className='csvCreate-file__title'>
               <div className='csvCreate-file__title--title'>데이터 파일</div>
-              <div className='csvCreate-file__title--notice'>2개 이상 선택 필수</div>
-              <Icon name='detail-copy' height={14} className='csvCreate-file__title--copy' />
             </div>
 
             <div className='csvCreate-file__info'>CSV, TSV만 업로드 가능합니다.</div>
