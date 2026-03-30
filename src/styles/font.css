@@ -9,7 +9,7 @@
 /* Light */
 @font-face {
   font-family: 'SpoqaHanSansNeo';
-  src: url('../assets/font/SpoqaHanSansNeo-Light.woff') format('woff');
+  src: url('../assets/font/SpoqaHanSansNeo-Light.woff2') format('woff2');
   font-display: swap;
   font-weight: 300;
 }
@@ -17,7 +17,7 @@
 /* Regular */
 @font-face {
   font-family: 'SpoqaHanSansNeo';
-  src: url('../assets/font/SpoqaHanSansNeo-Regular.woff') format('woff');
+  src: url('../assets/font/SpoqaHanSansNeo-Regular.woff2') format('woff2');
   font-display: swap;
   font-weight: 400;
 }
@@ -25,7 +25,7 @@
 /* Medium */
 @font-face {
   font-family: 'SpoqaHanSansNeo';
-  src: url('../assets/font/SpoqaHanSansNeo-Medium.woff') format('woff');
+  src: url('../assets/font/SpoqaHanSansNeo-Medium.woff2') format('woff2');
   font-display: swap;
   font-weight: 500;
 }
@@ -33,7 +33,7 @@
 /* Bold */
 @font-face {
   font-family: 'SpoqaHanSansNeo';
-  src: url('../assets/font/SpoqaHanSansNeo-Bold.woff') format('woff');
+  src: url('../assets/font/SpoqaHanSansNeo-Bold.woff2') format('woff2');
   font-display: swap;
   font-weight: 700;
 }
