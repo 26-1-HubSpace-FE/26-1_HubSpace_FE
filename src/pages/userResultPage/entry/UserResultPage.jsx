@@ -88,26 +88,31 @@ export default function UserResultPage() {
         {/* 로고 영역 */}
         <div className='user-result__logo'></div>
         {/* 중앙 흰색 결과 카드 */}
-        <div className='user-result__card'>
-          <h2 className='user-result__title__02'>정보가 확인되었습니다.</h2>
+        <div className="user-result__card">
+
+          <h2 className="user-result__title__02">
+            {userSearchResult.userResultType === 'detail'
+              ? '정보가 확인되었습니다.'
+              : '조회 결과가 없습니다.'}
+          </h2>
 
           {/* 사용자 상세 정보 */}
           {userSearchResult.userResultType === 'detail' && (
-            <div className='user-result__box'>
+            <div className="user-result__box">
               {detailEntries.map(([columnName, value]) => (
                 <div key={columnName}>
-                  <span className='user-result__label'>{columnName}</span>
-                  <span className='user-result__value'>{value}</span>
+                  <span className="user-result__label">{columnName}</span>
+                  <span className="user-result__value">{value}</span>
                 </div>
               ))}
             </div>
           )}
           {userSearchResult.userResultType === 'notFound' && (
-            <p className='user-result__notice'>{userSearchResult.userResultMessage}</p>
+            <p className="user-result__notice">{userSearchResult.userResultMessage}</p>
           )}
         </div>
-        <div className='user-result__button'>
-          <GradientButton type='button' onClick={handleGoBack}>
+        <div className="user-result__button">
+          <GradientButton type="button" onClick={handleGoBack}>
             <img src={backIcon} className='user-result__button-icon' />
             <span>돌아가기</span>
           </GradientButton>
