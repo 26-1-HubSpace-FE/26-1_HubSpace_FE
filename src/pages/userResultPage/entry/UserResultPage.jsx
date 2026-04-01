@@ -93,7 +93,7 @@ export default function UserResultPage() {
 
           {/* 사용자 상세 정보 */}
           {userSearchResult.userResultType === 'detail' && (
-            <div className='user-result__box'>
+            <div className='user-result__details'>
               {detailEntries.map(([columnName, value]) => (
                 <div key={columnName} className='user-result__row'>
                   <span className='user-result__label'>{columnName}</span>
