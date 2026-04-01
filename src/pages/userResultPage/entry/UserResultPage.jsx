@@ -89,7 +89,7 @@ export default function UserResultPage() {
         <div className='user-result__logo'></div>
         {/* 중앙 흰색 결과 카드 */}
         <div className='user-result__card'>
-          <h2 className='user-result__title__02'>조회가 완료되었습니다.</h2>
+          <h2 className='user-result__title__02'>정보가 확인되었습니다.</h2>
 
           {/* 사용자 상세 정보 */}
           {userSearchResult.userResultType === 'detail' && (
