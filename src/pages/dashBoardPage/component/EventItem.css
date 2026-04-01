@@ -1,9 +1,33 @@
 .eventItem {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
   background-color: var(--color-white);
   padding: 30px;
+}
+
+.eventItem-loadingOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(3px);
+}
+
+.eventItem-loadingSpinner {
+  margin: 0;
+}
+
+.eventItem-loadingText {
+  font-size: 14px;
+  font-weight: var(--font-medium);
+  color: var(--color-text);
 }
 
 .eventItem-header {

@@ -5,6 +5,7 @@ import EventButton from '../../../components/eventButton/EventButton'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { createFormEvent } from '../apis/createFormEvent'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function FormCreatePage() {
   const [eventTitle, setEventTitle] = useState('')
@@ -57,6 +58,17 @@ export default function FormCreatePage() {
 
   return (
     <div className='formCreate'>
+      {isSubmitting && (
+        <div className='formCreate-loadingOverlay'>
+          <LoadingSpinner
+            className='formCreate-loadingSpinner'
+            size={48}
+            cubeSize={16}
+            color='#2d3b86'
+          />
+          <div className='formCreate-loadingText'>폼 생성 중...</div>
+        </div>
+      )}
       <div className='formCreate-container'>
         <div className='formCreate-header'>
           <div className='formCreate-title'>새 이벤트 생성하기 - 폼</div>

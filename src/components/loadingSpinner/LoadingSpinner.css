@@ -1,0 +1,42 @@
+.loadingSpinner {
+  width: var(--spinner-size, 40px);
+  height: var(--spinner-size, 40px);
+  position: relative;
+  margin: 100px auto;
+}
+
+.loadingSpinner__cube {
+  background-color: var(--spinner-color, #333333);
+  width: var(--spinner-cube-size, 15px);
+  height: var(--spinner-cube-size, 15px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: loadingSpinnerCubeMove 1.8s infinite ease-in-out;
+}
+
+.loadingSpinner__cube--second {
+  animation-delay: -0.9s;
+}
+
+@keyframes loadingSpinnerCubeMove {
+  25% {
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+  }
+
+  50% {
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+  }
+
+  50.1% {
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+  }
+
+  75% {
+    transform: translateX(0) translateY(42px) rotate(-270deg) scale(0.5);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}

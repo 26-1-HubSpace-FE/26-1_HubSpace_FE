@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { processUserResult } from '../utils/UserFieldConfig'
 
 import { fetchUserSearch } from '../apis/fetchUserSearch'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 // 사용자 이벤트 신청 조회 결과 페이지
 export default function UserResultPage() {
@@ -55,7 +56,16 @@ export default function UserResultPage() {
     return (
       <GradientLayout>
         <div className='user-result__container'>
-          <p>조회 중...</p>
+          <div className='user-result__logo'></div>
+          <div className='user-result__loadingCard'>
+            <LoadingSpinner
+              className='user-result__loadingSpinner'
+              size={48}
+              cubeSize={16}
+              color='#2d3b86'
+            />
+            <p className='user-result__loadingText'>조회 중입니다...</p>
+          </div>
         </div>
       </GradientLayout>
     )

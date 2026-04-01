@@ -4,6 +4,7 @@ import { formatDate, makeSearchUrl } from '../utils/formatStrings'
 import { Icon } from '../../../components/icon/Icon'
 import { useEffect, useRef, useState } from 'react'
 import { apiDeletePrivate } from '../../../utils/ApiUtil'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function EventItem({ event }) {
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
@@ -67,6 +68,17 @@ export default function EventItem({ event }) {
 
   return (
     <div className='eventItem'>
+      {isDeleting && (
+        <div className='eventItem-loadingOverlay'>
+          <LoadingSpinner
+            className='eventItem-loadingSpinner'
+            size={40}
+            cubeSize={15}
+            color='#2d3b86'
+          />
+          <div className='eventItem-loadingText'>삭제 중...</div>
+        </div>
+      )}
       <div className='eventItem-header'>
         <div className='eventItem-header__header'>
           <div className='eventItem-title'>

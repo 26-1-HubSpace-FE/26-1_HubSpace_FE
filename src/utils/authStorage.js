@@ -4,6 +4,7 @@ const EXPIRES_AT_KEY = 'authExpiresAt'
 const AUTH_EVENT_NAME = 'auth-session-changed'
 
 // 기본 세션 유지 시간: 1시간
+// TODO: 액세스토큰 만료되면 리프레시 토큰으로 자동으로 리프레시 해주는 로직이 필요할듯. 정식으로 할 때
 const SESSION_DURATION_MS = 60 * 60 * 1000
 
 const PUBLIC_PATHS = ['/login', '/cookie', '/search', '/result']
