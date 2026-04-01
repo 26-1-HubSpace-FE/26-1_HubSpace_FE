@@ -4,9 +4,11 @@ import 'react-toastify/dist/ReactToastify.css'
 import { formatDate, makeSearchUrl } from '../utils/formatStrings'
 import { Icon } from '../../../components/icon/Icon'
 import { useEffect, useRef, useState } from 'react'
+import { apiDeletePrivate } from '../../../utils/ApiUtil'
 
 export default function EventItem({ event }) {
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const actionMenuRef = useRef(null)
 
   useEffect(() => {
@@ -32,6 +34,34 @@ export default function EventItem({ event }) {
         toast.error('복사 실패', { autoClose: 2000 })
         console.error('복사 실패:', err)
       })
+  }
+
+  const handleDelete = async () => {
+    if (isDeleting) return
+
+    try {
+      setIsDeleting(true)
+      const res = await apiDeletePrivate(`/v1/events/${event.id}`)
+      const isSuccess = res?.isSuccess ?? res?.success ?? false
+
+      if (!isSuccess) {
+        toast.error(res?.message || '이벤트 삭제에 실패했습니다.', { autoClose: 2000 })
+        return
+      }
+
+      toast.success('이벤트가 삭제되었습니다!', {
+        autoClose: 1200,
+        onClose: () => window.location.reload(),
+      })
+      setIsActionMenuOpen(false)
+    } catch (err) {
+      toast.error(err?.response?.data?.message || err?.message || '이벤트 삭제에 실패했습니다.', {
+        autoClose: 2000,
+      })
+      console.error('이벤트 삭제 실패:', err)
+    } finally {
+      setIsDeleting(false)
+    }
   }
 
   return (
@@ -71,8 +101,13 @@ export default function EventItem({ event }) {
           />
           {isActionMenuOpen && (
             <div className='eventItem-actionMenu'>
-              <button type='button' className='eventItem-actionMenu__delete'>
-                이벤트 삭제
+              <button
+                type='button'
+                className='eventItem-actionMenu__delete'
+                onClick={handleDelete}
+                disabled={isDeleting}
+              >
+                {isDeleting ? '삭제 중...' : '이벤트 삭제'}
               </button>
             </div>
           )}
