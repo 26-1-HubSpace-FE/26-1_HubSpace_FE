@@ -1,6 +1,5 @@
 import './EventItem.css'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'sonner'
 import { formatDate, makeSearchUrl } from '../utils/formatStrings'
 import { Icon } from '../../../components/icon/Icon'
 import { useEffect, useRef, useState } from 'react'
@@ -31,7 +30,7 @@ export default function EventItem({ event }) {
         toast.success('링크가 복사되었습니다!')
       })
       .catch((err) => {
-        toast.error('복사 실패', { autoClose: 2000 })
+        toast.error('복사 실패', { duration: 2000 })
         console.error('복사 실패:', err)
       })
   }
@@ -45,18 +44,18 @@ export default function EventItem({ event }) {
       const isSuccess = res?.isSuccess ?? res?.success ?? false
 
       if (!isSuccess) {
-        toast.error(res?.message || '이벤트 삭제에 실패했습니다.', { autoClose: 2000 })
+        toast.error(res?.message || '이벤트 삭제에 실패했습니다.', { duration: 2000 })
         return
       }
 
       toast.success('이벤트가 삭제되었습니다!', {
-        autoClose: 1200,
+        duration: 1200,
         onClose: () => window.location.reload(),
       })
       setIsActionMenuOpen(false)
     } catch (err) {
       toast.error(err?.response?.data?.message || err?.message || '이벤트 삭제에 실패했습니다.', {
-        autoClose: 2000,
+        duration: 2000,
       })
       console.error('이벤트 삭제 실패:', err)
     } finally {

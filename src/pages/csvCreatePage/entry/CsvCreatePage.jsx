@@ -3,7 +3,7 @@ import { useState } from 'react'
 import EventInput from '../../../components/eventInput/EventInput'
 import EventDropdown from '../../../components/eventDropdown/EventDropdown'
 import EventButton from '../../../components/eventButton/EventButton'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from '../../../components/icon/Icon'
 import { createFileEvent } from '../apis/createFileEvent'
@@ -117,13 +117,13 @@ export default function CsvCreatePage() {
         navigate('/dashboard')
       } catch (err) {
         const message = err?.response?.data?.message || 'CSV 이벤트 생성에 실패했습니다.'
-        toast.error(message, { autoClose: 2000 })
+        toast.error(message, { duration: 2000 })
       } finally {
         setIsSubmitting(false)
       }
     } else {
       toast.error('이벤트 관리명과 필드를 2개 이상, 중복 없이 선택해주세요.', {
-        autoClose: 2000,
+        duration: 2000,
       })
     }
   }

@@ -1,24 +1,22 @@
 import { RouterProvider } from 'react-router-dom'
 import { AppRouter } from './components/AppRouter'
 import styles from './App.module.css'
-import { ToastContainer, Slide } from 'react-toastify'
+import { Toaster } from 'sonner'
 
 function App() {
   return (
     <div className={styles.app}>
       <RouterProvider router={AppRouter} />
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable={false}
-        pauseOnHover
-        theme='light'
-        transition={Slide}
+      <Toaster
+        position='top-center'
+        duration={2000}
+        richColors
+        closeButton
+        toastOptions={{
+          style: {
+            marginTop: '20px',
+          },
+        }}
       />
     </div>
   )

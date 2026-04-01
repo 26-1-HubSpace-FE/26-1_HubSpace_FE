@@ -2,7 +2,7 @@ import './FormCreatePage.css'
 import { useState } from 'react'
 import EventInput from '../../../components/eventInput/EventInput'
 import EventButton from '../../../components/eventButton/EventButton'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { createFormEvent } from '../apis/createFormEvent'
 
@@ -33,7 +33,7 @@ export default function FormCreatePage() {
     if (isSubmitting) return
 
     if (!isValid) {
-      toast.error('이벤트 관리명과 필드를 2개 이상, 중복 없이 입력해주세요.', { autoClose: 2000 })
+      toast.error('이벤트 관리명과 필드를 2개 이상, 중복 없이 입력해주세요.', { duration: 2000 })
       return
     }
 
@@ -49,7 +49,7 @@ export default function FormCreatePage() {
       navigate('/dashboard')
     } catch (err) {
       const message = err?.response?.data?.message || '이벤트 생성에 실패했습니다.'
-      toast.error(message, { autoClose: 2000 })
+      toast.error(message, { duration: 2000 })
     } finally {
       setIsSubmitting(false)
     }

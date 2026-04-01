@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import './DeleteButton.css'
 
@@ -7,19 +7,18 @@ export default function DeleteButton() {
 
   const handleConfirmDelete = () => {
     toast.dismiss() // 기존 toast 닫기
-    toast.success('이벤트가 종료되었습니다!', { autoClose: 2000 })
+    toast.success('이벤트가 종료되었습니다!', { duration: 2000 })
     navigate('/dashboard')
   }
 
   const handleDelete = () => {
-    toast(
-      ({ closeToast }) => (
+    toast.custom((toastId) => (
         <div className='deleteToast'>
           <div className='deleteToast__message'>정말로 이벤트를 종료하시겠습니까?</div>
           <div className='deleteToast__actions'>
             <button
               className='deleteToast__button deleteToast__button--cancel'
-              onClick={closeToast}
+              onClick={() => toast.dismiss(toastId)}
             >
               취소
             </button>
@@ -31,13 +30,7 @@ export default function DeleteButton() {
             </button>
           </div>
         </div>
-      ),
-      {
-        autoClose: false,
-        closeOnClick: false,
-        draggable: false,
-      },
-    )
+      ))
   }
 
   return (
