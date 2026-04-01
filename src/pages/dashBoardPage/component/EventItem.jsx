@@ -49,9 +49,11 @@ export default function EventItem({ event }) {
       }
 
       toast.success('이벤트가 삭제되었습니다!', {
-        duration: 1200,
-        onClose: () => window.location.reload(),
+        duration: 1000,
       })
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
       setIsActionMenuOpen(false)
     } catch (err) {
       toast.error(err?.response?.data?.message || err?.message || '이벤트 삭제에 실패했습니다.', {
