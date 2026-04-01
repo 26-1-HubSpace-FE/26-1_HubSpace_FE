@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import GradientButton from '../../../components/gradientButton/GradientButton'
 import backIcon from '../../../assets/auth/auth-back-icon.svg'
@@ -95,10 +95,10 @@ export default function UserResultPage() {
           {userSearchResult.userResultType === 'detail' && (
             <div className='user-result__box'>
               {detailEntries.map(([columnName, value]) => (
-                <Fragment key={columnName}>
-                  <span>{columnName}:</span>
-                  <span>{value}</span>
-                </Fragment>
+                <div key={columnName} className='user-result__row'>
+                  <span className='user-result__label'>{columnName}</span>
+                  <span className='user-result__value'>{value}</span>
+                </div>
               ))}
             </div>
           )}

@@ -1,6 +1,6 @@
 .user-result__container {
   width: 100%;
-  max-width: 411px;
+  max-width: 480px;
   padding: 0 16px;
   box-sizing: border-box;
 
@@ -24,10 +24,12 @@
 /* 중앙 흰색 카드 */
 .user-result__card {
   width: 100%;
-  border-radius: 10px;
-  background: var(--color-box-popup);
-
-  padding: 40px 16px 18px 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 64px rgba(37, 45, 92, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  padding: 36px 22px 26px;
   box-sizing: border-box;
 
   display: flex;
@@ -39,40 +41,59 @@
 
 /* 페이지 제목 */
 .user-result__title__02 {
-  color: var(--color-text-additional);
+  color: #2b2f5f;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 14px;
-
-  font-weight: var(--font-medium);
-  line-height: normal;
+  font-size: 19px;
+  font-weight: var(--font-bold);
+  line-height: 1.35;
 
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .user-result__box {
   width: 100%;
-  max-width: 218px;
-  border-radius: 10px;
-  background: var(--color-box-info);
+  max-width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(246, 248, 255, 0.95) 0%, rgba(238, 242, 255, 0.92) 100%);
+  border: 1px solid rgba(130, 149, 235, 0.18);
 
-  padding: 18px 12px;
+  padding: 16px;
   box-sizing: border-box;
-
-  margin-bottom: 0;
-
   display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 30px;
-  row-gap: 7px;
-  justify-content: start;
+  gap: 12px;
+}
 
-  color: var(--color-text-additional);
+.user-result__row {
+  display: grid;
+  grid-template-columns: minmax(96px, 128px) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.user-result__label {
+  color: #59638f;
   font-family: 'SpoqaHanSansNeo', sans-serif;
   font-size: 13px;
+  font-weight: var(--font-medium);
+  line-height: 1.45;
+  word-break: keep-all;
+}
 
-  font-weight: var(--font-regular);
-  line-height: normal;
+.user-result__value {
+  min-width: 0;
+  color: #273154;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 16px;
+  font-weight: var(--font-bold);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-align: left;
 }
 
 .user-result__notice {
@@ -97,7 +118,7 @@
 /* 태블릿 */
 @media (min-width: 768px) {
   .user-result__container {
-    max-width: 411px;
+    max-width: 540px;
   }
 
   .user-result__logo {
@@ -107,23 +128,33 @@
   }
 
   .user-result__card {
-    max-width: 411px;
-    padding: 50px 16px 23px 16px;
+    max-width: 540px;
+    padding: 48px 30px 30px;
     margin-bottom: 48px;
   }
 
   .user-result__title__02 {
-    font-size: 16px;
-    margin-bottom: 30px;
+    font-size: 24px;
+    margin-bottom: 28px;
   }
 
   .user-result__box {
-    max-width: 273px;
-    padding: 23px 15px;
-    margin-bottom: 0;
-    column-gap: 38px;
-    row-gap: 9px;
-    font-size: 15px;
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .user-result__row {
+    grid-template-columns: minmax(116px, 152px) minmax(0, 1fr);
+    column-gap: 20px;
+    padding: 16px 18px;
+  }
+
+  .user-result__label {
+    font-size: 14px;
+  }
+
+  .user-result__value {
+    font-size: 18px;
   }
 
   .user-result__button-icon {
@@ -140,7 +171,7 @@
 /* 데스크탑 */
 @media (min-width: 1024px) {
   .user-result__container {
-    max-width: 507px;
+    max-width: 620px;
   }
 
   .user-result__logo {
@@ -150,22 +181,32 @@
   }
 
   .user-result__card {
-    padding: 67.5px 40px 30px 40px;
+    padding: 58px 40px 36px;
     margin-bottom: 64px;
   }
 
   .user-result__title__02 {
-    font-size: 20px;
-    margin-bottom: 40px;
+    font-size: 30px;
+    margin-bottom: 34px;
   }
 
   .user-result__box {
-    max-width: 364px;
-    padding: 30px 20px;
-    margin-bottom: 0;
-    column-gap: 50px;
-    row-gap: 12px;
-    font-size: 20px;
+    padding: 22px;
+    gap: 14px;
+  }
+
+  .user-result__row {
+    grid-template-columns: minmax(132px, 176px) minmax(0, 1fr);
+    column-gap: 28px;
+    padding: 18px 20px;
+  }
+
+  .user-result__label {
+    font-size: 17px;
+  }
+
+  .user-result__value {
+    font-size: 22px;
   }
 
   .user-result__button {
@@ -180,5 +221,21 @@
 
   .user-result__notice {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 479px) {
+  .user-result__row {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+    align-items: start;
+  }
+
+  .user-result__label {
+    font-size: 12px;
+  }
+
+  .user-result__value {
+    font-size: 15px;
   }
 }
