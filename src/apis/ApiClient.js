@@ -1,4 +1,11 @@
 import axios from 'axios'
+import {
+  clearAuthSession,
+  getAccessToken,
+  isAuthExpired,
+  isProtectedPath,
+  refreshAuthSession,
+} from '../utils/authStorage'
 
 // Axios 인스턴스 생성
 export const api = axios.create({
@@ -28,8 +35,16 @@ api.interceptors.request.use(
     // 기본값: 인증 필요 없음
     const requireAuth = config.requireAuth ?? false
     if (requireAuth) {
-      const accessToken = localStorage.getItem('accessToken')
-      if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`
+      const accessToken = getAccessToken()
+
+      if (!accessToken) {
+        if (isProtectedPath()) {
+          window.location.href = '/login'
+        }
+        return Promise.reject(new Error('로그인이 만료되었습니다. 다시 로그인해주세요.'))
+      }
+
+      config.headers.Authorization = `Bearer ${accessToken}`
     }
 
     return config
@@ -59,6 +74,16 @@ api.interceptors.response.use(
 
     // AccessToken 만료
     if (err.response?.status === 401 && !originalRequest._retry) {
+      if (isAuthExpired()) {
+        clearAuthSession()
+
+        if (isProtectedPath()) {
+          window.location.href = '/login'
+        }
+
+        return Promise.reject(err)
+      }
+
       originalRequest._retry = true
 
       if (isRefreshing) {
@@ -80,7 +105,7 @@ api.interceptors.response.use(
         )
 
         const { accessToken } = res.data
-        localStorage.setItem('accessToken', accessToken)
+        refreshAuthSession(accessToken)
 
         processQueue(null, accessToken)
         isRefreshing = false
@@ -91,7 +116,7 @@ api.interceptors.response.use(
         processQueue(refreshError, null)
         isRefreshing = false
 
-        localStorage.removeItem('accessToken')
+        clearAuthSession()
         window.location.href = '/login'
         return Promise.reject(refreshError)
       }

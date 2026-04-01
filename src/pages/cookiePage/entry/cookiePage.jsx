@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { setAuthSession } from '../../../utils/authStorage'
 
 export default function CookiePage() {
   const navigate = useNavigate()
@@ -16,8 +17,10 @@ export default function CookiePage() {
         if (!res.ok) throw new Error('인증 실패')
 
         const data = await res.json()
-        localStorage.setItem('accessToken', data.accessToken)
-        localStorage.setItem('refreshToken', data.refreshToken)
+        setAuthSession({
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+        })
 
         // 로그인 완료 후 메인 페이지로 이동
         navigate('/dashboard', { replace: true })

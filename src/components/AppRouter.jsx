@@ -9,10 +9,15 @@ import FormCreatePage from '../pages/formCreatePage/entry/FormCreatePage'
 import FormDetailPage from '../pages/formDetailPage/entry/FormDetailPage'
 import UserDetailPage from '../pages/userDetailPage/entry/UserDetailPage'
 import UserResultPage from '../pages/userResultPage/entry/UserResultPage'
+import { hasValidSession } from '../utils/authStorage'
 
 const RootRedirect = () => {
-  const isLoggedIn = !!localStorage.getItem('accessToken')
+  const isLoggedIn = hasValidSession()
   return <Navigate to={isLoggedIn ? '/dashboard' : '/login'} replace />
+}
+
+const ProtectedRoute = ({ children }) => {
+  return hasValidSession() ? children : <Navigate to='/login' replace />
 }
 
 export const AppRouter = createBrowserRouter([
@@ -43,7 +48,11 @@ export const AppRouter = createBrowserRouter([
   // AdminLayout 하위 페이지
   {
     path: '/',
-    element: <AdminLayout />,
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: [
       { path: 'dashboard', element: <DashBoardPage /> },
       { path: 'newcsv', element: <CsvCreatePage /> },
