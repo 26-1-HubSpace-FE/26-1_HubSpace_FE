@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { setAuthSession } from '../../../utils/authStorage'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
+import './cookiePage.css'
 
 export default function CookiePage() {
   const navigate = useNavigate()
@@ -34,5 +36,17 @@ export default function CookiePage() {
     exchangeToken()
   }, [navigate])
 
-  return <p>로그인 처리 중입니다...</p>
+  return (
+    <div className='cookiePage'>
+      <div className='cookiePage-card'>
+        <LoadingSpinner
+          className='cookiePage-spinner'
+          size={48}
+          cubeSize={16}
+          color='#2d3b86'
+        />
+        <p className='cookiePage-text'>로그인 중입니다...</p>
+      </div>
+    </div>
+  )
 }
