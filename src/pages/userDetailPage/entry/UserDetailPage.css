@@ -111,46 +111,23 @@
 .user-detail__submitButton {
   overflow: hidden;
   isolation: isolate;
-  background:
-    linear-gradient(
-      120deg,
-      rgba(150, 85, 255, 0.9) 0%,
-      rgba(61, 108, 255, 0.92) 45%,
-      rgba(66, 199, 255, 0.9) 100%
-    )
-    0 100% / 100% 0 no-repeat;
+  background: transparent;
   transition:
     color 0.3s ease,
-    background-size 0.35s ease,
     transform 0.25s ease,
     box-shadow 0.35s ease;
 }
 
 .user-detail__submitButton:hover,
 .user-detail__submitButton:focus-visible {
-  color: var(--color-white);
-  background-size: 100% 100%;
-  animation: userDetailButtonWave 2.6s linear infinite;
+  color: var(--color-text);
+  background: transparent;
   box-shadow: 0 14px 28px rgba(70, 97, 216, 0.18);
   transform: translateY(-1px);
 }
 
 .user-detail__submitButton:focus-visible {
   outline: none;
-}
-
-@keyframes userDetailButtonWave {
-  0% {
-    background-position: 0% 100%;
-  }
-
-  50% {
-    background-position: 100% 100%;
-  }
-
-  100% {
-    background-position: 0% 100%;
-  }
 }
 
 /* 태블릿 */
