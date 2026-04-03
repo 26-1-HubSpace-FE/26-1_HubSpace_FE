@@ -1,0 +1,44 @@
+.cookiePage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(214, 231, 255, 0.85) 0%, rgba(214, 231, 255, 0) 34%),
+    radial-gradient(circle at top right, rgba(250, 225, 239, 0.78) 0%, rgba(250, 225, 239, 0) 32%),
+    linear-gradient(180deg, rgba(248, 250, 255, 0.96) 0%, rgba(242, 246, 255, 0.98) 100%);
+}
+
+.cookiePage-loading {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.cookiePage-spinner {
+  margin: 0;
+}
+
+.cookiePage-text {
+  color: #2b2f5f;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 15px;
+  font-weight: var(--font-medium);
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .cookiePage-loading {
+    max-width: 400px;
+  }
+
+  .cookiePage-text {
+    font-size: 16px;
+  }
+}

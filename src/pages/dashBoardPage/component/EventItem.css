@@ -1,9 +1,33 @@
 .eventItem {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
   background-color: var(--color-white);
   padding: 30px;
+}
+
+.eventItem-loadingOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(3px);
+}
+
+.eventItem-loadingSpinner {
+  margin: 0;
+}
+
+.eventItem-loadingText {
+  font-size: 14px;
+  font-weight: var(--font-medium);
+  color: var(--color-text);
 }
 
 .eventItem-header {
@@ -47,11 +71,13 @@
   gap: 20px;
   font-size: 14px;
   font-weight: var(--font-medium);
+  min-width: 0;
 }
 
 .eventItem-search {
   display: flex;
   flex: 1;
+  min-width: 0;
   padding: 18px 24px;
   background-color: var(--color-box-view);
   color: var(--color-action-view);
@@ -61,6 +87,7 @@
 .eventItem-apply {
   display: flex;
   flex: 1;
+  min-width: 0;
   padding: 18px 24px;
   background-color: var(--color-box-apply);
   color: var(--color-action-apply);
@@ -72,9 +99,63 @@
   flex-direction: column;
   gap: 6px;
   flex: 1;
+  min-width: 0;
+}
+
+.eventItem-link__link {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 .eventItem-link__copy,
 .eventItem-item__more {
   cursor: pointer;
+}
+
+.eventItem-item__more {
+  padding: 6px;
+}
+
+.eventItem-actions {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.eventItem-actionMenu {
+  position: absolute;
+  top: calc(100% + 2px);
+  right: -8px;
+  min-width: 110px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  z-index: 30;
+}
+
+.eventItem-actionMenu__delete {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--color-exit);
+  font-size: 13px;
+}
+
+.eventItem-actionMenu__delete:hover {
+  background-color: var(--color-box-conditional);
+}
+
+.eventItem-actionMenu__delete:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@media (max-width: 960px) {
+  .eventItem-links {
+    flex-direction: column;
+  }
 }

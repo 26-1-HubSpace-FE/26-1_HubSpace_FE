@@ -3,7 +3,7 @@ import EventButton from '../../../components/eventButton/EventButton'
 import EventDropdown from '../../../components/eventDropdown/EventDropdown'
 import EventInput from '../../../components/eventInput/EventInput'
 import { Icon } from '../../../components/icon/Icon'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -32,7 +32,7 @@ export default function CsvDetailPage() {
         toast.success('ID가 복사되었습니다!')
       })
       .catch((err) => {
-        toast.error('복사 실패', { autoClose: 2000 })
+        toast.error('복사 실패', { duration: 2000 })
         console.error('복사 실패:', err)
       })
   }

@@ -14,7 +14,7 @@ export default function GradientButton({
       disabled={disabled}
       className={`gradient-button ${className}`}
     >
-      {children}
+      <span className='gradient-button__label'>{children}</span>
     </button>
   )
 }

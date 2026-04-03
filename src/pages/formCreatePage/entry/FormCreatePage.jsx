@@ -1,38 +1,74 @@
 import './FormCreatePage.css'
 import { useState } from 'react'
 import EventInput from '../../../components/eventInput/EventInput'
-import EventDropdown from '../../../components/eventDropdown/EventDropdown'
 import EventButton from '../../../components/eventButton/EventButton'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
+import { createFormEvent } from '../apis/createFormEvent'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function FormCreatePage() {
-  const defaultColumns = ['이름', '학번', '전화번호', '생년월일']
-
-  const [selectedFields, setSelectedFields] = useState(['선택', '선택', '선택'])
+  const [eventTitle, setEventTitle] = useState('')
+  const [selectedFields, setSelectedFields] = useState(['', '', ''])
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const navigate = useNavigate()
 
-  // 실제 선택된 필드만 추출
-  const validFields = selectedFields.filter((v) => v !== '선택')
+  const trimmedTitle = eventTitle.trim()
+  // 실제 입력된 필드만 추출
+  const validFields = selectedFields.map((v) => v.trim()).filter((v) => v !== '')
 
   const isValid =
+    trimmedTitle.length > 0 &&
     validFields.length >= 2 &&
     validFields.length <= 3 &&
     new Set(validFields).size === validFields.length // 중복 방지
 
-  const handleCreateForm = () => {
-    // 폼 생성 로직 구현
-    if (isValid) {
+  const handleFieldChange = (index, value) => {
+    const nextFields = [...selectedFields]
+    nextFields[index] = value
+    setSelectedFields(nextFields)
+  }
+
+  const handleCreateForm = async () => {
+    if (isSubmitting) return
+
+    if (!isValid) {
+      toast.error('이벤트 관리명과 필드를 2개 이상, 중복 없이 입력해주세요.', { duration: 2000 })
+      return
+    }
+
+    try {
+      setIsSubmitting(true)
+
+      await createFormEvent({
+        eventTitle: trimmedTitle,
+        searchColumns: validFields,
+      })
+
       toast.success('이벤트 폼이 생성되었습니다!')
       navigate('/dashboard')
-    } else {
-      toast.error('필드를 2개 이상, 중복 없이 선택해주세요.', { autoClose: 2000 })
+    } catch (err) {
+      const message = err?.response?.data?.message || '이벤트 생성에 실패했습니다.'
+      toast.error(message, { duration: 2000 })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   return (
     <div className='formCreate'>
+      {isSubmitting && (
+        <div className='formCreate-loadingOverlay'>
+          <LoadingSpinner
+            className='formCreate-loadingSpinner'
+            size={48}
+            cubeSize={16}
+            color='#2d3b86'
+          />
+          <div className='formCreate-loadingText'>폼 생성 중...</div>
+        </div>
+      )}
       <div className='formCreate-container'>
         <div className='formCreate-header'>
           <div className='formCreate-title'>새 이벤트 생성하기 - 폼</div>
@@ -40,7 +76,7 @@ export default function FormCreatePage() {
         </div>
 
         <div className='formCreate-name'>
-          <EventInput />
+          <EventInput value={eventTitle} onChange={(e) => setEventTitle(e.target.value)} />
         </div>
 
         <div className='formCreate-field'>
@@ -55,16 +91,25 @@ export default function FormCreatePage() {
             </div>
 
             <div className='formCreate-field__info--notice'>
-              생성 완료 후, 정보 1, 정보 2, 정보 3은 수정이 불가합니다.
+              생성 완료 후, 정보 1, 정보 2, 정보 3은 수정하시면 안됩니다.
             </div>
 
             <div className='formCreate-field__field'>
-              <EventDropdown
-                columns={defaultColumns}
-                value={selectedFields}
-                onChange={setSelectedFields}
-                disabled={false}
-              />
+              <div className='formCreate-fieldInputRow'>
+                {['정보 1', '정보 2', '정보 3'].map((label, index) => (
+                  <div key={label} className='formCreate-fieldInput'>
+                    <div className='formCreate-fieldInput__label'>{label}</div>
+                    <div className='formCreate-fieldInput__box'>
+                      <input
+                        className='formCreate-fieldInput__input'
+                        placeholder={`${label} 항목명을 입력하세요.`}
+                        value={selectedFields[index]}
+                        onChange={(e) => handleFieldChange(index, e.target.value)}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className='formCreate-field__condition'>
@@ -78,7 +123,7 @@ export default function FormCreatePage() {
         </div>
 
         <div className='formCreate-button'>
-          <EventButton text='이벤트 생성' onClick={handleCreateForm} />
+          <EventButton text={isSubmitting ? '생성 중...' : '이벤트 생성'} onClick={handleCreateForm} />
         </div>
       </div>
     </div>

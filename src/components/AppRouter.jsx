@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import AdminLayout from './layout/AdminLayout'
 import LoginPage from '../pages/loginPage/entry/LoginPage'
 import CookiePage from '../pages/cookiePage/entry/cookiePage'
@@ -9,8 +9,16 @@ import FormCreatePage from '../pages/formCreatePage/entry/FormCreatePage'
 import FormDetailPage from '../pages/formDetailPage/entry/FormDetailPage'
 import UserDetailPage from '../pages/userDetailPage/entry/UserDetailPage'
 import UserResultPage from '../pages/userResultPage/entry/UserResultPage'
+import { hasValidSession } from '../utils/authStorage'
 
-// 로그인 여부 확인용 함수 (localStorage 기반, 필요시 더 정교하게 수정 가능)
+const RootRedirect = () => {
+  const isLoggedIn = hasValidSession()
+  return <Navigate to={isLoggedIn ? '/dashboard' : '/login'} replace />
+}
+
+const ProtectedRoute = ({ children }) => {
+  return hasValidSession() ? children : <Navigate to='/login' replace />
+}
 
 export const AppRouter = createBrowserRouter([
   // 로그인 페이지
@@ -24,7 +32,7 @@ export const AppRouter = createBrowserRouter([
   },
   {
     path: '/',
-    element: <LoginPage />,
+    element: <RootRedirect />,
   },
 
   // 소셜 로그인 후 쿠키 페이지
@@ -40,7 +48,11 @@ export const AppRouter = createBrowserRouter([
   // AdminLayout 하위 페이지
   {
     path: '/',
-    element: <AdminLayout />,
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: [
       { path: 'dashboard', element: <DashBoardPage /> },
       { path: 'newcsv', element: <CsvCreatePage /> },

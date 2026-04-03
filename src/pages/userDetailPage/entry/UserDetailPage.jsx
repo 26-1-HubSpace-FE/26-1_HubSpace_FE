@@ -3,8 +3,9 @@ import GradientButton from '../../../components/gradientButton/GradientButton'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
-import { userFieldPlaceholders } from '../../userResultPage/utils/UserFieldConfig'
+import { getUserFieldPlaceholder } from '../../userResultPage/utils/UserFieldConfig'
 import { useFetchEventDetail } from '../apis/fetchEventDetail'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 // 사용자 이벤트 신청 조회 페이지
 export default function UserDetailPage() {
@@ -18,8 +19,15 @@ export default function UserDetailPage() {
   if (loading) {
     return (
       <GradientLayout>
-        <div className='user-detail__card'>
-          <p className='user-detail__description'>이벤트 정보를 불러오는 중...</p>
+        <a href='/' className='user-detail__logo' aria-label='홈으로 이동'></a>
+        <div className='user-detail__loading'>
+          <LoadingSpinner
+            className='user-detail__loadingSpinner'
+            size={48}
+            cubeSize={16}
+            color='#2d3b86'
+          />
+          <p className='user-detail__loadingText'>이벤트 정보를 불러오는 중...</p>
         </div>
       </GradientLayout>
     )
@@ -80,7 +88,7 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
   return (
     <GradientLayout>
       {/* 로고 영역 */}
-      <div className='user-detail__logo'></div>
+      <a href='/' className='user-detail__logo' aria-label='홈으로 이동'></a>
       <div className='user-detail__card'>
         <h1 className='user-detail__title'>신청 조회</h1>
         <p className='user-detail__description'>이벤트 신청 여부를 정보 입력 후 확인 가능합니다</p>
@@ -97,7 +105,7 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
                 id={columnName}
                 name={columnName}
                 className='user-detail__input'
-                placeholder={userFieldPlaceholders[columnName]}
+                placeholder={getUserFieldPlaceholder(columnName)}
                 value={userFormData[columnName]}
                 onChange={handlerUserInput}
                 required
@@ -105,7 +113,9 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
             </div>
           ))}
 
-          <GradientButton type='submit'>조회하기</GradientButton>
+          <GradientButton type='submit' className='user-detail__submitButton'>
+            조회하기
+          </GradientButton>
         </form>
       </div>
     </GradientLayout>

@@ -10,6 +10,7 @@
 }
 
 .user-detail__logo {
+  display: block;
   width: 183px;
   height: 70px;
   background-image: url('../../../assets/auth/auth-logo.svg');
@@ -19,6 +20,29 @@
   background-repeat: no-repeat;
 
   margin-bottom: 24px;
+}
+
+.user-detail__loading {
+  width: 100%;
+  max-width: 411px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.user-detail__loadingSpinner {
+  margin: 0;
+}
+
+.user-detail__loadingText {
+  color: #2b2f5f;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 14px;
+  font-weight: var(--font-medium);
+  line-height: 1.4;
 }
 
 /* 페이지 제목 */
@@ -108,6 +132,28 @@
   font-weight: var(--font-light);
 }
 
+.user-detail__submitButton {
+  overflow: hidden;
+  isolation: isolate;
+  background: transparent;
+  transition:
+    color 0.3s ease,
+    transform 0.25s ease,
+    box-shadow 0.35s ease;
+}
+
+.user-detail__submitButton:hover,
+.user-detail__submitButton:focus-visible {
+  color: var(--color-text);
+  background: transparent;
+  box-shadow: 0 14px 28px rgba(70, 97, 216, 0.18);
+  transform: translateY(-1px);
+}
+
+.user-detail__submitButton:focus-visible {
+  outline: none;
+}
+
 /* 태블릿 */
 @media (min-width: 768px) {
   .user-detail__logo {
@@ -119,6 +165,10 @@
   .user-detail__title {
     font-size: 20px;
     margin-bottom: 12px;
+  }
+
+  .user-detail__loadingText {
+    font-size: 16px;
   }
 
   .user-detail__description {
@@ -165,6 +215,10 @@
   .user-detail__title {
     font-size: 24px;
     margin-bottom: 15px;
+  }
+
+  .user-detail__loadingText {
+    font-size: 18px;
   }
 
   .user-detail__description {

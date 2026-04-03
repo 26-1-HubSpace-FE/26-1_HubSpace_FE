@@ -1,6 +1,6 @@
 .user-result__container {
   width: 100%;
-  max-width: 411px;
+  max-width: 480px;
   padding: 0 16px;
   box-sizing: border-box;
 
@@ -9,7 +9,30 @@
   align-items: center;
 }
 
+.user-result__loading {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-result__loadingSpinner {
+  margin: 0;
+}
+
+.user-result__loadingText {
+  color: #2b2f5f;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 14px;
+  font-weight: var(--font-medium);
+  line-height: 1.4;
+  text-align: center;
+}
+
 .user-result__logo {
+  display: block;
   width: 183px;
   height: 70px;
   background-image: url('../../../assets/auth/auth-logo.svg');
@@ -23,11 +46,18 @@
 
 /* 중앙 흰색 카드 */
 .user-result__card {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  border-radius: 10px;
-  background: var(--color-box-popup);
-
-  padding: 40px 16px 18px 16px;
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.54) 48%, rgba(248, 244, 255, 0.64) 100%);
+  backdrop-filter: blur(22px) saturate(130%);
+  box-shadow:
+    0 24px 70px rgba(37, 45, 92, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  padding: 36px 22px 26px;
   box-sizing: border-box;
 
   display: flex;
@@ -37,58 +67,120 @@
   margin-bottom: 38px;
 }
 
-/* 페이지 제목 */
-.user-result__title__01 {
-  color: var(--color-text);
-  font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 16px;
-
-  font-weight: var(--font-bold);
-  line-height: normal;
-
-  text-align: center;
-  margin-bottom: 26px;
+.user-result__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(174, 217, 255, 0.3) 0%, rgba(174, 217, 255, 0) 36%),
+    radial-gradient(circle at top right, rgba(255, 195, 223, 0.26) 0%, rgba(255, 195, 223, 0) 34%);
+  pointer-events: none;
 }
 
-.user-result__title__02 {
-  color: var(--color-text-additional);
-  font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 14px;
+.user-result__card::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.18) 100%);
+  pointer-events: none;
+}
 
+/* 페이지 제목 */
+.user-result__title__02 {
+  position: relative;
+  z-index: 1;
+  color: #2b2f5f;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 15px;
   font-weight: var(--font-medium);
-  line-height: normal;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
 
   text-align: center;
-  margin-bottom: 37px;
+  margin-bottom: 22px;
 }
 
 .user-result__box {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 218px;
-  border-radius: 10px;
-  background: var(--color-box-info);
+  max-width: 100%;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(245, 248, 255, 0.88) 0%, rgba(239, 243, 255, 0.74) 100%);
+  border: 1px solid rgba(150, 168, 236, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 16px 36px rgba(79, 96, 163, 0.08);
 
-  padding: 18px 12px;
+  padding: 16px;
   box-sizing: border-box;
-
-  margin-bottom: 0;
-
   display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 30px;
-  row-gap: 7px;
-  justify-content: start;
+  gap: 12px;
+}
 
+.user-result__label {
+  display: block;
+  color: #6a739d;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 13px;
+  font-weight: var(--font-regular);
+  line-height: 1.45;
+  word-break: keep-all;
+  letter-spacing: 0;
+  margin-bottom: 4px;
+}
+
+.user-result__value {
+  display: block;
+  min-width: 0;
+  color: #30375a;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 16px;
+  font-weight: var(--font-medium);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-align: left;
+}
+
+.user-result__notice {
+  position: relative;
+  z-index: 1;
   color: var(--color-text-additional);
   font-family: 'SpoqaHanSansNeo', sans-serif;
   font-size: 13px;
-
   font-weight: var(--font-regular);
-  line-height: normal;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .user-result__button {
   width: 100%;
+}
+
+.user-result__backButton {
+  background: transparent;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.35s ease;
+}
+
+.user-result__backButton:hover,
+.user-result__backButton:focus-visible {
+  color: var(--color-text);
+  background: transparent;
+  box-shadow: 0 14px 28px rgba(70, 97, 216, 0.16);
+  transform: translateY(-1px);
+}
+
+.user-result__backButton:focus-visible {
+  outline: none;
 }
 
 .user-result__button-icon {
@@ -100,7 +192,7 @@
 /* 태블릿 */
 @media (min-width: 768px) {
   .user-result__container {
-    max-width: 411px;
+    max-width: 540px;
   }
 
   .user-result__logo {
@@ -110,28 +202,35 @@
   }
 
   .user-result__card {
-    max-width: 411px;
-    padding: 50px 16px 23px 16px;
+    max-width: 540px;
+    padding: 50px 30px 32px;
     margin-bottom: 48px;
   }
 
-  .user-result__title__01 {
-    font-size: 20px;
-    margin-bottom: 33px;
+  .user-result__loading {
+    max-width: 420px;
+  }
+
+  .user-result__loadingText {
+    font-size: 16px;
   }
 
   .user-result__title__02 {
-    font-size: 16px;
-    margin-bottom: 46px;
+    font-size: 20px;
+    margin-bottom: 28px;
   }
 
   .user-result__box {
-    max-width: 273px;
-    padding: 23px 15px;
-    margin-bottom: 0;
-    column-gap: 38px;
-    row-gap: 9px;
-    font-size: 15px;
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .user-result__label {
+    font-size: 14px;
+  }
+
+  .user-result__value {
+    font-size: 18px;
   }
 
   .user-result__button-icon {
@@ -139,12 +238,16 @@
     height: 18px;
     margin-right: 9px;
   }
+
+  .user-result__notice {
+    font-size: 15px;
+  }
 }
 
 /* 데스크탑 */
 @media (min-width: 1024px) {
   .user-result__container {
-    max-width: 507px;
+    max-width: 620px;
   }
 
   .user-result__logo {
@@ -154,27 +257,34 @@
   }
 
   .user-result__card {
-    padding: 67.5px 40px 30px 40px;
+    padding: 60px 40px 38px;
     margin-bottom: 64px;
   }
 
-  .user-result__title__01 {
-    font-size: 26px;
-    margin-bottom: 44px;
+  .user-result__loading {
+    max-width: 480px;
+  }
+
+  .user-result__loadingText {
+    font-size: 18px;
   }
 
   .user-result__title__02 {
-    font-size: 20px;
-    margin-bottom: 61.5px;
+    font-size: 24px;
+    margin-bottom: 34px;
   }
 
   .user-result__box {
-    max-width: 364px;
-    padding: 30px 20px;
-    margin-bottom: 0;
-    column-gap: 50px;
-    row-gap: 12px;
-    font-size: 20px;
+    padding: 22px;
+    gap: 14px;
+  }
+
+  .user-result__label {
+    font-size: 17px;
+  }
+
+  .user-result__value {
+    font-size: 21px;
   }
 
   .user-result__button {
@@ -185,5 +295,25 @@
     width: 20px;
     height: 20px;
     margin-right: 10px;
+  }
+
+  .user-result__notice {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 479px) {
+  .user-result__row {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+    align-items: start;
+  }
+
+  .user-result__label {
+    font-size: 12px;
+  }
+
+  .user-result__value {
+    font-size: 14px;
   }
 }

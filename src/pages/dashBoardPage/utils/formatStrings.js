@@ -13,5 +13,5 @@ export function formatDate(createdAt) {
 export function makeSearchUrl(id) {
   if (!id) return ''
 
-  return `https://formsite.google.com/${id}`
+  return `https://hubspacekw.com/search?eventId=${encodeURIComponent(id)}`
 }

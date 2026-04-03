@@ -1,16 +1,28 @@
 import './EventItem.css'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'sonner'
 import { formatDate, makeSearchUrl } from '../utils/formatStrings'
 import { Icon } from '../../../components/icon/Icon'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { apiDeletePrivate } from '../../../utils/ApiUtil'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function EventItem({ event }) {
-  const navigate = useNavigate()
+  const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const actionMenuRef = useRef(null)
 
-  const handleMoreClick = () => {
-    navigate(`/edit${event.eventType === 'FORM' ? 'form' : 'csv'}/${event.id}`)
-  }
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!actionMenuRef.current?.contains(e.target)) {
+        setIsActionMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const handleMoreClick = () => setIsActionMenuOpen((prev) => !prev)
 
   const handleCopyUrl = (url) => {
     navigator.clipboard
@@ -19,13 +31,54 @@ export default function EventItem({ event }) {
         toast.success('링크가 복사되었습니다!')
       })
       .catch((err) => {
-        toast.error('복사 실패', { autoClose: 2000 })
+        toast.error('복사 실패', { duration: 2000 })
         console.error('복사 실패:', err)
       })
   }
 
+  const handleDelete = async () => {
+    if (isDeleting) return
+
+    try {
+      setIsDeleting(true)
+      const res = await apiDeletePrivate(`/v1/events/${event.id}`)
+      const isSuccess = res?.isSuccess ?? res?.success ?? false
+
+      if (!isSuccess) {
+        toast.error(res?.message || '이벤트 삭제에 실패했습니다.', { duration: 2000 })
+        return
+      }
+
+      toast.success('이벤트가 삭제되었습니다!', {
+        duration: 1000,
+      })
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+      setIsActionMenuOpen(false)
+    } catch (err) {
+      toast.error(err?.response?.data?.message || err?.message || '이벤트 삭제에 실패했습니다.', {
+        duration: 2000,
+      })
+      console.error('이벤트 삭제 실패:', err)
+    } finally {
+      setIsDeleting(false)
+    }
+  }
+
   return (
     <div className='eventItem'>
+      {isDeleting && (
+        <div className='eventItem-loadingOverlay'>
+          <LoadingSpinner
+            className='eventItem-loadingSpinner'
+            size={40}
+            cubeSize={15}
+            color='#2d3b86'
+          />
+          <div className='eventItem-loadingText'>삭제 중...</div>
+        </div>
+      )}
       <div className='eventItem-header'>
         <div className='eventItem-header__header'>
           <div className='eventItem-title'>
@@ -52,12 +105,26 @@ export default function EventItem({ event }) {
             </div>
           </div>
         </div>
-        <Icon
-          name='button-more'
-          width={3}
-          className='eventItem-item__more'
-          onClick={handleMoreClick}
-        />
+        <div className='eventItem-actions' ref={actionMenuRef}>
+          <Icon
+            name='button-more'
+            width={3}
+            className='eventItem-item__more'
+            onClick={handleMoreClick}
+          />
+          {isActionMenuOpen && (
+            <div className='eventItem-actionMenu'>
+              <button
+                type='button'
+                className='eventItem-actionMenu__delete'
+                onClick={handleDelete}
+                disabled={isDeleting}
+              >
+                {isDeleting ? '삭제 중...' : '이벤트 삭제'}
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       <div className='eventItem-links'>
         <div className='eventItem-search'>

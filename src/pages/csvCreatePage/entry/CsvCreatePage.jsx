@@ -3,13 +3,19 @@ import { useState } from 'react'
 import EventInput from '../../../components/eventInput/EventInput'
 import EventDropdown from '../../../components/eventDropdown/EventDropdown'
 import EventButton from '../../../components/eventButton/EventButton'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from '../../../components/icon/Icon'
+import { createFileEvent } from '../apis/createFileEvent'
 
 export default function CsvCreatePage() {
+  const [eventTitle, setEventTitle] = useState('')
+  const [uploadedFile, setUploadedFile] = useState(null)
   const [columns, setColumns] = useState([])
   const [previewRows, setPreviewRows] = useState([])
+  const [rowCount, setRowCount] = useState(0)
+  const [uploadedFileName, setUploadedFileName] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // 폼 생성 필드 (3개)
   const [selectedFields, setSelectedFields] = useState(['선택', '선택', '선택'])
@@ -19,11 +25,15 @@ export default function CsvCreatePage() {
   const [selectedColumn, setSelectedColumn] = useState('표시 안 함')
 
   const navigate = useNavigate()
+  const trimmedTitle = eventTitle.trim()
 
   // 실제 선택된 필드만
   const validFields = selectedFields.filter((v) => v !== '선택')
 
   const isValid =
+    trimmedTitle.length > 0 &&
+    uploadedFile !== null &&
+    rowCount > 0 &&
     validFields.length >= 2 &&
     validFields.length <= 3 &&
     new Set(validFields).size === validFields.length
@@ -60,6 +70,9 @@ export default function CsvCreatePage() {
 
       setColumns(headers)
       setPreviewRows(rows)
+      setRowCount(lines.length - 1)
+      setUploadedFile(file)
+      setUploadedFileName(file.name)
       setSelectedFields(['선택', '선택', '선택'])
       setSelectedColumn('표시 안 함')
       setIsOpen(false)
@@ -81,20 +94,44 @@ export default function CsvCreatePage() {
     setIsOpen(false)
   }
 
-  const handleCreateCsv = () => {
+  const handleCreateCsv = async () => {
+    if (isSubmitting) return
+
     if (!columns.length) {
       toast.error('CSV 파일을 먼저 업로드해주세요.')
       return
     }
 
     if (isValid) {
-      toast.success('CSV 이벤트가 생성되었습니다!')
-      navigate('/dashboard')
+      try {
+        setIsSubmitting(true)
+
+        await createFileEvent({
+          file: uploadedFile,
+          eventTitle: trimmedTitle,
+          count: rowCount,
+          searchColumns: validFields,
+        })
+
+        toast.success('CSV 이벤트가 생성되었습니다!')
+        navigate('/dashboard')
+      } catch (err) {
+        const message = err?.response?.data?.message || 'CSV 이벤트 생성에 실패했습니다.'
+        toast.error(message, { duration: 2000 })
+      } finally {
+        setIsSubmitting(false)
+      }
     } else {
-      toast.error('필드를 2개 이상, 중복 없이 선택해주세요.', {
-        autoClose: 2000,
+      toast.error('이벤트 관리명과 필드를 2개 이상, 중복 없이 선택해주세요.', {
+        duration: 2000,
       })
     }
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    parseHeaderFromFile(file)
   }
 
   return (
@@ -108,7 +145,7 @@ export default function CsvCreatePage() {
 
         {/* ================= Event Name ================= */}
         <div className='csvCreate-name'>
-          <EventInput />
+          <EventInput value={eventTitle} onChange={(e) => setEventTitle(e.target.value)} />
         </div>
 
         {/* ================= File Upload ================= */}
@@ -116,23 +153,24 @@ export default function CsvCreatePage() {
           <div className='csvCreate-file__header'>
             <div className='csvCreate-file__title'>
               <div className='csvCreate-file__title--title'>데이터 파일</div>
-              <div className='csvCreate-file__title--notice'>2개 이상 선택 필수</div>
-              <Icon name='detail-copy' height={14} className='csvCreate-file__title--copy' />
             </div>
 
             <div className='csvCreate-file__info'>CSV, TSV만 업로드 가능합니다.</div>
 
             <div className='csvCreate-file__upload'>
               <input
+                id='csvCreateFileInput'
+                className='csvCreate-file__uploadInput'
                 type='file'
                 accept='.csv,.tsv'
-                onChange={(e) => {
-                  const file = e.target.files[0]
-                  if (!file) return
-                  parseHeaderFromFile(file)
-                }}
+                onChange={handleFileChange}
               />
-              <div className='csvCreate-file__upload--button'>파일 첨부</div>
+              <label htmlFor='csvCreateFileInput' className='csvCreate-file__uploadButton'>
+                파일 첨부
+              </label>
+              <div className='csvCreate-file__uploadName'>
+                {uploadedFileName || '선택된 파일 없음'}
+              </div>
             </div>
           </div>
         </div>
@@ -163,77 +201,6 @@ export default function CsvCreatePage() {
             </div>
           </div>
 
-          {/* ================= Display Field ================= */}
-          <div className='csvCreate-display'>
-            <div className='csvCreate-display__header'>
-              <div className='csvCreate-field__title'>
-                <div className='csvCreate-field__title--title'>조회 확인 정보</div>
-                <div className='csvCreate-field__title--notice'>(선택사항)</div>
-              </div>
-
-              <div className='csvCreate-field__info'>
-                신청자가 조회 시 확인 가능한 정보를 설정하세요.
-              </div>
-            </div>
-
-            <div className='csvCreate-display__field'>
-              <div className='csvCreate-display__input'>
-                <div className='csvCreate-display__label'>필드</div>
-
-                <div
-                  className={`csvCreate-display__toggle ${!columns.length ? 'disabled' : ''}`}
-                  onClick={toggleDropdown}
-                >
-                  <div className='csvCreate-display__title'>
-                    {columns.length ? selectedColumn : '선택'}
-                  </div>
-                  <Icon
-                    name='detail-field'
-                    height={4}
-                    className={`csvCreate-display__arrow ${isOpen ? 'open' : ''}`}
-                  />
-                </div>
-
-                {isOpen && (
-                  <div className='csvCreate-display__content'>
-                    {columns.map((col) => (
-                      <div
-                        key={col}
-                        className={`csvCreate-display__item ${
-                          selectedColumn === col ? 'selected' : ''
-                        }`}
-                        onClick={() => handleSelect(col)}
-                      >
-                        {col}
-                      </div>
-                    ))}
-
-                    <div
-                      className={`csvCreate-display__item ${
-                        selectedColumn === '표시 안 함' ? 'selected' : ''
-                      }`}
-                      onClick={() => handleSelect('표시 안 함')}
-                    >
-                      표시 안 함
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className='csvCreate-display__condition'>
-                <div className='csvCreate-display__condition--title'>조회 결과 표시 방식</div>
-                <div className='csvCreate-display__condition--info'>
-                  <p>
-                    ㅁ 필드를 선택하지 않은 경우, "일치하는 정보가 정상적으로 조회되었습니다."
-                    문구만 표시됩니다."
-                  </p>
-                  <p>
-                    ㅁ 필드를 선택한 경우, 위 문구와 함께 '칼럼명 : 데이터' 형식의 정보가 함께
-                    표시됩니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         {/* ================= CSV Preview ================= */}
         <div className='csvCreate-preview'>
@@ -264,7 +231,7 @@ export default function CsvCreatePage() {
           )}
         </div>
 
-        <EventButton text='이벤트 생성' onClick={handleCreateCsv} />
+        <EventButton text={isSubmitting ? '생성 중...' : '이벤트 생성'} onClick={handleCreateCsv} />
       </div>
     </div>
   )
