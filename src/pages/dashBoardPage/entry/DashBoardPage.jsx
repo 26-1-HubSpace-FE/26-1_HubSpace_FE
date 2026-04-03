@@ -4,6 +4,7 @@ import { useState } from 'react'
 import EventCreateModal from '../component/EventCreateModal'
 import EventButton from '../../../components/eventButton/EventButton'
 import { useFetchEvents } from '../apis/fetchEvents'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function DashBoardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -25,7 +26,17 @@ export default function DashBoardPage() {
         />
       </div>
       <div className='dashBoard-eventList'>
-        {loading && <div className='dashBoard-eventList__message'>이벤트 목록을 불러오는 중...</div>}
+        {loading && (
+          <div className='dashBoard-loadingState'>
+            <LoadingSpinner
+              className='dashBoard-loadingState__spinner'
+              size={48}
+              cubeSize={16}
+              color='#2d3b86'
+            />
+            <div className='dashBoard-loadingState__text'>이벤트 목록을 불러오는 중입니다</div>
+          </div>
+        )}
         {!loading && error && (
           <div className='dashBoard-eventList__message'>이벤트 목록을 불러오지 못했습니다.</div>
         )}
