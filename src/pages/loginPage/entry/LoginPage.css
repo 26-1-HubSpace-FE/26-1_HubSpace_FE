@@ -1,5 +1,6 @@
 .login__logo {
-  height: 68px;
+  width: 183px;
+  height: 69px;
   background-image: url('../../../assets/auth/auth-logo.svg');
 
   background-size: contain;
