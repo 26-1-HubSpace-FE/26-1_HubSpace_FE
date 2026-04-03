@@ -10,6 +10,7 @@ import { Icon } from '../../../components/icon/Icon'
 export default function CsvCreatePage() {
   const [columns, setColumns] = useState([])
   const [previewRows, setPreviewRows] = useState([])
+  const [selectedFileName, setSelectedFileName] = useState('')
 
   // 폼 생성 필드 (3개)
   const [selectedFields, setSelectedFields] = useState(['선택', '선택', '선택'])
@@ -68,6 +69,13 @@ export default function CsvCreatePage() {
     reader.readAsText(file, 'utf-8')
   }
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    setSelectedFileName(file.name)
+    parseHeaderFromFile(file)
+  }
+
   /* =========================
      조회 필드 토글
   ========================= */
@@ -113,26 +121,31 @@ export default function CsvCreatePage() {
 
         {/* ================= File Upload ================= */}
         <div className='csvCreate-file'>
-          <div className='csvCreate-file__header'>
-            <div className='csvCreate-file__title'>
-              <div className='csvCreate-file__title--title'>데이터 파일</div>
-              <div className='csvCreate-file__title--notice'>2개 이상 선택 필수</div>
-              <Icon name='detail-copy' height={14} className='csvCreate-file__title--copy' />
-            </div>
+          <div className='csvCreate-file__title'>
+            <div className='csvCreate-file__title--title'>데이터 파일</div>
+            <div className='csvCreate-file__title--notice'>2개 이상 선택 필수</div>
+          </div>
 
-            <div className='csvCreate-file__info'>CSV, TSV만 업로드 가능합니다.</div>
+          <div className='csvCreate-file__info'>CSV, TSV만 업로드 가능합니다.</div>
 
-            <div className='csvCreate-file__upload'>
-              <input
-                type='file'
-                accept='.csv,.tsv'
-                onChange={(e) => {
-                  const file = e.target.files[0]
-                  if (!file) return
-                  parseHeaderFromFile(file)
-                }}
-              />
-              <div className='csvCreate-file__upload--button'>파일 첨부</div>
+          <div className='csvCreate-file__upload'>
+            <div className='csvCreate-file__upload--name'>{selectedFileName || ''}</div>
+            <input
+              type='file'
+              accept='.csv,.tsv'
+              onChange={handleFileChange}
+              className='csvCreate-file__upload--input'
+            />
+          </div>
+          <div className='csvCreate-display__condition'>
+            <div className='csvCreate-display__condition--title'>업로드 유의사항</div>
+            <div className='csvCreate-display__condition--info'>
+              <p>ㅁ CSV 또는 TSV 파일만 업로드할 수 있습니다.</p>
+              <p>
+                ㅁ 첫 번째 줄은 컬럼 이름이어야 하며, 컬럼 이름에는 하이픈(-)과 언더스코어(_)를
+                제외한 특수문자는 사용할 수 없습니다.
+              </p>
+              <p>ㅁ 날짜 및 시간 컬럼 형식은 YYYY-MM-DD hh:mm:ss 입니다.</p>
             </div>
           </div>
         </div>
@@ -224,7 +237,7 @@ export default function CsvCreatePage() {
                 <div className='csvCreate-display__condition--info'>
                   <p>
                     ㅁ 필드를 선택하지 않은 경우, "일치하는 정보가 정상적으로 조회되었습니다."
-                    문구만 표시됩니다."
+                    문구만 표시됩니다.
                   </p>
                   <p>
                     ㅁ 필드를 선택한 경우, 위 문구와 함께 '칼럼명 : 데이터' 형식의 정보가 함께
