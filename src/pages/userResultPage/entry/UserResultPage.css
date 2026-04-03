@@ -162,6 +162,26 @@
   width: 100%;
 }
 
+.user-result__backButton {
+  background: transparent;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.35s ease;
+}
+
+.user-result__backButton:hover,
+.user-result__backButton:focus-visible {
+  color: var(--color-text);
+  background: transparent;
+  box-shadow: 0 14px 28px rgba(70, 97, 216, 0.16);
+  transform: translateY(-1px);
+}
+
+.user-result__backButton:focus-visible {
+  outline: none;
+}
+
 .user-result__button-icon {
   width: 16px;
   height: 16px;

@@ -122,7 +122,7 @@ export default function UserResultPage() {
           )}
         </div>
         <div className="user-result__button">
-          <GradientButton type="button" onClick={handleGoBack}>
+          <GradientButton type="button" onClick={handleGoBack} className='user-result__backButton'>
             <img src={backIcon} className='user-result__button-icon' />
             <span>돌아가기</span>
           </GradientButton>
