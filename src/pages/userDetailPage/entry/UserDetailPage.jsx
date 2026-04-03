@@ -105,7 +105,9 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
             </div>
           ))}
 
-          <GradientButton type='submit'>조회하기</GradientButton>
+          <GradientButton type='submit' className='user-detail__submitButton'>
+            조회하기
+          </GradientButton>
         </form>
       </div>
     </GradientLayout>
