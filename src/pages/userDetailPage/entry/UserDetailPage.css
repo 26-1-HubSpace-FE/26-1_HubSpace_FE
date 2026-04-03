@@ -21,17 +21,9 @@
   margin-bottom: 24px;
 }
 
-.user-detail__loadingCard {
+.user-detail__loading {
   width: 100%;
   max-width: 411px;
-  padding: 40px 24px;
-  border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.58) 100%);
-  backdrop-filter: blur(22px) saturate(130%);
-  box-shadow:
-    0 24px 70px rgba(37, 45, 92, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.48);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,10 +166,6 @@
     margin-bottom: 12px;
   }
 
-  .user-detail__loadingCard {
-    padding: 48px 28px;
-  }
-
   .user-detail__loadingText {
     font-size: 16px;
   }
@@ -226,10 +214,6 @@
   .user-detail__title {
     font-size: 24px;
     margin-bottom: 15px;
-  }
-
-  .user-detail__loadingCard {
-    padding: 54px 32px;
   }
 
   .user-detail__loadingText {

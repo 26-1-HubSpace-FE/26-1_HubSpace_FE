@@ -20,7 +20,7 @@ export default function UserDetailPage() {
     return (
       <GradientLayout>
         <div className='user-detail__logo'></div>
-        <div className='user-detail__loadingCard'>
+        <div className='user-detail__loading'>
           <LoadingSpinner
             className='user-detail__loadingSpinner'
             size={48}
