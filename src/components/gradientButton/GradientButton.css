@@ -24,6 +24,14 @@
   transition: opacity 0.2s;
 }
 
+.gradient-button__label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* 테두리만 구현 */
 .gradient-button::before {
   content: '';
