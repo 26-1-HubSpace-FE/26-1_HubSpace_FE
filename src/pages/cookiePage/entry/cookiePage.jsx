@@ -38,7 +38,7 @@ export default function CookiePage() {
 
   return (
     <div className='cookiePage'>
-      <div className='cookiePage-card'>
+      <div className='cookiePage-loading'>
         <LoadingSpinner
           className='cookiePage-spinner'
           size={48}
