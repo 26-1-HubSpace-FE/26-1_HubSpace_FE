@@ -30,7 +30,21 @@ export default function DashBoardPage() {
           <div className='dashBoard-eventList__message'>이벤트 목록을 불러오지 못했습니다.</div>
         )}
         {!loading && !error && events.length === 0 && (
-          <div className='dashBoard-eventList__message'>등록된 이벤트가 없습니다.</div>
+          <div className='dashBoard-emptyState'>
+            <div className='dashBoard-emptyState__visual' aria-hidden='true'>
+              <div className='dashBoard-emptyState__orb dashBoard-emptyState__orb--large'></div>
+              <div className='dashBoard-emptyState__orb dashBoard-emptyState__orb--small'></div>
+              <div className='dashBoard-emptyState__sheet'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div className='dashBoard-emptyState__title'>아직 등록된 이벤트가 없습니다</div>
+            <div className='dashBoard-emptyState__description'>
+              새 이벤트를 생성하면 조회 링크와 신청 링크를 한 곳에서 관리할 수 있습니다.
+            </div>
+          </div>
         )}
         {!loading &&
           !error &&
