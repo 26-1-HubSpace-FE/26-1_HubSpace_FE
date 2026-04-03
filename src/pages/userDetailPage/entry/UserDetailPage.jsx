@@ -19,7 +19,7 @@ export default function UserDetailPage() {
   if (loading) {
     return (
       <GradientLayout>
-        <div className='user-detail__logo'></div>
+        <a href='/' className='user-detail__logo' aria-label='홈으로 이동'></a>
         <div className='user-detail__loading'>
           <LoadingSpinner
             className='user-detail__loadingSpinner'
@@ -88,7 +88,7 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
   return (
     <GradientLayout>
       {/* 로고 영역 */}
-      <div className='user-detail__logo'></div>
+      <a href='/' className='user-detail__logo' aria-label='홈으로 이동'></a>
       <div className='user-detail__card'>
         <h1 className='user-detail__title'>신청 조회</h1>
         <p className='user-detail__description'>이벤트 신청 여부를 정보 입력 후 확인 가능합니다</p>

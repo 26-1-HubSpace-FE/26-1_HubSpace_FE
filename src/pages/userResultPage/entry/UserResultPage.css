@@ -32,6 +32,7 @@
 }
 
 .user-result__logo {
+  display: block;
   width: 183px;
   height: 70px;
   background-image: url('../../../assets/auth/auth-logo.svg');

@@ -56,7 +56,7 @@ export default function UserResultPage() {
     return (
       <GradientLayout>
         <div className='user-result__container'>
-          <div className='user-result__logo'></div>
+          <a href='/' className='user-result__logo' aria-label='홈으로 이동'></a>
           <div className='user-result__loading'>
             <LoadingSpinner
               className='user-result__loadingSpinner'
@@ -96,7 +96,7 @@ export default function UserResultPage() {
     <GradientLayout>
       <div className='user-result__container'>
         {/* 로고 영역 */}
-        <div className='user-result__logo'></div>
+        <a href='/' className='user-result__logo' aria-label='홈으로 이동'></a>
         {/* 중앙 흰색 결과 카드 */}
         <div className="user-result__card">
 
