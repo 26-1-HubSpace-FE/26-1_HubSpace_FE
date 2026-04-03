@@ -57,7 +57,7 @@ export default function UserResultPage() {
       <GradientLayout>
         <div className='user-result__container'>
           <div className='user-result__logo'></div>
-          <div className='user-result__loadingCard'>
+          <div className='user-result__loading'>
             <LoadingSpinner
               className='user-result__loadingSpinner'
               size={48}

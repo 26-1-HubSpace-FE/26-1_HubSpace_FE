@@ -9,17 +9,9 @@
   align-items: center;
 }
 
-.user-result__loadingCard {
+.user-result__loading {
   width: 100%;
   max-width: 360px;
-  padding: 40px 24px;
-  border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.58) 100%);
-  backdrop-filter: blur(22px) saturate(130%);
-  box-shadow:
-    0 24px 70px rgba(37, 45, 92, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.48);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,9 +186,8 @@
     margin-bottom: 48px;
   }
 
-  .user-result__loadingCard {
+  .user-result__loading {
     max-width: 420px;
-    padding: 48px 28px;
   }
 
   .user-result__loadingText {
@@ -249,9 +240,8 @@
     margin-bottom: 64px;
   }
 
-  .user-result__loadingCard {
+  .user-result__loading {
     max-width: 480px;
-    padding: 54px 32px;
   }
 
   .user-result__loadingText {
