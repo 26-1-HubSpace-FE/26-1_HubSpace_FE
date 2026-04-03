@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
 import { getUserFieldPlaceholder } from '../../userResultPage/utils/UserFieldConfig'
 import { useFetchEventDetail } from '../apis/fetchEventDetail'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 // 사용자 이벤트 신청 조회 페이지
 export default function UserDetailPage() {
@@ -18,8 +19,15 @@ export default function UserDetailPage() {
   if (loading) {
     return (
       <GradientLayout>
-        <div className='user-detail__card'>
-          <p className='user-detail__description'>이벤트 정보를 불러오는 중...</p>
+        <div className='user-detail__logo'></div>
+        <div className='user-detail__loadingCard'>
+          <LoadingSpinner
+            className='user-detail__loadingSpinner'
+            size={48}
+            cubeSize={16}
+            color='#2d3b86'
+          />
+          <p className='user-detail__loadingText'>이벤트 정보를 불러오는 중...</p>
         </div>
       </GradientLayout>
     )
