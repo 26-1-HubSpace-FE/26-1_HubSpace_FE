@@ -31,17 +31,17 @@
   text-align: center;
 }
 
+.user-result__logoLink {
+  display: block;
+  line-height: 0;
+  margin-bottom: 18px;
+}
+
 .user-result__logo {
   display: block;
-  width:183px;
+  width: 183px;
   height: 69px;
-  background-image: url('../../../assets/auth/auth-logo.svg');
-
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  margin-bottom: 18px;
+  object-fit: contain;
 }
 
 /* 중앙 흰색 카드 */
@@ -196,6 +196,9 @@
   .user-result__logo {
     width: 229px;
     height: 87px;
+  }
+
+  .user-result__logoLink {
     margin-bottom: 23px;
   }
 
@@ -251,6 +254,9 @@
   .user-result__logo {
     width: 306px;
     height: 116px;
+  }
+
+  .user-result__logoLink {
     margin-bottom: 30.5px;
   }
 

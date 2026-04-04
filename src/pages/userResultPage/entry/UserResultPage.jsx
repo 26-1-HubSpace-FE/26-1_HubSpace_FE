@@ -8,6 +8,7 @@ import { processUserResult } from '../utils/UserFieldConfig'
 
 import { fetchUserSearch } from '../apis/fetchUserSearch'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
+import authLogo from '../../../assets/auth/auth-logo.svg'
 
 // 사용자 이벤트 신청 조회 결과 페이지
 export default function UserResultPage() {
@@ -56,7 +57,9 @@ export default function UserResultPage() {
     return (
       <GradientLayout>
         <div className='user-result__container'>
-          <a href='/' className='user-result__logo' aria-label='홈으로 이동'></a>
+          <a href='/' className='user-result__logoLink' aria-label='홈으로 이동'>
+            <img src={authLogo} alt='HubSpace' className='user-result__logo' />
+          </a>
           <div className='user-result__loading'>
             <LoadingSpinner
               className='user-result__loadingSpinner'
@@ -96,7 +99,9 @@ export default function UserResultPage() {
     <GradientLayout>
       <div className='user-result__container'>
         {/* 로고 영역 */}
-        <a href='/' className='user-result__logo' aria-label='홈으로 이동'></a>
+        <a href='/' className='user-result__logoLink' aria-label='홈으로 이동'>
+          <img src={authLogo} alt='HubSpace' className='user-result__logo' />
+        </a>
         {/* 중앙 흰색 결과 카드 */}
         <div className="user-result__card">
 

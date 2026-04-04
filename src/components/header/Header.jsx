@@ -2,6 +2,7 @@ import './Header.css'
 import { Icon } from '../icon/Icon'
 import { useFetchUserInfo } from './apis/fetchUserInfo'
 import { useNavigate } from 'react-router-dom'
+import defaultLogo from '../../assets/default/default-logo.svg'
 
 export default function Header() {
   const { userInfo, loading } = useFetchUserInfo()
@@ -14,7 +15,7 @@ export default function Header() {
   return (
     <div className='header'>
       <button type='button' className='header-title header-title--button' onClick={() => navigate('/')}>
-        <Icon name='default-logo' height={85} className='header-title__logo' />
+        <img src={defaultLogo} alt='HubSpace' className='header-title__logo' />
         <div className='header-title__title'>HubSpace</div>
       </button>
       <div className='header-account'>

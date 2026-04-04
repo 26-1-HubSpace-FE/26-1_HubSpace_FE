@@ -1,6 +1,7 @@
 import './LoginPage.css'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import googleIcon from '../../../assets/auth/auth-google-logo.svg'
+import authLogo from '../../../assets/auth/auth-logo.svg'
 
 export default function LoginPage() {
   const handleLogin = () => {
@@ -9,7 +10,7 @@ export default function LoginPage() {
 
   return (
     <GradientLayout>
-      <div className='login__logo'></div>
+      <img src={authLogo} alt='HubSpace' className='login__logo' />
 
       <h2 className='login__title'>관리자 로그인</h2>
       <p className='login__description'>Google 계정으로 간편하게 로그인하세요</p>

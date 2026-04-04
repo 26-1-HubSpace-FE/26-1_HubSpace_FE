@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { getUserFieldPlaceholder } from '../../userResultPage/utils/UserFieldConfig'
 import { useFetchEventDetail } from '../apis/fetchEventDetail'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
+import authLogo from '../../../assets/auth/auth-logo.svg'
 
 // 사용자 이벤트 신청 조회 페이지
 export default function UserDetailPage() {
@@ -19,7 +20,9 @@ export default function UserDetailPage() {
   if (loading) {
     return (
       <GradientLayout>
-        <a href='/' className='user-detail__logo' aria-label='홈으로 이동'></a>
+        <a href='/' className='user-detail__logoLink' aria-label='홈으로 이동'>
+          <img src={authLogo} alt='HubSpace' className='user-detail__logo' />
+        </a>
         <div className='user-detail__loading'>
           <LoadingSpinner
             className='user-detail__loadingSpinner'
@@ -88,7 +91,9 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
   return (
     <GradientLayout>
       {/* 로고 영역 */}
-      <a href='/' className='user-detail__logo' aria-label='홈으로 이동'></a>
+      <a href='/' className='user-detail__logoLink' aria-label='홈으로 이동'>
+        <img src={authLogo} alt='HubSpace' className='user-detail__logo' />
+      </a>
       <div className='user-detail__card'>
         <h1 className='user-detail__title'>신청 조회</h1>
         <p className='user-detail__description'>이벤트 신청 여부를 정보 입력 후 확인 가능합니다</p>

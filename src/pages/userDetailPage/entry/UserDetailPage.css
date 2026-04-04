@@ -9,17 +9,17 @@
   align-items: center;
 }
 
+.user-detail__logoLink {
+  display: block;
+  line-height: 0;
+  margin-bottom: 24px;
+}
+
 .user-detail__logo {
   display: block;
-  width:183px;
+  width: 183px;
   height: 69px;
-  background-image: url('../../../assets/auth/auth-logo.svg');
-
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  margin-bottom: 24px;
+  object-fit: contain;
 }
 
 .user-detail__loading {
@@ -162,6 +162,9 @@
   .user-detail__logo {
     width: 229px;
     height: 87px;
+  }
+
+  .user-detail__logoLink {
     margin-bottom: 40px;
   }
 
@@ -217,6 +220,9 @@
   .user-detail__logo {
     width: 306px;
     height: 116px;
+  }
+
+  .user-detail__logoLink {
     margin-bottom: 57.5px;
   }
 

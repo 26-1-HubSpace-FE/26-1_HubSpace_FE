@@ -1,11 +1,8 @@
 .login__logo {
   width: 183px;
   height: 69px;
-  background-image: url('../../../assets/auth/auth-logo.svg');
-
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  object-fit: contain;
+  display: block;
 
   margin-top: 60px;
   margin-bottom: 25px;
