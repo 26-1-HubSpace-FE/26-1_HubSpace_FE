@@ -273,6 +273,7 @@
 /* ================= CSV Preview ================= */
 .csvCreate-preview {
   margin-top: 32px;
+  margin-bottom: 36px;
   padding: 36px 40px 40px;
   background:
     radial-gradient(circle at top right, rgba(227, 234, 255, 0.7) 0%, rgba(227, 234, 255, 0) 30%),
@@ -453,14 +454,16 @@
 }
 
 /* ================= Create Button ================= */
-.csvCreate-field > .eventButton {
+.csvCreate-container > .eventButton {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 @media (max-width: 960px) {
   .csvCreate-preview {
     padding: 28px 20px 24px;
+    margin-bottom: 28px;
   }
 
   .csvCreate-preview__title {
