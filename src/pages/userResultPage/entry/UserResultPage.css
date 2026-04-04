@@ -163,6 +163,8 @@
 
 .user-result__backButton {
   background: transparent;
+  min-height: 50px;
+  font-size: 16px;
   transition:
     color 0.25s ease,
     transform 0.25s ease,
@@ -177,7 +179,7 @@
   transform: translateY(-1px);
 }
 
-.user-result__backButton:focus-visible {
+  .user-result__backButton:focus-visible {
   outline: none;
 }
 
@@ -240,6 +242,11 @@
     margin-right: 9px;
   }
 
+  .user-result__backButton {
+    min-height: 52px;
+    font-size: 18px;
+  }
+
   .user-result__notice {
     font-size: 15px;
   }
@@ -299,6 +306,11 @@
     width: 20px;
     height: 20px;
     margin-right: 10px;
+  }
+
+  .user-result__backButton {
+    min-height: 56px;
+    font-size: 20px;
   }
 
   .user-result__notice {
