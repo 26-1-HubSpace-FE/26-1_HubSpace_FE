@@ -8,7 +8,7 @@ import { processUserResult } from '../utils/UserFieldConfig'
 
 import { fetchUserSearch } from '../apis/fetchUserSearch'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
-import authLogo from '../../../assets/auth/auth-logo.svg'
+import authLogo from '../../../assets/auth/auth-logo.png'
 
 // 사용자 이벤트 신청 조회 결과 페이지
 export default function UserResultPage() {

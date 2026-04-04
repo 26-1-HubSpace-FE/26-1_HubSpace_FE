@@ -1,7 +1,7 @@
 import './LoginPage.css'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import googleIcon from '../../../assets/auth/auth-google-logo.svg'
-import authLogo from '../../../assets/auth/auth-logo.svg'
+import authLogo from '../../../assets/auth/auth-logo.png'
 
 export default function LoginPage() {
   const handleLogin = () => {

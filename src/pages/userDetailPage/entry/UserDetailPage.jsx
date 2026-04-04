@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { getUserFieldPlaceholder } from '../../userResultPage/utils/UserFieldConfig'
 import { useFetchEventDetail } from '../apis/fetchEventDetail'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
-import authLogo from '../../../assets/auth/auth-logo.svg'
+import authLogo from '../../../assets/auth/auth-logo.png'
 
 // 사용자 이벤트 신청 조회 페이지
 export default function UserDetailPage() {
