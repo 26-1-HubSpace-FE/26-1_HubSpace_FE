@@ -204,11 +204,29 @@ export default function CsvCreatePage() {
         </div>
         {/* ================= CSV Preview ================= */}
         <div className='csvCreate-preview'>
-          <div className='csvCreate-preview__title'>첨부 파일 보기</div>
-          <div className='csvCreate-preview__content'>첨부한 파일의 상위 5행을 볼 수 있습니다.</div>
+          <div className='csvCreate-preview__header'>
+            <div>
+              <div className='csvCreate-preview__title'>첨부 파일 미리보기</div>
+              <div className='csvCreate-preview__content'>
+                업로드한 데이터의 헤더와 상위 5개 행을 바로 확인할 수 있습니다.
+              </div>
+            </div>
+            {columns.length > 0 && (
+              <div className='csvCreate-preview__meta'>
+                <div className='csvCreate-preview__badge'>{uploadedFileName}</div>
+                <div className='csvCreate-preview__badge'>{`${rowCount}개 행`}</div>
+                <div className='csvCreate-preview__badge'>{`${columns.length}개 컬럼`}</div>
+              </div>
+            )}
+          </div>
 
-          {columns.length > 0 && (
-            <div className='csvCreate-preview__table'>
+          {columns.length > 0 ? (
+            <div className='csvCreate-preview__tableWrap'>
+              <div className='csvCreate-preview__tableTop'>
+                <div className='csvCreate-preview__tableLabel'>Preview Data</div>
+                <div className='csvCreate-preview__tableHint'>표시는 상위 5개 행으로 제한됩니다</div>
+              </div>
+              <div className='csvCreate-preview__table'>
               <table>
                 <thead>
                   <tr>
@@ -227,6 +245,19 @@ export default function CsvCreatePage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+            </div>
+          ) : (
+            <div className='csvCreate-preview__empty'>
+              <div className='csvCreate-preview__emptyIcon' aria-hidden='true'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className='csvCreate-preview__emptyTitle'>미리볼 파일이 아직 없습니다</div>
+              <div className='csvCreate-preview__emptyDescription'>
+                CSV 또는 TSV 파일을 첨부하면 이 영역에 데이터 미리보기가 표시됩니다.
+              </div>
             </div>
           )}
         </div>
