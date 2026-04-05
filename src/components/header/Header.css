@@ -37,6 +37,16 @@
   font-weight: var(--font-regular);
 }
 
+.header-account__profile {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+}
+
 .header-account__info {
   display: flex;
   flex-direction: column;
