@@ -254,7 +254,7 @@ export default function CsvCreatePage() {
                 <span></span>
                 <span></span>
               </div>
-              <div className='csvCreate-preview__emptyTitle'>미리볼 파일이 아직 없습니다</div>
+              <div className='csvCreate-preview__emptyTitle'>미리 볼 파일이 아직 없습니다</div>
               <div className='csvCreate-preview__emptyDescription'>
                 CSV 또는 TSV 파일을 첨부하면 이 영역에 데이터 미리보기가 표시됩니다.
               </div>
