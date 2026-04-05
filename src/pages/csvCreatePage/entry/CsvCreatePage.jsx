@@ -262,7 +262,9 @@ export default function CsvCreatePage() {
           )}
         </div>
 
-        <EventButton text={isSubmitting ? '생성 중...' : '이벤트 생성'} onClick={handleCreateCsv} />
+        <div className='csvCreate-action'>
+          <EventButton text={isSubmitting ? '생성 중...' : '이벤트 생성'} onClick={handleCreateCsv} />
+        </div>
       </div>
     </div>
   )

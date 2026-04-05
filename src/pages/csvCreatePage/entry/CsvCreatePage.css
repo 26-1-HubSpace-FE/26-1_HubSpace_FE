@@ -454,10 +454,9 @@
 }
 
 /* ================= Create Button ================= */
-.csvCreate-container > .eventButton {
+.csvCreate-action {
   display: flex;
   justify-content: flex-end;
-  margin-left: auto;
 }
 
 @media (max-width: 960px) {
