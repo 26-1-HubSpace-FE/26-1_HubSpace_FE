@@ -2,7 +2,7 @@ import './Header.css'
 import { useFetchUserInfo } from './apis/fetchUserInfo'
 import { useNavigate } from 'react-router-dom'
 import defaultLogo from '../../assets/default/default-logo.svg'
-import defaultProfile from '../../assets/default/default-profile.jpg'
+import defaultProfile from '../../assets/default/default-profile.png'
 
 export default function Header() {
   const { userInfo, loading } = useFetchUserInfo()
