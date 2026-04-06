@@ -15,17 +15,6 @@
   box-shadow: 0 10px 24px rgba(63, 78, 136, 0.08);
   backdrop-filter: blur(10px);
   white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 0.2s ease,
-    transform 0.25s ease;
-}
-
-.footer--visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
 }
 
 .footer__link {

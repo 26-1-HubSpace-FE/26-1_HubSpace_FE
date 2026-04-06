@@ -20,17 +20,19 @@ export default function UserDetailPage() {
   if (loading) {
     return (
       <GradientLayout>
-        <a href='/' className='user-detail__logoLink' aria-label='홈으로 이동'>
-          <img src={authLogo} alt='HubSpace' className='user-detail__logo' />
-        </a>
-        <div className='user-detail__loading'>
-          <LoadingSpinner
-            className='user-detail__loadingSpinner'
-            size={48}
-            cubeSize={16}
-            color='#2d3b86'
-          />
-          <p className='user-detail__loadingText'>이벤트 정보를 불러오는 중...</p>
+        <div className='user-detail__container'>
+          <a href='/' className='user-detail__logoLink' aria-label='홈으로 이동'>
+            <img src={authLogo} alt='HubSpace' className='user-detail__logo' />
+          </a>
+          <div className='user-detail__loading'>
+            <LoadingSpinner
+              className='user-detail__loadingSpinner'
+              size={48}
+              cubeSize={16}
+              color='#2d3b86'
+            />
+            <p className='user-detail__loadingText'>이벤트 정보를 불러오는 중...</p>
+          </div>
         </div>
       </GradientLayout>
     )
@@ -39,10 +41,12 @@ export default function UserDetailPage() {
   if (error) {
     return (
       <GradientLayout>
-        <div className='user-detail__card'>
-          <h1 className='user-detail__title'>오류 발생</h1>
-          <p className='user-detail__description'>{error}</p>
-          <GradientButton onClick={() => window.location.reload()}>다시 시도</GradientButton>
+        <div className='user-detail__container'>
+          <div className='user-detail__card'>
+            <h1 className='user-detail__title'>오류 발생</h1>
+            <p className='user-detail__description'>{error}</p>
+            <GradientButton onClick={() => window.location.reload()}>다시 시도</GradientButton>
+          </div>
         </div>
       </GradientLayout>
     )
@@ -51,9 +55,11 @@ export default function UserDetailPage() {
   if (!eventDetail) {
     return (
       <GradientLayout>
-        <div className='user-detail__card'>
-          <h1 className='user-detail__title'>이벤트를 찾을 수 없습니다</h1>
-          <p className='user-detail__description'>올바른 링크로 접속했는지 확인해주세요</p>
+        <div className='user-detail__container'>
+          <div className='user-detail__card'>
+            <h1 className='user-detail__title'>이벤트를 찾을 수 없습니다</h1>
+            <p className='user-detail__description'>올바른 링크로 접속했는지 확인해주세요</p>
+          </div>
         </div>
       </GradientLayout>
     )
@@ -90,38 +96,40 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
 
   return (
     <GradientLayout>
-      {/* 로고 영역 */}
-      <a href='/' className='user-detail__logoLink' aria-label='홈으로 이동'>
-        <img src={authLogo} alt='HubSpace' className='user-detail__logo' />
-      </a>
-      <div className='user-detail__card'>
-        <h1 className='user-detail__title'>신청 조회</h1>
-        <p className='user-detail__description'>이벤트 신청 여부를 정보 입력 후 확인 가능합니다</p>
+      <div className='user-detail__container'>
+        {/* 로고 영역 */}
+        <a href='/' className='user-detail__logoLink' aria-label='홈으로 이동'>
+          <img src={authLogo} alt='HubSpace' className='user-detail__logo' />
+        </a>
+        <div className='user-detail__card'>
+          <h1 className='user-detail__title'>신청 조회</h1>
+          <p className='user-detail__description'>이벤트 신청 여부를 정보 입력 후 확인 가능합니다</p>
 
-        <form className='user-detail__form' onSubmit={handleSearch}>
-          {/* 관리자가 선택한 필드만 동적으로 랜더링 */}
-          {eventDetail.searchColumns.map((columnName) => (
-            <div className='user-detail__field' key={columnName}>
-              <label htmlFor={columnName} className='user-detail__label'>
-                {columnName}
-              </label>
-              <input
-                type='text'
-                id={columnName}
-                name={columnName}
-                className='user-detail__input'
-                placeholder={getUserFieldPlaceholder(columnName)}
-                value={userFormData[columnName]}
-                onChange={handlerUserInput}
-                required
-              />
-            </div>
-          ))}
+          <form className='user-detail__form' onSubmit={handleSearch}>
+            {/* 관리자가 선택한 필드만 동적으로 랜더링 */}
+            {eventDetail.searchColumns.map((columnName) => (
+              <div className='user-detail__field' key={columnName}>
+                <label htmlFor={columnName} className='user-detail__label'>
+                  {columnName}
+                </label>
+                <input
+                  type='text'
+                  id={columnName}
+                  name={columnName}
+                  className='user-detail__input'
+                  placeholder={getUserFieldPlaceholder(columnName)}
+                  value={userFormData[columnName]}
+                  onChange={handlerUserInput}
+                  required
+                />
+              </div>
+            ))}
 
-          <GradientButton type='submit' className='user-detail__submitButton'>
-            조회하기
-          </GradientButton>
-        </form>
+            <GradientButton type='submit' className='user-detail__submitButton'>
+              조회하기
+            </GradientButton>
+          </form>
+        </div>
       </div>
     </GradientLayout>
   )

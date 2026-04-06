@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform: translateY(-28px);
 }
 
 .user-result__loading {
@@ -193,6 +194,7 @@
 @media (min-width: 768px) {
   .user-result__container {
     max-width: 540px;
+    transform: none;
   }
 
   .user-result__logo {
