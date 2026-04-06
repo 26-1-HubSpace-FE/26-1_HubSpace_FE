@@ -113,7 +113,7 @@
 .user-detail__input {
   color: var(--color-text);
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: var(--font-regular);
   line-height: normal;
 
@@ -138,7 +138,7 @@
 .user-detail__input::placeholder {
   color: var(--color-input);
   font-weight: var(--font-light);
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .user-detail__submitButton {

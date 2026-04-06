@@ -88,6 +88,7 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
   // 조회 버튼 클릭 (form 제출)
   const handleSearch = (e) => {
     e.preventDefault()
+    document.activeElement?.blur()
 
     // result 페이지로 이동
     // userSearchData -> 사용자가 입력한 값
