@@ -21,6 +21,11 @@ export default function UserResultPage() {
   const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+    document.querySelector('.gradient-layout')?.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     console.debug('[UserResultPage][InitState]', {
       eventId,
       eventDetail,
