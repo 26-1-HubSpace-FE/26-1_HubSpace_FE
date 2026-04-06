@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translateY(-28px);
+  transform: translateY(-44px);
 }
 
 .user-result__loading {
