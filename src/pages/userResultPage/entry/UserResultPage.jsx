@@ -112,8 +112,8 @@ export default function UserResultPage() {
 
           <h2 className="user-result__title__02">
             {userSearchResult.userResultType === 'detail'
-              ? '정보가 확인되었습니다.'
-              : '조회 결과가 없습니다.'}
+              ? '해당 정보가 조회되었습니다.'
+              : '입력한 정보와 일치하는 결과가 없습니다.'}
           </h2>
 
           {/* 사용자 상세 정보 */}
