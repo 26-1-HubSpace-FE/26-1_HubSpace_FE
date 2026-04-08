@@ -25,22 +25,20 @@ export default function PolicyPage({ type }) {
           <img src={authLogo} alt='HubSpace' className='policy-page__logo' />
         </Link>
 
-        <div className='policy-page__eyebrow'>{content.badge}</div>
-        <h1 className='policy-page__title'>{content.pageTitle}</h1>
-        <p className='policy-page__subtitle'>{content.accent}</p>
-
         <div className='policy-page__meta'>
           <span className='policy-page__metaChip'>{content.effectiveDate}</span>
           <Link to='/' className='policy-page__metaChip policy-page__metaChip--link'>
             홈으로
           </Link>
         </div>
+
+        <h1 className='policy-page__title'>{content.pageTitle}</h1>
       </header>
 
       <main className='policy-page__body'>
         <aside className='policy-page__toc'>
           <div className='policy-page__tocCard'>
-            <div className='policy-page__tocTitle'>Contents</div>
+            <div className='policy-page__tocTitle'>목차</div>
             <nav className='policy-page__tocList'>
               {content.sections.map((section) => (
                 <a key={section.id} href={`#${section.id}`} className='policy-page__tocLink'>

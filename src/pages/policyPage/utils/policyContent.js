@@ -61,15 +61,11 @@ export const policyContent = {
   privacy: {
     ...parsePolicyText(privacyRaw),
     key: 'privacy',
-    badge: 'Privacy',
-    accent: '개인정보와 쿠키 처리 기준을 안내합니다.',
-    effectiveDate: '시행일 2026.04.06',
+    effectiveDate: '2026.04.06 시행',
   },
   terms: {
     ...parsePolicyText(termsRaw),
     key: 'terms',
-    badge: 'Terms',
-    accent: '서비스 이용 조건과 책임 범위를 안내합니다.',
-    effectiveDate: '시행일 2026.04.06',
+    effectiveDate: '2026.04.06 시행',
   },
 }
