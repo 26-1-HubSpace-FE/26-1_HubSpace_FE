@@ -1,9 +1,20 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import googleIcon from '../../../assets/auth/auth-google-logo.svg'
 import authLogo from '../../../assets/auth/auth-logo.png'
+import { hasValidSession } from '../../../utils/authStorage'
 
 export default function LoginPage() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (hasValidSession()) {
+      navigate('/dashboard', { replace: true })
+    }
+  }, [navigate])
+
   const handleLogin = () => {
     window.location.href = `${import.meta.env.VITE_SERVER_DOMAIN}/oauth2/authorization/google`
   }
