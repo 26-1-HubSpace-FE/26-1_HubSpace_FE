@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className='footer'>
       <a
-        href='https://sites.google.com/view/hubspace-privacy/%ED%99%88'
+        href='https://privacy.hubspacekw.com/홈'
         target='_blank'
         rel='noreferrer'
         className='footer__link'
@@ -13,7 +13,7 @@ export default function Footer() {
       </a>
       <span className='footer__divider'>|</span>
       <a
-        href='https://sites.google.com/view/hubspace-terms/%ED%99%88'
+        href='https://terms.hubspacekw.com/홈'
         target='_blank'
         rel='noreferrer'
         className='footer__link'
