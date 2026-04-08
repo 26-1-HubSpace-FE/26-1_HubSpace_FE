@@ -150,7 +150,7 @@
 .user-result__notice {
   position: relative;
   z-index: 1;
-  color: var(--color-text-additional);
+  color: #7f89ad;
   font-family: 'SpoqaHanSansNeo', sans-serif;
   font-size: 13px;
   font-weight: var(--font-regular);
