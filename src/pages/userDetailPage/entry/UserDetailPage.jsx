@@ -104,7 +104,7 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
         </a>
         <div className='user-detail__card'>
           <h1 className='user-detail__title'>신청 조회</h1>
-          <p className='user-detail__description'>이벤트 신청 여부를 정보 입력 후 확인 가능합니다</p>
+          <p className='user-detail__description'>정보 입력 후 결과를 확인할 수 있습니다.</p>
 
           <form className='user-detail__form' onSubmit={handleSearch}>
             {/* 관리자가 선택한 필드만 동적으로 랜더링 */}
