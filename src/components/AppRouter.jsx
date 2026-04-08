@@ -9,6 +9,7 @@ import FormCreatePage from '../pages/formCreatePage/entry/FormCreatePage'
 import FormDetailPage from '../pages/formDetailPage/entry/FormDetailPage'
 import UserDetailPage from '../pages/userDetailPage/entry/UserDetailPage'
 import UserResultPage from '../pages/userResultPage/entry/UserResultPage'
+import PolicyPage from '../pages/policyPage/entry/PolicyPage'
 import { hasValidSession } from '../utils/authStorage'
 
 const ProtectedRoute = ({ children }) => {
@@ -25,10 +26,6 @@ export const AppRouter = createBrowserRouter([
     path: '/login',
     element: <Navigate to='/' replace />,
   },
-  {
-    path: '*',
-    element: <LoginPage />,
-  },
 
   // 소셜 로그인 후 쿠키 페이지
   {
@@ -39,6 +36,8 @@ export const AppRouter = createBrowserRouter([
   // 검색/결과 페이지 (로그인 여부 확인 optional)
   { path: '/search', element: <UserDetailPage /> },
   { path: '/result', element: <UserResultPage /> },
+  { path: '/privacy', element: <PolicyPage type='privacy' /> },
+  { path: '/terms', element: <PolicyPage type='terms' /> },
 
   // AdminLayout 하위 페이지
   {
@@ -55,6 +54,10 @@ export const AppRouter = createBrowserRouter([
       { path: 'editcsv/:id', element: <CsvDetailPage /> },
       { path: 'editform/:id', element: <FormDetailPage /> },
     ],
+  },
+  {
+    path: '*',
+    element: <LoginPage />,
   },
 ])
 
