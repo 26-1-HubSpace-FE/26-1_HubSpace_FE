@@ -287,6 +287,15 @@
     gap: 18px;
   }
 
+  .policy-page__toc {
+    width: 100%;
+  }
+
+  .policy-page__tocCard {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .policy-page__section {
     padding: 22px 18px;
     border-radius: 22px;
