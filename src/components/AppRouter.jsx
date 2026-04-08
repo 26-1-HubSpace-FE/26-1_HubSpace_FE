@@ -11,28 +11,23 @@ import UserDetailPage from '../pages/userDetailPage/entry/UserDetailPage'
 import UserResultPage from '../pages/userResultPage/entry/UserResultPage'
 import { hasValidSession } from '../utils/authStorage'
 
-const RootRedirect = () => {
-  const isLoggedIn = hasValidSession()
-  return <Navigate to={isLoggedIn ? '/dashboard' : '/login'} replace />
-}
-
 const ProtectedRoute = ({ children }) => {
   return hasValidSession() ? children : <Navigate to='/login' replace />
 }
 
 export const AppRouter = createBrowserRouter([
-  // 로그인 페이지
+  // 공개 홈/로그인 페이지
+  {
+    path: '/',
+    element: <LoginPage />,
+  },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: <Navigate to='/' replace />,
   },
   {
     path: '*',
     element: <LoginPage />,
-  },
-  {
-    path: '/',
-    element: <RootRedirect />,
   },
 
   // 소셜 로그인 후 쿠키 페이지
