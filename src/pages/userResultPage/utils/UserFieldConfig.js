@@ -16,7 +16,7 @@ export const processUserResult = (userApiResponse, eventDetail, userSearchData) 
   if (!isSuccess) {
     return {
       userResultType: 'notFound',
-      userResultMessage: userApiResponse?.message || '입력한 정보에 오타가 있는지 확인하거나, <br/>아직 명단에 반영되지 않았을 수 있습니다.',
+      userResultMessage: '입력한 정보에 오타가 있는지 확인하거나,\n아직 명단에 반영되지 않았을 수 있습니다.',
     }
   }
 
