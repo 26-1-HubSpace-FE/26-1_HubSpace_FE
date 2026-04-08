@@ -171,8 +171,14 @@
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.08) 100%);
 }
 
+.policy-page__sectionHeader {
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(204, 214, 240, 0.72);
+}
+
 .policy-page__sectionTitle {
-  margin: 0 0 18px;
+  margin: 0;
   font-size: 22px;
   font-weight: var(--font-medium);
   line-height: 1.35;
@@ -251,9 +257,13 @@
     border-radius: 22px;
   }
 
+  .policy-page__sectionHeader {
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+
   .policy-page__sectionTitle {
     font-size: 18px;
-    margin-bottom: 14px;
   }
 
   .policy-page__line {

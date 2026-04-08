@@ -52,7 +52,9 @@ export default function PolicyPage({ type }) {
         <section className='policy-page__content'>
           {content.sections.map((section) => (
             <article key={section.id} id={section.id} className='policy-page__section'>
-              <h2 className='policy-page__sectionTitle'>{section.title}</h2>
+              <div className='policy-page__sectionHeader'>
+                <h2 className='policy-page__sectionTitle'>{section.title}</h2>
+              </div>
               <div className='policy-page__sectionBody'>
                 {section.lines.map((line, index) =>
                   line === '' ? (
