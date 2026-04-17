@@ -142,7 +142,7 @@ export default function EventItem({ event }) {
         {event.eventType === 'FORM' && (
           <div className='eventItem-apply'>
             <div className='eventItem-link__info'>
-              <div className='eventItem-link__title'>신청용 링크</div>
+              <div className='eventItem-link__title'>폼 링크</div>
               <div className='eventItem-link__link'>{event.formUrl}</div>
             </div>
             <Icon
