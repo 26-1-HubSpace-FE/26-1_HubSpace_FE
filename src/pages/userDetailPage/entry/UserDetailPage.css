@@ -58,11 +58,13 @@
   color: var(--color-text);
   font-family: 'SpoqaHanSansNeo', sans-serif;
   font-size: 16px;
-
   font-weight: var(--font-medium);
   line-height: normal;
   text-align: center;
-
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-bottom: 10px;
 }
 
@@ -171,6 +173,12 @@
     transform: none;
   }
 
+  .user-detail__card,
+  .user-detail__form,
+  .user-detail__loading {
+    max-width: 560px;
+  }
+
   .user-detail__logo {
     width: 229px;
     height: 87px;
@@ -226,7 +234,12 @@
 /* 데스크탑 */
 @media (min-width: 1024px) {
   .user-detail__card {
-    max-width: 411px;
+    max-width: 620px;
+  }
+
+  .user-detail__form,
+  .user-detail__loading {
+    max-width: 620px;
   }
 
   .user-detail__logo {
