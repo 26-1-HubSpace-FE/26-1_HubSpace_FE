@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from '../../../components/icon/Icon'
 import { createFileEvent } from '../apis/createFileEvent'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function CsvCreatePage() {
   const [eventTitle, setEventTitle] = useState('')
@@ -136,6 +137,17 @@ export default function CsvCreatePage() {
 
   return (
     <div className='csvCreate'>
+      {isSubmitting && (
+        <div className='csvCreate-loadingOverlay'>
+          <LoadingSpinner
+            className='csvCreate-loadingSpinner'
+            size={48}
+            cubeSize={16}
+            color='#2d3b86'
+          />
+          <div className='csvCreate-loadingText'>CSV 생성 중...</div>
+        </div>
+      )}
       <div className='csvCreate-container'>
         {/* ================= Header ================= */}
         <div className='csvCreate-header'>

@@ -1,7 +1,31 @@
 .csvCreate {
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.csvCreate-loadingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(240, 244, 255, 0.68);
+  backdrop-filter: blur(4px);
+}
+
+.csvCreate-loadingSpinner {
+  margin: 0;
+}
+
+.csvCreate-loadingText {
+  font-size: 15px;
+  font-weight: var(--font-medium);
+  color: var(--color-text);
 }
 
 .csvCreate-container {
