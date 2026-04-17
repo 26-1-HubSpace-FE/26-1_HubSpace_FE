@@ -9,6 +9,67 @@ import { Icon } from '../../../components/icon/Icon'
 import { createFileEvent } from '../apis/createFileEvent'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
+const parseDelimitedText = (text, delimiter) => {
+  const rows = []
+  let currentRow = []
+  let currentCell = ''
+  let inQuotes = false
+
+  const pushCell = () => {
+    currentRow.push(currentCell.trim())
+    currentCell = ''
+  }
+
+  const pushRow = () => {
+    if (currentRow.length === 1 && currentRow[0] === '') {
+      currentRow = []
+      return
+    }
+
+    rows.push(currentRow)
+    currentRow = []
+  }
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index]
+    const nextChar = text[index + 1]
+
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        currentCell += '"'
+        index += 1
+      } else {
+        inQuotes = !inQuotes
+      }
+      continue
+    }
+
+    if (char === delimiter && !inQuotes) {
+      pushCell()
+      continue
+    }
+
+    if ((char === '\n' || char === '\r') && !inQuotes) {
+      if (char === '\r' && nextChar === '\n') {
+        index += 1
+      }
+
+      pushCell()
+      pushRow()
+      continue
+    }
+
+    currentCell += char
+  }
+
+  if (currentCell.length > 0 || currentRow.length > 0) {
+    pushCell()
+    pushRow()
+  }
+
+  return rows.filter((row) => row.some((cell) => cell !== ''))
+}
+
 export default function CsvCreatePage() {
   const [eventTitle, setEventTitle] = useState('')
   const [uploadedFile, setUploadedFile] = useState(null)
@@ -47,31 +108,29 @@ export default function CsvCreatePage() {
 
     reader.onload = (e) => {
       const text = e.target.result
-      const lines = text.split(/\r?\n/).filter(Boolean)
       const delimiter = file.name.endsWith('.tsv') ? '\t' : ','
+      const parsedRows = parseDelimitedText(text, delimiter)
 
-      if (lines.length < 2) {
+      if (parsedRows.length < 2) {
         toast.error('CSV 데이터가 충분하지 않습니다.')
         return
       }
 
-      // 헤더
-      const headers = lines[0]
-        .split(delimiter)
-        .map((h) => h.trim())
-        .filter(Boolean)
+      const headers = parsedRows[0].filter((header) => header !== '')
 
       if (!headers.length) {
         toast.error('CSV 헤더를 읽을 수 없습니다.')
         return
       }
 
-      // 상위 5행 데이터
-      const rows = lines.slice(1, 6).map((line) => line.split(delimiter).map((v) => v.trim()))
+      const dataRows = parsedRows
+        .slice(1)
+        .filter((row) => row.some((cell) => cell !== ''))
+        .map((row) => headers.map((_, index) => row[index] ?? ''))
 
       setColumns(headers)
-      setPreviewRows(rows)
-      setRowCount(lines.length - 1)
+      setPreviewRows(dataRows.slice(0, 5))
+      setRowCount(dataRows.length)
       setUploadedFile(file)
       setUploadedFileName(file.name)
       setSelectedFields(['선택', '선택', '선택'])
