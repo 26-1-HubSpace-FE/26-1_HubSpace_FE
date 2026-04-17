@@ -173,9 +173,7 @@
     transform: none;
   }
 
-  .user-detail__card,
-  .user-detail__form,
-  .user-detail__loading {
+  .user-detail__card {
     max-width: 560px;
   }
 
@@ -234,11 +232,6 @@
 /* 데스크탑 */
 @media (min-width: 1024px) {
   .user-detail__card {
-    max-width: 620px;
-  }
-
-  .user-detail__form,
-  .user-detail__loading {
     max-width: 620px;
   }
 
