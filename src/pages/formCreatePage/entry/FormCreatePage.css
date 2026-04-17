@@ -143,6 +143,11 @@
   border-radius: 5px;
 }
 
+.formCreate-fieldInput__input--filled {
+  color: #2d3b86;
+  font-weight: var(--font-medium);
+}
+
 .formCreate-fieldInput__input::placeholder {
   color: var(--color-input);
   font-size: 13px;

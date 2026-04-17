@@ -101,7 +101,9 @@ export default function FormCreatePage() {
                     <div className='formCreate-fieldInput__label'>{label}</div>
                     <div className='formCreate-fieldInput__box'>
                       <input
-                        className='formCreate-fieldInput__input'
+                        className={`formCreate-fieldInput__input ${
+                          selectedFields[index].trim() ? 'formCreate-fieldInput__input--filled' : ''
+                        }`}
                         placeholder={`${label} 항목명을 입력하세요.`}
                         value={selectedFields[index]}
                         onChange={(e) => handleFieldChange(index, e.target.value)}

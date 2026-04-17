@@ -31,7 +31,13 @@ export default function EventDropdown({
           <div className='eventDropdown__label'>{labels[index]}</div>
 
           <div className='eventDropdown__toggle' onClick={() => toggleDropdown(index)}>
-            <div className='eventDropdown__title'>{val}</div>
+            <div
+              className={`eventDropdown__title ${
+                val !== '선택' ? 'eventDropdown__title--selected' : ''
+              }`}
+            >
+              {val}
+            </div>
             {!disabled && (
               <Icon
                 name='detail-field'
