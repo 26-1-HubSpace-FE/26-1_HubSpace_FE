@@ -235,6 +235,10 @@
     max-width: 620px;
   }
 
+  .user-detail__container {
+    transform: translateY(-20px);
+  }
+
   .user-detail__logo {
     width: 306px;
     height: 116px;
