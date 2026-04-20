@@ -47,6 +47,12 @@
   align-items: center;
 }
 
+.eventItem-title__badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .eventItem-title__title {
   font-size: 18px;
   font-weight: var(--font-medium);

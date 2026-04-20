@@ -83,16 +83,18 @@ export default function EventItem({ event }) {
         <div className='eventItem-header__header'>
           <div className='eventItem-title'>
             <div className='eventItem-title__title'>{event.eventTitle}</div>
-            <Icon
-              name={event.isActive === true ? 'dashboard-active' : 'dashboard-disable'}
-              height={21}
-              className='eventItem-title__status'
-            />
-            <Icon
-              name={event.eventType === 'FORM' ? 'dashboard-form' : 'dashboard-csv'}
-              height={21}
-              className='eventItem-title__format'
-            />
+            <div className='eventItem-title__badges'>
+              <Icon
+                name={event.isActive === true ? 'dashboard-active' : 'dashboard-disable'}
+                height={21}
+                className='eventItem-title__status'
+              />
+              <Icon
+                name={event.eventType === 'FORM' ? 'dashboard-form' : 'dashboard-csv'}
+                height={21}
+                className='eventItem-title__format'
+              />
+            </div>
           </div>
           <div className='eventItem-info'>
             <div className='eventItem-info__info'>
