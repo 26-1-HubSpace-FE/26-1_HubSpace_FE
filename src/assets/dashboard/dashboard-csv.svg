@@ -1,11 +1,11 @@
 <svg width="33" height="21" viewBox="0 0 33 21" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="0.3" y="0.3" width="32.4" height="20.4" rx="10.2" fill="#ECF3FF"/>
-  <rect x="0.3" y="0.3" width="32.4" height="20.4" rx="10.2" stroke="#2D3B86" stroke-width="0.6"/>
+  <rect x="0.3" y="0.3" width="32.4" height="20.4" rx="10.2" stroke="#3280FF" stroke-width="0.6"/>
   <text
     x="16.5"
     y="13"
     text-anchor="middle"
-    fill="#2D3B86"
+    fill="#3280FF"
     font-family="SpoqaHanSansNeo, sans-serif"
     font-size="9"
     font-weight="500"
