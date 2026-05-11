@@ -1,11 +1,21 @@
 import './EventCreateModal.css'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from '../../../components/icon/Icon'
 
 export default function EventCreateModal({ isOpen, onClose }) {
   const navigate = useNavigate()
+  const [isClosing, setIsClosing] = useState(false)
 
-  if (!isOpen) return null
+  const handleClose = () => {
+    setIsClosing(true)
+    setTimeout(() => {
+      setIsClosing(false)
+      onClose()
+    }, 220)
+  }
+
+  if (!isOpen && !isClosing) return null
 
   const handleCreateForm = () => {
     navigate('/newform')
@@ -16,9 +26,9 @@ export default function EventCreateModal({ isOpen, onClose }) {
     onClose()
   }
   return (
-    <div className='createModal-overlay' onClick={onClose}>
-      <div className='createModal-content' onClick={(e) => e.stopPropagation()}>
-        <button className='createModal-close' onClick={onClose}>
+    <div className={`createModal-overlay${isClosing ? ' createModal-overlay--closing' : ''}`} onClick={handleClose}>
+      <div className={`createModal-content${isClosing ? ' createModal-content--closing' : ''}`} onClick={(e) => e.stopPropagation()}>
+        <button className='createModal-close' onClick={handleClose}>
           ✕
         </button>
         <div className='createModal-header'>
