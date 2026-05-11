@@ -1,7 +1,31 @@
 .eventButton-button {
-  padding: 11px 16px;
-  border-radius: 6px;
-  background-color: var(--color-main);
-  color: var(--color-button-csv-bg);
-  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3280ff 0%, #1e5fd4 100%);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: var(--font-medium);
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 4px 14px rgba(50, 128, 255, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  border: none;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.eventButton-button:hover {
+  box-shadow:
+    0 6px 20px rgba(50, 128, 255, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.eventButton-button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 8px rgba(50, 128, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
