@@ -12,7 +12,7 @@ export default function EventCreateModal({ isOpen, onClose }) {
     setTimeout(() => {
       setIsClosing(false)
       onClose()
-    }, 220)
+    }, 280)
   }
 
   if (!isOpen && !isClosing) return null
