@@ -16,7 +16,7 @@
 
 .eventButton-button:hover {
   background-color: rgba(50, 128, 255, 0.06);
-  border-color: rgba(50, 128, 255, 0.55);
+  border-color: rgba(50, 128, 255, 0.38);
   box-shadow: 0 2px 12px rgba(50, 128, 255, 0.14);
 }
 
