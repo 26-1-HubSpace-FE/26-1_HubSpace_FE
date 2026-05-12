@@ -55,7 +55,7 @@
 
 .createModal-content {
   background: white;
-  padding: 52px 72px 48px;
+  padding: 64px 72px 60px;
   border-radius: 28px;
   width: 100%;
   max-width: 960px;
@@ -105,7 +105,7 @@
 .createModal-button__form {
   flex: 1;
   border-radius: 20px;
-  padding: 40px 0px;
+  padding: 48px 0px;
   background-color: var(--color-button-form-bg);
   border: 1.5px solid rgba(126, 34, 206, 0.2);
   cursor: pointer;
@@ -124,7 +124,7 @@
 .createModal-button__csv {
   flex: 1;
   border-radius: 20px;
-  padding: 40px 0px;
+  padding: 48px 0px;
   background-color: var(--color-button-csv-bg);
   border: 1.5px solid rgba(50, 128, 255, 0.2);
   cursor: pointer;
