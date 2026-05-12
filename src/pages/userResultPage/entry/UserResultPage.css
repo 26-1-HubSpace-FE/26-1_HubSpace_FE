@@ -135,7 +135,7 @@
   stroke-dasharray: 327;
   stroke-dashoffset: 327;
   transform-origin: center;
-  transform: rotate(-135deg);
+  transform: rotate(-110deg) scaleX(-1);
   animation: result-check-ring 1.05s ease-in-out forwards;
 }
 
