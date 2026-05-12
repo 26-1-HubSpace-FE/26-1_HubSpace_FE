@@ -254,12 +254,13 @@ export default function CsvCreatePage() {
               <div className='csvCreate-field__title--notice'>2개 이상 선택 필수</div>
             </div>
 
-            <div className='csvCreate-field__info'>
-              신청자가 조회 시 입력할 정보 필드를 설정하세요.
-            </div>
-
-            <div className='csvCreate-field__info--notice'>
-              생성 완료 후, 정보 1, 정보 2, 정보 3은 수정이 불가합니다.
+            <div className='csvCreate-field__infoBox'>
+              <div className='csvCreate-field__info'>
+                신청자가 조회 시 입력할 정보 필드를 설정하세요.
+              </div>
+              <div className='csvCreate-field__info--notice'>
+                생성 완료 후, 정보 1, 정보 2, 정보 3은 수정이 불가합니다.
+              </div>
             </div>
 
             <div className='csvCreate-field__field'>
