@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import GradientButton from '../../../components/gradientButton/GradientButton'
-import backIcon from '../../../assets/auth/auth-back-icon.svg'
 import './UserResultPage.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { processUserResult } from '../utils/UserFieldConfig'
@@ -100,41 +99,47 @@ export default function UserResultPage() {
   }
 
   return (
-    // 전체 페이지
     <GradientLayout>
       <div className='user-result__container'>
         {/* 로고 영역 */}
         <a href='/' className='user-result__logoLink' aria-label='홈으로 이동'>
           <img src={authLogo} alt='HubSpace' className='user-result__logo' />
         </a>
-        {/* 중앙 흰색 결과 카드 */}
-        <div className="user-result__card">
 
-          <h2 className="user-result__title__02">
-            {userSearchResult.userResultType === 'detail'
-              ? '해당 정보가 조회되었습니다.'
-              : '일치하는 정보가 없습니다.'}
-          </h2>
+        {userSearchResult.userResultType === 'detail' ? (
+          <>
+            {/* 상태 카드 */}
+            <div className="user-result__status-card">
+              <div className="user-result__check-circle">
+                <svg className="user-result__check-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 13l4 4L19 7" stroke="#4caf7d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <h2 className="user-result__status-title">선정되셨습니다</h2>
+              <p className="user-result__status-subtitle">이벤트 안내사항은 등록된 연락처로 발송됩니다.</p>
+            </div>
 
-          {/* 사용자 상세 정보 */}
-          {userSearchResult.userResultType === 'detail' && (
-            <div className="user-result__box">
+            {/* 정보 카드 */}
+            <div className="user-result__info-card">
               {detailEntries.map(([columnName, value]) => (
-                <div key={columnName}>
-                  <span className="user-result__label">{columnName}</span>
-                  <span className="user-result__value">{value}</span>
+                <div key={columnName} className="user-result__info-row">
+                  <span className="user-result__info-label">{columnName}</span>
+                  <span className="user-result__info-value">{value}</span>
                 </div>
               ))}
             </div>
-          )}
-          {userSearchResult.userResultType === 'notFound' && (
+          </>
+        ) : (
+          /* 조회 실패 카드 */
+          <div className="user-result__card">
+            <h2 className="user-result__title__02">일치하는 정보가 없습니다.</h2>
             <p className="user-result__notice">{userSearchResult.userResultMessage}</p>
-          )}
-        </div>
+          </div>
+        )}
+
         <div className="user-result__button">
           <GradientButton type="button" onClick={handleGoBack} className='user-result__backButton'>
-            <img src={backIcon} className='user-result__button-icon' />
-            <span>돌아가기</span>
+            <span>다시 조회하기</span>
           </GradientButton>
         </div>
       </div>
