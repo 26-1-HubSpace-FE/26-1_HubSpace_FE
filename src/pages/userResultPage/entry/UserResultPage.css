@@ -106,35 +106,35 @@
     0 24px 60px rgba(37, 45, 92, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(203, 215, 245, 0.85);
-  padding: 56px 22px 54px;
+  padding: 44px 22px 42px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .user-result__check-circle {
-  width: 96px;
-  height: 96px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
   background-color: rgba(221, 247, 231, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .user-result__check-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 
 .user-result__status-title {
   color: #181a7a;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: var(--font-bold);
   line-height: 1.22;
   letter-spacing: -0.02em;
@@ -145,7 +145,7 @@
 .user-result__status-subtitle {
   color: #595d73;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: var(--font-regular);
   line-height: 1.55;
   text-align: center;
@@ -160,11 +160,11 @@
   box-shadow:
     0 18px 40px rgba(37, 45, 92, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  padding: 18px 22px;
+  padding: 14px 18px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 }
 
 .user-result__info-row {
@@ -172,13 +172,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px 0;
+  padding: 14px 0;
 }
 
 .user-result__info-label {
   color: #4f5266;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: var(--font-regular);
   line-height: 1.4;
   flex-shrink: 0;
@@ -187,7 +187,7 @@
 .user-result__info-value {
   color: #181a7a;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: var(--font-bold);
   line-height: 1.4;
   letter-spacing: -0.01em;
@@ -215,8 +215,8 @@
 
 .user-result__backButton {
   background: transparent;
-  min-height: 62px;
-  font-size: 22px;
+  min-height: 54px;
+  font-size: 18px;
   font-weight: var(--font-bold);
   transition:
     color 0.25s ease,
@@ -270,48 +270,48 @@
   }
 
   .user-result__status-card {
-    padding: 68px 48px 62px;
-    margin-bottom: 28px;
+    padding: 56px 40px 50px;
+    margin-bottom: 24px;
   }
 
   .user-result__check-circle {
-    width: 128px;
-    height: 128px;
+    width: 100px;
+    height: 100px;
   }
 
   .user-result__check-icon {
-    width: 54px;
-    height: 54px;
+    width: 42px;
+    height: 42px;
   }
 
   .user-result__status-title {
-    font-size: 54px;
+    font-size: 36px;
   }
 
   .user-result__status-subtitle {
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .user-result__info-card {
-    padding: 22px 44px;
-    margin-bottom: 72px;
+    padding: 18px 30px;
+    margin-bottom: 52px;
   }
 
   .user-result__info-row {
-    padding: 24px 0;
+    padding: 18px 0;
   }
 
   .user-result__info-label {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .user-result__info-value {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .user-result__backButton {
-    min-height: 78px;
-    font-size: 32px;
+    min-height: 62px;
+    font-size: 24px;
   }
 
   .user-result__notice {
@@ -321,25 +321,25 @@
 
 @media (max-width: 479px) {
   .user-result__status-card {
-    padding: 48px 20px 44px;
+    padding: 40px 20px 36px;
   }
 
   .user-result__check-circle {
-    width: 84px;
-    height: 84px;
+    width: 72px;
+    height: 72px;
   }
 
   .user-result__check-icon {
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
   }
 
   .user-result__status-title {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .user-result__status-subtitle {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .user-result__info-label {
@@ -351,7 +351,7 @@
   }
 
   .user-result__backButton {
-    min-height: 56px;
-    font-size: 18px;
+    min-height: 52px;
+    font-size: 17px;
   }
 }
