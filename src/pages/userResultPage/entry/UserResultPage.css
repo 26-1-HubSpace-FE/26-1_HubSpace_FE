@@ -135,18 +135,29 @@
   stroke-dasharray: 327;
   stroke-dashoffset: 327;
   transform-origin: center;
-  transform: rotate(-90deg);
-  animation: result-check-ring 0.75s ease-out forwards;
+  transform: rotate(-135deg);
+  animation: result-check-ring 1.05s ease-in-out forwards;
 }
 
 .result__status-icon--ok .result-check__mark {
   stroke-dasharray: 56;
   stroke-dashoffset: 56;
-  animation: result-check-mark 0.42s ease-out 0.72s forwards;
+  animation: result-check-mark 0.48s ease-out 0.78s forwards;
 }
 
 @keyframes result-check-ring {
-  to {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 327;
+  }
+
+  72% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    opacity: 0;
     stroke-dashoffset: 0;
   }
 }
