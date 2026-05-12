@@ -238,17 +238,17 @@
 
 @media (min-width: 768px) {
   .user-result__container {
-    max-width: 980px;
+    max-width: 860px;
     transform: none;
   }
 
   .user-result__logo {
-    width: 286px;
-    height: 108px;
+    width: 276px;
+    height: 104px;
   }
 
   .user-result__logoLink {
-    margin-bottom: 28px;
+    margin-bottom: 34px;
   }
 
   .user-result__card {
@@ -270,52 +270,58 @@
   }
 
   .user-result__status-card {
-    padding: 56px 40px 50px;
-    margin-bottom: 24px;
+    padding: 58px 40px 54px;
+    margin-bottom: 26px;
   }
 
   .user-result__check-circle {
-    width: 100px;
-    height: 100px;
+    width: 108px;
+    height: 108px;
   }
 
   .user-result__check-icon {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
   }
 
   .user-result__status-title {
-    font-size: 36px;
+    font-size: 40px;
   }
 
   .user-result__status-subtitle {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .user-result__info-card {
-    padding: 18px 30px;
-    margin-bottom: 52px;
+    padding: 18px 34px;
+    margin-bottom: 58px;
   }
 
   .user-result__info-row {
-    padding: 18px 0;
+    padding: 20px 0;
   }
 
   .user-result__info-label {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .user-result__info-value {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .user-result__backButton {
-    min-height: 62px;
-    font-size: 24px;
+    min-height: 68px;
+    font-size: 28px;
   }
 
   .user-result__notice {
     font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .user-result__container {
+    max-width: 840px;
   }
 }
 
