@@ -323,6 +323,13 @@
   .user-result__container {
     max-width: 840px;
   }
+
+  .user-result__card,
+  .user-result__status-card,
+  .user-result__info-card,
+  .user-result__button {
+    max-width: 420px;
+  }
 }
 
 @media (max-width: 479px) {
