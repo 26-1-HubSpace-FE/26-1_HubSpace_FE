@@ -8,6 +8,8 @@ import { processUserResult } from '../utils/UserFieldConfig'
 import { fetchUserSearch } from '../apis/fetchUserSearch'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 import authLogo from '../../../assets/auth/auth-logo.png'
+import CheckIcon from '../../../assets/result/result-check.svg?react'
+import AlertIcon from '../../../assets/result/result-alert.svg?react'
 
 // 사용자 이벤트 신청 조회 결과 페이지
 export default function UserResultPage() {
@@ -109,35 +111,36 @@ export default function UserResultPage() {
         {userSearchResult.userResultType === 'detail' ? (
           <>
             {/* 상태 카드 */}
-            <div className="user-result__status-card">
-              <div className="user-result__check-circle">
-                <svg className="user-result__check-icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 12.8L10.2 17L18 7" stroke="#09c653" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+            <div className='user-result__status-card'>
+              <div className='result__status-icon result__status-icon--ok'>
+                <CheckIcon />
               </div>
-              <h2 className="user-result__status-title">확인되었습니다.</h2>
-              <p className="user-result__status-subtitle">명단에 존재하거나 신청이 완료되었습니다.</p>
+              <h2 className='user-result__status-title'>확인되었습니다.</h2>
+              <p className='user-result__status-subtitle'>명단에 존재하거나 신청이 완료되었습니다.</p>
             </div>
 
             {/* 정보 카드 */}
-            <div className="user-result__info-card">
+            <div className='user-result__info-card'>
               {detailEntries.map(([columnName, value]) => (
-                <div key={columnName} className="user-result__info-row">
-                  <span className="user-result__info-label">{columnName}</span>
-                  <span className="user-result__info-value">{value}</span>
+                <div key={columnName} className='user-result__info-row'>
+                  <span className='user-result__info-label'>{columnName}</span>
+                  <span className='user-result__info-value'>{value}</span>
                 </div>
               ))}
             </div>
           </>
         ) : (
           /* 조회 실패 카드 */
-          <div className="user-result__card">
-            <h2 className="user-result__title__02">일치하는 정보가 없습니다.</h2>
-            <p className="user-result__notice">{userSearchResult.userResultMessage}</p>
+          <div className='user-result__card'>
+            <div className='result__status-icon result__status-icon--no'>
+              <AlertIcon />
+            </div>
+            <h2 className='user-result__title__02'>일치하는 정보가 없습니다.</h2>
+            <p className='user-result__notice'>{userSearchResult.userResultMessage}</p>
           </div>
         )}
 
-        <div className="user-result__button">
+        <div className='user-result__button'>
           <GradientButton type="button" onClick={handleGoBack} className='user-result__backButton'>
             <span>다시 조회하기</span>
           </GradientButton>

@@ -115,20 +115,19 @@
   margin-bottom: 20px;
 }
 
-.user-result__check-circle {
+.result__status-icon {
   width: 68px;
   height: 68px;
-  border-radius: 50%;
-  background-color: #e9fbf0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 6px;
 }
 
-.user-result__check-icon {
-  width: 34px;
-  height: 34px;
+.result__status-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .user-result__status-title {
@@ -274,14 +273,9 @@
     margin-bottom: 26px;
   }
 
-  .user-result__check-circle {
+  .result__status-icon {
     width: 88px;
     height: 88px;
-  }
-
-  .user-result__check-icon {
-    width: 42px;
-    height: 42px;
   }
 
   .user-result__status-title {
@@ -336,14 +330,9 @@
     margin-bottom: 20px;
   }
 
-  .user-result__check-circle {
+  .result__status-icon {
     width: 74px;
     height: 74px;
-  }
-
-  .user-result__check-icon {
-    width: 36px;
-    height: 36px;
   }
 
   .user-result__status-title {
@@ -382,14 +371,9 @@
     padding: 40px 20px 36px;
   }
 
-  .user-result__check-circle {
+  .result__status-icon {
     width: 72px;
     height: 72px;
-  }
-
-  .user-result__check-icon {
-    width: 28px;
-    height: 28px;
   }
 
   .user-result__status-title {
