@@ -112,7 +112,7 @@ export default function UserResultPage() {
             <div className="user-result__status-card">
               <div className="user-result__check-circle">
                 <svg className="user-result__check-icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 13l4 4L19 7" stroke="#4caf7d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 12.8L10.2 17L18 7" stroke="#09c653" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <h2 className="user-result__status-title">확인되었습니다.</h2>
