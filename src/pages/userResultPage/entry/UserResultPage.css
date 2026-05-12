@@ -130,6 +130,33 @@
   display: block;
 }
 
+.result__status-icon--ok .result-check__ring {
+  fill: none;
+  stroke-dasharray: 327;
+  stroke-dashoffset: 327;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  animation: result-check-ring 0.75s ease-out forwards;
+}
+
+.result__status-icon--ok .result-check__mark {
+  stroke-dasharray: 56;
+  stroke-dashoffset: 56;
+  animation: result-check-mark 0.42s ease-out 0.72s forwards;
+}
+
+@keyframes result-check-ring {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes result-check-mark {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .user-result__status-title {
   color: #181a7a;
   font-family: 'SpoqaHanSansNeo', sans-serif;
