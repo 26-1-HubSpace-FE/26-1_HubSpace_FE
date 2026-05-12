@@ -145,7 +145,7 @@
   color: #595d73;
   font-family: 'SpoqaHanSansNeo', sans-serif;
   font-size: 14px;
-  font-weight: var(--font-regular);
+  font-weight: var(--font-light);
   line-height: 1.55;
   text-align: center;
   margin: 0;
@@ -153,32 +153,30 @@
 
 .user-result__info-card {
   width: 100%;
-  border-radius: 28px;
-  background: rgba(245, 247, 255, 0.78);
-  border: 1px solid rgba(199, 208, 240, 0.92);
-  box-shadow:
-    0 18px 40px rgba(37, 45, 92, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  padding: 14px 18px;
+  border-radius: 20px;
+  background: rgba(238, 240, 255, 0.6);
+  border: 1px solid rgba(177, 188, 228, 0.45);
+  padding: 22px 24px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  gap: 14px;
   margin-bottom: 40px;
 }
 
 .user-result__info-row {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 0;
+  font-size: 14px;
 }
 
 .user-result__info-label {
   color: #4f5266;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 15px;
-  font-weight: var(--font-regular);
+  font-size: 1em;
+  font-weight: var(--font-light);
   line-height: 1.4;
   flex-shrink: 0;
 }
@@ -186,7 +184,7 @@
 .user-result__info-value {
   color: #181a7a;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: var(--font-medium);
   line-height: 1.4;
   letter-spacing: -0.01em;
@@ -287,20 +285,12 @@
   }
 
   .user-result__info-card {
-    padding: 18px 34px;
+    padding: 22px 28px;
     margin-bottom: 58px;
   }
 
   .user-result__info-row {
-    padding: 20px 0;
-  }
-
-  .user-result__info-label {
-    font-size: 19px;
-  }
-
-  .user-result__info-value {
-    font-size: 22px;
+    font-size: 15px;
   }
 
   .user-result__backButton {
@@ -319,10 +309,13 @@
   }
 
   .user-result__card,
-  .user-result__status-card,
   .user-result__info-card,
   .user-result__button {
     max-width: 480px;
+  }
+
+  .user-result__status-card {
+    max-width: 520px;
   }
 
   .user-result__status-card {
@@ -344,20 +337,12 @@
   }
 
   .user-result__info-card {
-    padding: 14px 26px;
+    padding: 22px 24px;
     margin-bottom: 44px;
   }
 
   .user-result__info-row {
-    padding: 14px 0;
-  }
-
-  .user-result__info-label {
-    font-size: 16px;
-  }
-
-  .user-result__info-value {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .user-result__backButton {
@@ -385,11 +370,11 @@
   }
 
   .user-result__info-label {
-    font-size: 16px;
+    font-size: 1em;
   }
 
   .user-result__info-value {
-    font-size: 17px;
+    font-size: 1em;
   }
 
   .user-result__backButton {
