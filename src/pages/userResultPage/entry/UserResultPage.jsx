@@ -115,7 +115,7 @@ export default function UserResultPage() {
                   <path d="M5 13l4 4L19 7" stroke="#4caf7d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h2 className="user-result__status-title">확이되었습니다.</h2>
+              <h2 className="user-result__status-title">확인되었습니다.</h2>
               <p className="user-result__status-subtitle">명단에 존재하거나 신청이 완료되었습니다.</p>
             </div>
 
