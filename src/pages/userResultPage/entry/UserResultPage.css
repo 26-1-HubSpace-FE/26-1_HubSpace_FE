@@ -91,6 +91,23 @@
   animation: result-check-mark 0.48s ease-out 0.78s forwards;
 }
 
+.result__status-icon--no .result-alert__background {
+  transform-origin: center;
+  animation: result-alert-pulse 0.5s ease-out forwards;
+}
+
+.result__status-icon--no .result-alert__line {
+  stroke-dasharray: 17;
+  stroke-dashoffset: 17;
+  animation: result-alert-draw 0.36s ease-out 0.18s forwards;
+}
+
+.result__status-icon--no .result-alert__dot {
+  opacity: 0;
+  transform-origin: center;
+  animation: result-alert-dot 0.24s ease-out 0.52s forwards;
+}
+
 @keyframes result-check-ring {
   0% {
     opacity: 1;
@@ -111,6 +128,41 @@
 @keyframes result-check-mark {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes result-alert-pulse {
+  0% {
+    transform: scale(0.88);
+    opacity: 0.72;
+  }
+
+  65% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes result-alert-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes result-alert-dot {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
