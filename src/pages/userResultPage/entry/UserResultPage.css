@@ -3,7 +3,6 @@
   max-width: 480px;
   padding: 0 16px;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,24 +34,23 @@
 .user-result__logoLink {
   display: block;
   line-height: 0;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .user-result__logo {
   display: block;
-  width: 183px;
-  height: 69px;
+  width: 196px;
+  height: 74px;
   object-fit: contain;
 }
 
-/* 중앙 흰색 카드 (notFound 케이스) */
 .user-result__card {
   position: relative;
   overflow: hidden;
   width: 100%;
   border-radius: 28px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.54) 48%, rgba(248, 244, 255, 0.64) 100%);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.62) 48%, rgba(248, 244, 255, 0.68) 100%);
   backdrop-filter: blur(22px) saturate(130%);
   box-shadow:
     0 24px 70px rgba(37, 45, 92, 0.12),
@@ -60,11 +58,9 @@
   border: 1px solid rgba(255, 255, 255, 0.48);
   padding: 36px 22px 26px;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-bottom: 38px;
 }
 
@@ -89,7 +85,6 @@
   pointer-events: none;
 }
 
-/* 페이지 제목 (notFound) */
 .user-result__title__02 {
   position: relative;
   z-index: 1;
@@ -103,103 +98,96 @@
   margin-bottom: 22px;
 }
 
-/* 선정 상태 카드 */
 .user-result__status-card {
   width: 100%;
-  border-radius: 28px;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.54) 48%, rgba(248, 244, 255, 0.64) 100%);
-  backdrop-filter: blur(22px) saturate(130%);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.92);
   box-shadow:
-    0 24px 70px rgba(37, 45, 92, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.48);
-  padding: 36px 22px 28px;
+    0 24px 60px rgba(37, 45, 92, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(203, 215, 245, 0.85);
+  padding: 56px 22px 54px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 14px;
+  margin-bottom: 24px;
 }
 
 .user-result__check-circle {
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
-  background-color: rgba(76, 175, 125, 0.12);
+  background-color: rgba(221, 247, 231, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .user-result__check-icon {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 }
 
 .user-result__status-title {
-  color: #1e2240;
+  color: #181a7a;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 22px;
+  font-size: 30px;
   font-weight: var(--font-bold);
-  line-height: 1.3;
+  line-height: 1.22;
   letter-spacing: -0.02em;
   text-align: center;
   margin: 0;
 }
 
 .user-result__status-subtitle {
-  color: #7f89ad;
+  color: #595d73;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: var(--font-regular);
-  line-height: 1.5;
+  line-height: 1.55;
   text-align: center;
   margin: 0;
 }
 
-/* 정보 카드 */
 .user-result__info-card {
   width: 100%;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(220, 224, 240, 0.6);
-  box-shadow: 0 8px 24px rgba(37, 45, 92, 0.07);
-  padding: 6px 20px;
+  border-radius: 28px;
+  background: rgba(245, 247, 255, 0.78);
+  border: 1px solid rgba(199, 208, 240, 0.92);
+  box-shadow:
+    0 18px 40px rgba(37, 45, 92, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: 18px 22px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-bottom: 38px;
+  margin-bottom: 56px;
 }
 
 .user-result__info-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(220, 224, 240, 0.5);
-}
-
-.user-result__info-row:last-child {
-  border-bottom: none;
+  gap: 16px;
+  padding: 18px 0;
 }
 
 .user-result__info-label {
-  color: #7f89ad;
+  color: #4f5266;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: var(--font-regular);
   line-height: 1.4;
   flex-shrink: 0;
-  margin-right: 12px;
 }
 
 .user-result__info-value {
-  color: #1e2240;
+  color: #181a7a;
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: var(--font-bold);
   line-height: 1.4;
   letter-spacing: -0.01em;
@@ -222,12 +210,14 @@
 
 .user-result__button {
   width: 100%;
+  margin-bottom: 12px;
 }
 
 .user-result__backButton {
   background: transparent;
-  min-height: 50px;
-  font-size: 16px;
+  min-height: 62px;
+  font-size: 22px;
+  font-weight: var(--font-bold);
   transition:
     color 0.25s ease,
     transform 0.25s ease,
@@ -242,34 +232,26 @@
   transform: translateY(-1px);
 }
 
-  .user-result__backButton:focus-visible {
+.user-result__backButton:focus-visible {
   outline: none;
 }
 
-.user-result__button-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-}
-
-/* 태블릿 */
 @media (min-width: 768px) {
   .user-result__container {
-    max-width: 540px;
+    max-width: 980px;
     transform: none;
   }
 
   .user-result__logo {
-    width: 229px;
-    height: 87px;
+    width: 286px;
+    height: 108px;
   }
 
   .user-result__logoLink {
-    margin-bottom: 23px;
+    margin-bottom: 28px;
   }
 
   .user-result__card {
-    max-width: 540px;
     padding: 50px 30px 32px;
     margin-bottom: 48px;
   }
@@ -288,48 +270,48 @@
   }
 
   .user-result__status-card {
-    padding: 48px 30px 36px;
-    margin-bottom: 20px;
+    padding: 68px 48px 62px;
+    margin-bottom: 28px;
   }
 
   .user-result__check-circle {
-    width: 72px;
-    height: 72px;
+    width: 128px;
+    height: 128px;
   }
 
   .user-result__check-icon {
-    width: 36px;
-    height: 36px;
+    width: 54px;
+    height: 54px;
   }
 
   .user-result__status-title {
-    font-size: 26px;
+    font-size: 54px;
   }
 
   .user-result__status-subtitle {
-    font-size: 14px;
+    font-size: 24px;
   }
 
   .user-result__info-card {
-    padding: 6px 24px;
-    margin-bottom: 48px;
+    padding: 22px 44px;
+    margin-bottom: 72px;
   }
 
   .user-result__info-row {
-    padding: 16px 0;
+    padding: 24px 0;
   }
 
   .user-result__info-label {
-    font-size: 15px;
+    font-size: 22px;
   }
 
   .user-result__info-value {
-    font-size: 15px;
+    font-size: 24px;
   }
 
   .user-result__backButton {
-    min-height: 52px;
-    font-size: 18px;
+    min-height: 78px;
+    font-size: 32px;
   }
 
   .user-result__notice {
@@ -337,89 +319,39 @@
   }
 }
 
-/* 데스크탑 */
-@media (min-width: 1024px) {
-  .user-result__container {
-    max-width: 620px;
-  }
-
-  .user-result__logo {
-    width: 306px;
-    height: 116px;
-  }
-
-  .user-result__logoLink {
-    margin-bottom: 30.5px;
-  }
-
-  .user-result__card {
-    padding: 60px 40px 38px;
-    margin-bottom: 64px;
-  }
-
-  .user-result__loading {
-    max-width: 480px;
-  }
-
-  .user-result__loadingText {
-    font-size: 18px;
-  }
-
-  .user-result__title__02 {
-    font-size: 24px;
-    margin-bottom: 34px;
-  }
-
+@media (max-width: 479px) {
   .user-result__status-card {
-    padding: 56px 40px 44px;
-    margin-bottom: 24px;
+    padding: 48px 20px 44px;
   }
 
   .user-result__check-circle {
-    width: 80px;
-    height: 80px;
+    width: 84px;
+    height: 84px;
   }
 
   .user-result__check-icon {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
   }
 
   .user-result__status-title {
-    font-size: 30px;
+    font-size: 24px;
   }
 
   .user-result__status-subtitle {
-    font-size: 15px;
-  }
-
-  .user-result__info-card {
-    padding: 6px 28px;
-    margin-bottom: 64px;
-  }
-
-  .user-result__info-row {
-    padding: 18px 0;
+    font-size: 16px;
   }
 
   .user-result__info-label {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .user-result__info-value {
     font-size: 17px;
   }
 
-  .user-result__button {
-    width: 411px;
-  }
-
   .user-result__backButton {
     min-height: 56px;
-    font-size: 20px;
-  }
-
-  .user-result__notice {
     font-size: 18px;
   }
 }
