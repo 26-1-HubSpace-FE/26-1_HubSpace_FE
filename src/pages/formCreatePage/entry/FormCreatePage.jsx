@@ -86,12 +86,13 @@ export default function FormCreatePage() {
               <div className='formCreate-field__title--notice'>2개 이상 선택 필수</div>
             </div>
 
-            <div className='formCreate-field__info'>
-              신청자가 조회 시 입력할 정보 필드를 설정하세요.
-            </div>
-
-            <div className='formCreate-field__info--notice'>
-              생성 완료 후, 정보 1, 정보 2, 정보 3은 수정하시면 안됩니다.
+            <div className='formCreate-field__infoBox'>
+              <div className='formCreate-field__info'>
+                신청자가 조회 시 입력할 정보 필드를 설정하세요.
+              </div>
+              <div className='formCreate-field__info--notice'>
+                생성 완료 후, 정보 1, 정보 2, 정보 3은 수정하시면 안됩니다.
+              </div>
             </div>
 
             <div className='formCreate-field__field'>
