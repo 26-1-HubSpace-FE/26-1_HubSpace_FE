@@ -331,6 +331,46 @@
     max-width: 420px;
   }
 
+  .user-result__status-card {
+    padding: 44px 30px 40px;
+    margin-bottom: 20px;
+  }
+
+  .user-result__check-circle {
+    width: 86px;
+    height: 86px;
+  }
+
+  .user-result__check-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .user-result__status-title {
+    font-size: 30px;
+  }
+
+  .user-result__status-subtitle {
+    font-size: 16px;
+  }
+
+  .user-result__info-card {
+    padding: 14px 26px;
+    margin-bottom: 44px;
+  }
+
+  .user-result__info-row {
+    padding: 14px 0;
+  }
+
+  .user-result__info-label {
+    font-size: 16px;
+  }
+
+  .user-result__info-value {
+    font-size: 18px;
+  }
+
   .user-result__backButton {
     min-height: 54px;
     font-size: 20px;
