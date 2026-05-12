@@ -131,12 +131,12 @@ export default function UserResultPage() {
           </>
         ) : (
           /* 조회 실패 카드 */
-          <div className='user-result__card'>
+          <div className='user-result__status-card'>
             <div className='result__status-icon result__status-icon--no'>
               <AlertIcon />
             </div>
-            <h2 className='user-result__title__02'>일치하는 정보가 없습니다.</h2>
-            <p className='user-result__notice'>{userSearchResult.userResultMessage}</p>
+            <h2 className='user-result__status-title'>일치하는 정보가 없습니다.</h2>
+            <p className='user-result__status-subtitle'>{userSearchResult.userResultMessage}</p>
           </div>
         )}
 
