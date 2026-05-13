@@ -3,6 +3,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: 1520px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .formCreate-loadingOverlay {
