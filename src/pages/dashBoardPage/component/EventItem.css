@@ -8,16 +8,6 @@
   border: 1px solid rgba(189, 198, 231, 0.42);
   border-radius: 14px;
   box-shadow: 0 6px 20px rgba(57, 74, 138, 0.04);
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    border-color 0.18s ease;
-}
-
-.eventItem:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(57, 74, 138, 0.09);
-  border-color: rgba(151, 166, 223, 0.58);
 }
 
 .eventItem-loadingOverlay {
@@ -103,7 +93,6 @@
   border-radius: 10px;
   align-items: center;
   gap: 12px;
-  transition: filter 0.18s ease;
 }
 
 .eventItem-search {
@@ -114,11 +103,6 @@
 .eventItem-apply {
   background-color: var(--color-box-apply);
   color: var(--color-action-apply);
-}
-
-.eventItem-search:hover,
-.eventItem-apply:hover {
-  filter: brightness(0.98);
 }
 
 .eventItem-link__info {
