@@ -37,6 +37,7 @@
 .eventItem-header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .eventItem-header__header {
