@@ -62,6 +62,29 @@
   height: 100%;
 }
 
+.login__about {
+  margin-top: 40px;
+  max-width: 320px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: login-text-reveal 0.75s ease-out 0.48s forwards;
+}
+
+.login__about-text {
+  color: var(--color-text-additional);
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 12px;
+  font-weight: var(--font-light);
+  line-height: 1.55;
+  text-align: center;
+  margin: 0;
+  opacity: 0.85;
+}
+
 @keyframes login-text-reveal {
   0% {
     opacity: 0;
@@ -89,7 +112,8 @@
 @media (prefers-reduced-motion: reduce) {
   .login__title,
   .login__description,
-  .login__title::after {
+  .login__title::after,
+  .login__about {
     opacity: 1;
     transform: none;
     animation: none;
@@ -120,6 +144,16 @@
     width: 202px;
     height: 43px;
   }
+
+  .login__about {
+    margin-top: 48px;
+    max-width: 420px;
+    gap: 10px;
+  }
+
+  .login__about-text {
+    font-size: 13px;
+  }
 }
 
 /* 데스크탑 */
@@ -145,5 +179,15 @@
   .login__button {
     width: 269px;
     height: 57px;
+  }
+
+  .login__about {
+    margin-top: 56px;
+    max-width: 520px;
+    gap: 12px;
+  }
+
+  .login__about-text {
+    font-size: 14px;
   }
 }
