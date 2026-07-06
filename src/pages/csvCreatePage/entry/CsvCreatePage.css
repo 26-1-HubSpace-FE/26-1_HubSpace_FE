@@ -248,6 +248,12 @@
     box-shadow 0.2s;
 }
 
+.csvCreate-display__toggle--disabled {
+  cursor: not-allowed;
+  background-color: var(--color-box-conditional);
+  color: var(--color-text-additional);
+}
+
 .csvCreate-display__title {
   font-size: 12px;
   font-weight: var(--font-light);

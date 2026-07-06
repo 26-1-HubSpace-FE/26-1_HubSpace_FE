@@ -1,10 +1,11 @@
 import api from '../../../apis/ApiClient'
 
-export const createFileEvent = async ({ file, eventTitle, count, searchColumns }) => {
+export const createFileEvent = async ({ file, eventTitle, count, searchColumns, displayColumn }) => {
   const requestPayload = {
     eventTitle,
     count,
     searchColumns,
+    displayColumn: displayColumn ?? null,
     eventType: 'FILE',
   }
 

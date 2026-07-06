@@ -1,5 +1,5 @@
 import './CsvCreatePage.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import EventInput from '../../../components/eventInput/EventInput'
 import EventDropdown from '../../../components/eventDropdown/EventDropdown'
 import EventButton from '../../../components/eventButton/EventButton'
@@ -92,6 +92,17 @@ export default function CsvCreatePage() {
   // 실제 선택된 필드만
   const validFields = selectedFields.filter((v) => v !== '선택')
 
+  // 표시 필드로 선택 가능한 컬럼 (조회 필드와 중복 제외)
+  const displayColumnOptions = columns.filter((col) => !validFields.includes(col))
+
+  // 조회 필드와 중복되면 표시 필드 선택 해제
+  useEffect(() => {
+    if (selectedColumn !== '표시 안 함' && validFields.includes(selectedColumn)) {
+      setSelectedColumn('표시 안 함')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedFields])
+
   const isValid =
     trimmedTitle.length > 0 &&
     uploadedFile !== null &&
@@ -142,14 +153,14 @@ export default function CsvCreatePage() {
   }
 
   /* =========================
-     조회 필드 토글
+     표시 필드 토글
   ========================= */
-  const toggleDropdown = () => {
+  const toggleDisplayDropdown = () => {
     if (!columns.length) return
     setIsOpen((prev) => !prev)
   }
 
-  const handleSelect = (value) => {
+  const handleSelectDisplayColumn = (value) => {
     setSelectedColumn(value)
     setIsOpen(false)
   }
@@ -171,6 +182,7 @@ export default function CsvCreatePage() {
           eventTitle: trimmedTitle,
           count: rowCount,
           searchColumns: validFields,
+          displayColumn: selectedColumn === '표시 안 함' ? null : selectedColumn,
         })
 
         toast.success('CSV 이벤트가 생성되었습니다!')
@@ -270,6 +282,56 @@ export default function CsvCreatePage() {
                 onChange={setSelectedFields}
                 disabled={!columns.length}
               />
+            </div>
+          </div>
+
+          <div className='csvCreate-field__header'>
+            <div className='csvCreate-field__title'>
+              <div className='csvCreate-field__title--title'>결과 표시 필드</div>
+            </div>
+
+            <div className='csvCreate-field__infoBox'>
+              <div className='csvCreate-field__info'>
+                조회 결과 화면에 함께 보여줄 필드를 선택하세요. (선택 사항)
+              </div>
+              <div className='csvCreate-field__info--notice'>
+                폼 생성 필드로 선택한 항목은 표시 필드로 선택할 수 없습니다.
+              </div>
+            </div>
+
+            <div className='csvCreate-display__field'>
+              <div className={`csvCreate-display__toggle ${!columns.length ? 'csvCreate-display__toggle--disabled' : ''}`} onClick={toggleDisplayDropdown}>
+                <div className='csvCreate-display__title'>{selectedColumn}</div>
+                <Icon
+                  name='detail-field'
+                  height={4}
+                  className={`csvCreate-display__arrow ${isOpen ? 'open' : ''}`}
+                />
+              </div>
+
+              {isOpen && (
+                <div className='csvCreate-display__content'>
+                  <div
+                    className={`csvCreate-display__item ${
+                      selectedColumn === '표시 안 함' ? 'selected' : ''
+                    }`}
+                    onClick={() => handleSelectDisplayColumn('표시 안 함')}
+                  >
+                    표시 안 함
+                  </div>
+                  {displayColumnOptions.map((col) => (
+                    <div
+                      key={col}
+                      className={`csvCreate-display__item ${
+                        selectedColumn === col ? 'selected' : ''
+                      }`}
+                      onClick={() => handleSelectDisplayColumn(col)}
+                    >
+                      {col}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
