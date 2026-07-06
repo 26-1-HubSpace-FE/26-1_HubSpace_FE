@@ -287,8 +287,7 @@
   transition: background-color 0.2s;
 }
 
-.csvCreate-display__item:hover,
-.csvCreate-display__item.selected {
+.csvCreate-display__item:hover {
   background-color: #e9f3ff;
 }
 

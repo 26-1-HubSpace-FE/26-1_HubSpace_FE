@@ -323,9 +323,7 @@ export default function CsvCreatePage() {
               {isOpen && (
                 <div className='csvCreate-display__content'>
                   <div
-                    className={`csvCreate-display__item ${
-                      selectedColumn === '표시 안 함' ? 'selected' : ''
-                    }`}
+                    className='csvCreate-display__item'
                     onClick={() => handleSelectDisplayColumn('표시 안 함')}
                   >
                     표시 안 함
@@ -333,9 +331,7 @@ export default function CsvCreatePage() {
                   {displayColumnOptions.map((col) => (
                     <div
                       key={col}
-                      className={`csvCreate-display__item ${
-                        selectedColumn === col ? 'selected' : ''
-                      }`}
+                      className='csvCreate-display__item'
                       onClick={() => handleSelectDisplayColumn(col)}
                     >
                       {col}
