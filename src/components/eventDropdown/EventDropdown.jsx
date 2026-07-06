@@ -51,15 +51,21 @@ export default function EventDropdown({
 
           {openIndex === index && (
             <div className='eventDropdown__list'>
-              {columns.map((col, idx) => (
-                <div
-                  key={idx}
-                  className='eventDropdown__item'
-                  onClick={() => selectColumn(index, col)}
-                >
-                  {col}
-                </div>
-              ))}
+              <div className='eventDropdown__item' onClick={() => selectColumn(index, '선택')}>
+                선택
+              </div>
+              {columns
+                .filter((col) => col !== '선택')
+                .filter((col) => !value.some((v, i) => i !== index && v === col))
+                .map((col, idx) => (
+                  <div
+                    key={idx}
+                    className='eventDropdown__item'
+                    onClick={() => selectColumn(index, col)}
+                  >
+                    {col}
+                  </div>
+                ))}
             </div>
           )}
         </div>
