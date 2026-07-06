@@ -300,8 +300,19 @@ export default function CsvCreatePage() {
             </div>
 
             <div className='csvCreate-display__field'>
-              <div className={`csvCreate-display__toggle ${!columns.length ? 'csvCreate-display__toggle--disabled' : ''}`} onClick={toggleDisplayDropdown}>
-                <div className='csvCreate-display__title'>{selectedColumn}</div>
+              <div
+                className={`csvCreate-display__toggle ${
+                  !columns.length ? 'csvCreate-display__toggle--disabled' : ''
+                }`}
+                onClick={toggleDisplayDropdown}
+              >
+                <div
+                  className={`csvCreate-display__title ${
+                    selectedColumn !== '표시 안 함' ? 'csvCreate-display__title--selected' : ''
+                  }`}
+                >
+                  {selectedColumn}
+                </div>
                 <Icon
                   name='detail-field'
                   height={4}
