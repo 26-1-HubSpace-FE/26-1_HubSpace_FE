@@ -228,6 +228,7 @@
   gap: 11px;
   width: 100%;
   max-width: 280px;
+  margin-top: 20px;
 }
 
 .csvCreate-display__toggle {
@@ -242,7 +243,7 @@
 }
 
 .csvCreate-display__toggle--disabled {
-  cursor: not-allowed;
+  cursor: default;
   opacity: 0.6;
 }
 
