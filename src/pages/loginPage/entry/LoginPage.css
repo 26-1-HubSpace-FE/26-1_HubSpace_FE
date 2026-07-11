@@ -219,6 +219,11 @@
     touch-action: none;
   }
 
+  .login__intro {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .login__scroll--dragging .login__about {
     transition: none;
   }
