@@ -33,9 +33,16 @@
   justify-content: flex-start;
 }
 
-.login__panel--about {
-  z-index: 1;
+.login__panel.login__panel--about {
+  z-index: 300;
   justify-content: flex-end;
+  padding-bottom: 12px;
+}
+
+@media (min-width: 641px) {
+  .login__panel.login__panel--about {
+    padding-bottom: 18px;
+  }
 }
 
 .login__intro,
