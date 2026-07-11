@@ -22,10 +22,14 @@
 }
 
 .login__panel--hero {
+  position: sticky;
+  top: 0;
+  z-index: 0;
   justify-content: flex-start;
 }
 
 .login__panel--about {
+  z-index: 1;
   justify-content: flex-end;
 }
 
@@ -95,14 +99,11 @@
 }
 
 .login__scroll-hint {
-  position: absolute;
-  left: 50%;
-  bottom: 72px;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  margin-top: 26px;
   padding: 8px 14px;
   border: 0;
   background: transparent;
@@ -315,11 +316,10 @@
   .login__button {
     width: 202px;
     height: 43px;
-    margin-top: clamp(110px, 17svh, 137px);
+    margin-top: clamp(64px, 10svh, 96px);
   }
 
   .login__scroll-hint {
-    bottom: 74px;
     font-size: 12px;
   }
 
@@ -378,11 +378,10 @@
   .login__button {
     width: 269px;
     height: 57px;
-    margin-top: clamp(120px, 18svh, 183px);
+    margin-top: clamp(24px, 4svh, 48px);
   }
 
   .login__scroll-hint {
-    bottom: 76px;
     font-size: 13px;
   }
 
