@@ -37,6 +37,16 @@ export default function LoginPage() {
       touchStartY = event.touches[0]?.clientY ?? null
     }
 
+    const handleTouchMove = (event) => {
+      const currentTouchY = event.touches[0]?.clientY
+      if (touchStartY === null || currentTouchY === undefined) return
+
+      const touchDistance = currentTouchY - touchStartY
+      if (Math.abs(touchDistance) >= 6) {
+        scroller.classList.toggle('login__scroll--about-visible', touchDistance < 0)
+      }
+    }
+
     const handleTouchEnd = (event) => {
       const touchEndY = event.changedTouches[0]?.clientY
       if (touchStartY === null || touchEndY === undefined) return
@@ -51,10 +61,12 @@ export default function LoginPage() {
 
     scroller.addEventListener('wheel', handleWheel, { passive: false })
     scroller.addEventListener('touchstart', handleTouchStart, { passive: true })
+    scroller.addEventListener('touchmove', handleTouchMove, { passive: true })
     scroller.addEventListener('touchend', handleTouchEnd, { passive: true })
     return () => {
       scroller.removeEventListener('wheel', handleWheel)
       scroller.removeEventListener('touchstart', handleTouchStart)
+      scroller.removeEventListener('touchmove', handleTouchMove)
       scroller.removeEventListener('touchend', handleTouchEnd)
     }
   }, [])
