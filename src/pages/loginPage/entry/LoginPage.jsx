@@ -8,6 +8,7 @@ import { hasValidSession } from '../../../utils/authStorage'
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const scrollRef = useRef(null)
   const aboutRef = useRef(null)
 
   useEffect(() => {
@@ -15,6 +16,34 @@ export default function LoginPage() {
       navigate('/dashboard', { replace: true })
     }
   }, [navigate])
+
+  useEffect(() => {
+    const scroller = scrollRef.current
+    if (!scroller) return
+    let snapTimeoutId = null
+
+    const handleWheel = (event) => {
+      if (event.ctrlKey || Math.abs(event.deltaY) < 4) return
+
+      const targetScrollTop = event.deltaY > 0 ? scroller.clientHeight : 0
+      if (Math.abs(scroller.scrollTop - targetScrollTop) < 1) return
+
+      event.preventDefault()
+      scroller.classList.add('login__scroll--snapping')
+      scroller.scrollTo({ top: targetScrollTop, behavior: 'smooth' })
+
+      window.clearTimeout(snapTimeoutId)
+      snapTimeoutId = window.setTimeout(() => {
+        scroller.classList.remove('login__scroll--snapping')
+      }, 650)
+    }
+
+    scroller.addEventListener('wheel', handleWheel, { passive: false })
+    return () => {
+      window.clearTimeout(snapTimeoutId)
+      scroller.removeEventListener('wheel', handleWheel)
+    }
+  }, [])
 
   const handleLogin = () => {
     window.location.href = `${import.meta.env.VITE_SERVER_DOMAIN}/oauth2/authorization/google`
@@ -26,21 +55,25 @@ export default function LoginPage() {
 
   return (
     <GradientLayout>
-      <main className='login__scroll'>
+      <main ref={scrollRef} className='login__scroll'>
         <section className='login__panel login__panel--hero'>
-          <img src={authLogo} alt='HubSpace' className='login__logo' />
+          <div className='login__intro'>
+            <img src={authLogo} alt='HubSpace' className='login__logo' />
 
-          <h2 className='login__title'>폼 신청 여부를 쉽게 확인할 수 있는 서비스</h2>
-          <p className='login__description'>신청자는 자신의 신청 여부를 확인하고, 관리자는 문의를 줄일 수 있습니다.</p>
+            <h2 className='login__title'>폼 신청 여부를 쉽게 확인할 수 있는 서비스</h2>
+            <p className='login__description'>신청자는 자신의 신청 여부를 확인하고, 관리자는 문의를 줄일 수 있습니다.</p>
+          </div>
 
-          <button onClick={handleLogin} className='login__button'>
-            <img src={googleIcon} alt='Google 계정으로 계속하기' />
-          </button>
+          <div className='login__actions'>
+            <button onClick={handleLogin} className='login__button'>
+              <img src={googleIcon} alt='Google 계정으로 계속하기' />
+            </button>
 
-          <button type='button' className='login__scroll-hint' onClick={handleAboutScroll}>
-            <span>서비스 알아보기</span>
-            <span className='login__scroll-arrow' aria-hidden='true' />
-          </button>
+            <button type='button' className='login__scroll-hint' onClick={handleAboutScroll}>
+              <span>서비스 알아보기</span>
+              <span className='login__scroll-arrow' aria-hidden='true' />
+            </button>
+          </div>
         </section>
 
         <section ref={aboutRef} className='login__panel login__panel--about'>

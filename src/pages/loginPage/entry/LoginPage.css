@@ -8,6 +8,10 @@
   overscroll-behavior-y: contain;
 }
 
+.login__scroll.login__scroll--snapping {
+  scroll-snap-type: none;
+}
+
 .login__panel {
   position: relative;
   width: 100%;
@@ -33,13 +37,33 @@
   justify-content: flex-end;
 }
 
+.login__intro,
+.login__actions {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 40px);
+}
+
+.login__intro {
+  top: clamp(72px, 10svh, 100px);
+}
+
+.login__actions {
+  bottom: clamp(86px, 12svh, 112px);
+  gap: 12px;
+}
+
 .login__logo {
   width: 183px;
   height: 69px;
   object-fit: contain;
   display: block;
 
-  margin-top: 12px;
+  margin-top: 0;
   margin-bottom: 25px;
 }
 
@@ -86,7 +110,7 @@
 .login__button {
   width: 161px;
   height: 34px;
-  margin-top: clamp(80px, 15svh, 110px);
+  margin-top: 0;
 
   border: none;
   background: transparent;
@@ -103,7 +127,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  margin-top: 26px;
+  margin-top: 0;
   padding: 8px 14px;
   border: 0;
   background: transparent;
@@ -296,11 +320,24 @@
     padding: 64px 40px 78px;
   }
 
+  .login__intro,
+  .login__actions {
+    width: calc(100% - 80px);
+  }
+
+  .login__intro {
+    top: clamp(100px, 14svh, 145px);
+  }
+
+  .login__actions {
+    bottom: clamp(90px, 12svh, 118px);
+  }
+
   .login__logo {
     width: 229px;
     height: 87px;
 
-    margin-top: 11px;
+    margin-top: 0;
     margin-bottom: 31px;
   }
 
@@ -316,7 +353,7 @@
   .login__button {
     width: 202px;
     height: 43px;
-    margin-top: clamp(64px, 10svh, 96px);
+    margin-top: 0;
   }
 
   .login__scroll-hint {
@@ -366,6 +403,14 @@
     margin-bottom: 41.5px;
   }
 
+  .login__intro {
+    top: clamp(130px, 17svh, 175px);
+  }
+
+  .login__actions {
+    bottom: clamp(64px, 8svh, 86px);
+  }
+
   .login__title {
     font-size: 24px;
     margin-bottom: 15px;
@@ -378,7 +423,7 @@
   .login__button {
     width: 269px;
     height: 57px;
-    margin-top: clamp(24px, 4svh, 48px);
+    margin-top: 0;
   }
 
   .login__scroll-hint {
