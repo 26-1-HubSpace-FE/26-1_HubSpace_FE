@@ -53,8 +53,27 @@
 }
 
 .login__actions {
-  bottom: clamp(112px, 15svh, 136px);
-  gap: 22px;
+  inset: 0;
+  width: 100%;
+  transform: none;
+  display: block;
+  pointer-events: none;
+}
+
+.login__actions .login__button,
+.login__actions .login__scroll-hint {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.login__actions .login__button {
+  bottom: clamp(190px, 25svh, 230px);
+}
+
+.login__actions .login__scroll-hint {
+  bottom: clamp(60px, 8svh, 72px);
 }
 
 .login__logo {
@@ -320,17 +339,12 @@
     padding: 64px 40px 78px;
   }
 
-  .login__intro,
-  .login__actions {
+  .login__intro {
     width: calc(100% - 80px);
   }
 
   .login__intro {
     top: clamp(120px, 17svh, 170px);
-  }
-
-  .login__actions {
-    bottom: clamp(110px, 15svh, 140px);
   }
 
   .login__logo {
@@ -405,10 +419,6 @@
 
   .login__intro {
     top: clamp(155px, 20svh, 195px);
-  }
-
-  .login__actions {
-    bottom: clamp(96px, 12.5svh, 125px);
   }
 
   .login__title {
