@@ -77,7 +77,7 @@
 }
 
 .login__actions .login__button {
-  bottom: clamp(190px, 25svh, 230px);
+  bottom: clamp(150px, 20svh, 180px);
 }
 
 .login__actions .login__scroll-hint {
@@ -376,6 +376,10 @@
     width: 202px;
     height: 43px;
     margin-top: 0;
+  }
+
+  .login__actions .login__button {
+    bottom: clamp(190px, 25svh, 230px);
   }
 
   .login__scroll-hint {

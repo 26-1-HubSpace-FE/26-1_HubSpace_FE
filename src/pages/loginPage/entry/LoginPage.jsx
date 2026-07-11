@@ -20,47 +20,7 @@ export default function LoginPage() {
   useEffect(() => {
     const scroller = scrollRef.current
     if (!scroller) return
-    const animationDuration = 650
-    let animationFrameId = null
-    let completionTimeoutId = null
-    let activeTargetScrollTop = null
-
-    const finishScroll = (targetScrollTop) => {
-      window.cancelAnimationFrame(animationFrameId)
-      window.clearTimeout(completionTimeoutId)
-      scroller.scrollTop = targetScrollTop
-      activeTargetScrollTop = null
-      scroller.classList.remove('login__scroll--snapping')
-    }
-
-    const animateScroll = (targetScrollTop) => {
-      const startScrollTop = scroller.scrollTop
-      const distance = targetScrollTop - startScrollTop
-      const startTime = window.performance.now()
-
-      window.cancelAnimationFrame(animationFrameId)
-      window.clearTimeout(completionTimeoutId)
-      activeTargetScrollTop = targetScrollTop
-      scroller.classList.add('login__scroll--snapping')
-
-      const step = (currentTime) => {
-        const progress = Math.min((currentTime - startTime) / animationDuration, 1)
-        const easedProgress = (1 - Math.cos(Math.PI * progress)) / 2
-        scroller.scrollTop = startScrollTop + distance * easedProgress
-
-        if (progress < 1) {
-          animationFrameId = window.requestAnimationFrame(step)
-          return
-        }
-
-        finishScroll(targetScrollTop)
-      }
-
-      animationFrameId = window.requestAnimationFrame(step)
-      completionTimeoutId = window.setTimeout(() => {
-        finishScroll(targetScrollTop)
-      }, animationDuration + 100)
-    }
+    let snapTimeoutId = null
 
     const handleWheel = (event) => {
       if (event.ctrlKey || Math.abs(event.deltaY) < 4) return
@@ -69,14 +29,18 @@ export default function LoginPage() {
       if (Math.abs(scroller.scrollTop - targetScrollTop) < 1) return
 
       event.preventDefault()
-      if (activeTargetScrollTop === targetScrollTop) return
-      animateScroll(targetScrollTop)
+      scroller.classList.add('login__scroll--snapping')
+      scroller.scrollTo({ top: targetScrollTop, behavior: 'smooth' })
+
+      window.clearTimeout(snapTimeoutId)
+      snapTimeoutId = window.setTimeout(() => {
+        scroller.classList.remove('login__scroll--snapping')
+      }, 650)
     }
 
     scroller.addEventListener('wheel', handleWheel, { passive: false })
     return () => {
-      window.cancelAnimationFrame(animationFrameId)
-      window.clearTimeout(completionTimeoutId)
+      window.clearTimeout(snapTimeoutId)
       scroller.removeEventListener('wheel', handleWheel)
     }
   }, [])
