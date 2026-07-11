@@ -32,6 +32,7 @@
   z-index: 300;
   justify-content: flex-end;
   padding-bottom: 12px;
+  pointer-events: none;
 }
 
 @media (min-width: 641px) {
@@ -205,10 +206,12 @@
   transform: translate(-50%, calc(100% + 24px));
   transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
+  pointer-events: none;
 }
 
 .login__scroll--about-visible .login__about {
   transform: translate(-50%, 0);
+  pointer-events: auto;
 }
 
 @media (max-width: 767px) {
