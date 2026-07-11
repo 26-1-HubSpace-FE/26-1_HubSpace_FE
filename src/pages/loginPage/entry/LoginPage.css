@@ -9,6 +9,7 @@
 }
 
 .login__scroll.login__scroll--snapping {
+  scroll-behavior: auto;
   scroll-snap-type: none;
 }
 
