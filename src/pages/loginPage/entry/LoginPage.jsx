@@ -30,14 +30,34 @@ export default function LoginPage() {
         <img src={googleIcon} />
       </button>
 
-      <div className='login__about'>
-        <p className='login__about-text'>
-          허브스페이스는 이벤트 관리자가 Google Forms를 생성해 실시간으로 신청을 받거나, CSV·TSV 형식의 기존 신청 데이터를 업로드하여 관리할 수 있는 서비스입니다. 신청자는 이벤트 관리자가 제공한 조회 URL에서 자신의 정보를 입력하고 신청 내역을 확인할 수 있습니다.
+      <section className='login__about' aria-labelledby='login-about-title'>
+        <div className='login__about-heading'>
+          <span className='login__about-label'>HubSpace 안내</span>
+          <h3 id='login-about-title'>이벤트 신청 관리를 더 간단하게</h3>
+        </div>
+
+        <div className='login__about-features'>
+          <p className='login__about-feature'>
+            <span className='login__about-number' aria-hidden='true'>01</span>
+            <span>
+              <strong>신청 정보를 한곳에서</strong>
+              Google Forms로 실시간 신청을 받거나 CSV·TSV 데이터를 업로드해 관리할 수 있어요.
+            </span>
+          </p>
+          <p className='login__about-feature'>
+            <span className='login__about-number' aria-hidden='true'>02</span>
+            <span>
+              <strong>신청 내역은 직접 확인</strong>
+              신청자는 관리자가 공유한 조회 URL에서 자신의 신청 내역을 바로 확인할 수 있어요.
+            </span>
+          </p>
+        </div>
+
+        <p className='login__permission-note'>
+          <strong>Google Forms 권한</strong>
+          이벤트 신청용 Google Form을 생성하고 관리하는 목적으로만 사용합니다.
         </p>
-        <p className='login__about-text'>
-          허브스페이스는 이벤트 신청용 Google Form을 생성하고 관리하기 위한 목적으로만 Google Forms 접근 권한을 사용합니다.
-        </p>
-      </div>
+      </section>
     </GradientLayout>
   )
 }
