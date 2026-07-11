@@ -8,6 +8,7 @@ import { hasValidSession } from '../../../utils/authStorage'
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const scrollRef = useRef(null)
   const aboutRef = useRef(null)
 
   useEffect(() => {
@@ -15,6 +16,46 @@ export default function LoginPage() {
       navigate('/dashboard', { replace: true })
     }
   }, [navigate])
+
+  useEffect(() => {
+    const scroller = scrollRef.current
+    if (!scroller) return
+    let previousScrollTop = scroller.scrollTop
+
+    const handleScroll = () => {
+      const currentScrollTop = scroller.scrollTop
+
+      if (currentScrollTop > previousScrollTop) {
+        scroller.classList.add('login__scroll--about-visible')
+      } else if (currentScrollTop < previousScrollTop) {
+        scroller.classList.remove('login__scroll--about-visible')
+      }
+
+      previousScrollTop = currentScrollTop
+    }
+
+    const handleWheel = (event) => {
+      if (event.ctrlKey || Math.abs(event.deltaY) < 4) return
+
+      event.preventDefault()
+      const showAbout = event.deltaY > 0
+      scroller.classList.toggle('login__scroll--about-visible', showAbout)
+      scroller.classList.add('login__scroll--positioning')
+      scroller.scrollTop = showAbout ? scroller.clientHeight : 0
+      previousScrollTop = scroller.scrollTop
+
+      window.requestAnimationFrame(() => {
+        scroller.classList.remove('login__scroll--positioning')
+      })
+    }
+
+    scroller.addEventListener('scroll', handleScroll, { passive: true })
+    scroller.addEventListener('wheel', handleWheel, { passive: false })
+    return () => {
+      scroller.removeEventListener('scroll', handleScroll)
+      scroller.removeEventListener('wheel', handleWheel)
+    }
+  }, [])
 
   const handleLogin = () => {
     window.location.href = `${import.meta.env.VITE_SERVER_DOMAIN}/oauth2/authorization/google`
@@ -26,7 +67,7 @@ export default function LoginPage() {
 
   return (
     <GradientLayout>
-      <main className='login__scroll'>
+      <main ref={scrollRef} className='login__scroll'>
         <section className='login__panel login__panel--hero'>
           <div className='login__intro'>
             <img src={authLogo} alt='HubSpace' className='login__logo' />

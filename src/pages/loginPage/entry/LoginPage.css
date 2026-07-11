@@ -8,6 +8,11 @@
   overscroll-behavior-y: contain;
 }
 
+.login__scroll.login__scroll--positioning {
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+}
+
 .login__panel {
   position: relative;
   width: 100%;
@@ -37,6 +42,10 @@
 @media (min-width: 641px) {
   .login__panel.login__panel--about {
     padding-bottom: 18px;
+  }
+
+  .login__panel--about .login__about {
+    bottom: 18px;
   }
 }
 
@@ -182,6 +191,9 @@
 }
 
 .login__about {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
   margin: 0;
   width: min(calc(100% + 16px), 376px);
   padding: 20px;
@@ -194,9 +206,14 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  opacity: 0;
-  transform: translateY(14px);
-  animation: login-text-reveal 0.75s ease-out 0.48s forwards;
+  z-index: 300;
+  transform: translate(-50%, calc(100% + 24px));
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.login__scroll--about-visible .login__about {
+  transform: translate(-50%, 0);
 }
 
 .login__about-heading {
@@ -324,7 +341,6 @@
   .login__title,
   .login__description,
   .login__title::after,
-  .login__about,
   .login__scroll-arrow {
     opacity: 1;
     transform: none;
@@ -333,6 +349,10 @@
 
   .login__scroll-arrow {
     transform: rotate(45deg);
+  }
+
+  .login__about {
+    transition: none;
   }
 }
 
