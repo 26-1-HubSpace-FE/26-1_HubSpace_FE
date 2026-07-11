@@ -57,7 +57,7 @@
 }
 
 .login__intro {
-  top: clamp(92px, 13svh, 120px);
+  top: clamp(116px, 16svh, 144px);
 }
 
 .login__actions {
