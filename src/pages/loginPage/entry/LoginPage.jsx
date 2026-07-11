@@ -20,54 +20,68 @@ export default function LoginPage() {
   useEffect(() => {
     const scroller = scrollRef.current
     if (!scroller) return
+    const card = scroller.querySelector('.login__about')
     let touchStartY = null
+    let touchProgress = 0
+    let releaseFrameId = null
 
     const handleWheel = (event) => {
       if (event.ctrlKey || Math.abs(event.deltaY) < 4) return
 
-      if (window.matchMedia('(min-width: 768px)').matches) {
-        event.preventDefault()
-      }
-
+      event.preventDefault()
       const showAbout = event.deltaY > 0
       scroller.classList.toggle('login__scroll--about-visible', showAbout)
     }
 
     const handleTouchStart = (event) => {
+      window.cancelAnimationFrame(releaseFrameId)
       touchStartY = event.touches[0]?.clientY ?? null
+
+      const cardRect = card.getBoundingClientRect()
+      const bottom = Number.parseFloat(window.getComputedStyle(card).bottom) || 0
+      const hiddenDistance = cardRect.height + 24
+      const visibleTop = window.innerHeight - bottom - cardRect.height
+      touchProgress = Math.min(Math.max((visibleTop + hiddenDistance - cardRect.top) / hiddenDistance, 0), 1)
+
+      scroller.classList.add('login__scroll--dragging')
+      card.style.transform = `translate(-50%, ${(1 - touchProgress) * hiddenDistance}px)`
     }
 
     const handleTouchMove = (event) => {
       const currentTouchY = event.touches[0]?.clientY
       if (touchStartY === null || currentTouchY === undefined) return
 
-      const touchDistance = currentTouchY - touchStartY
-      if (Math.abs(touchDistance) >= 6) {
-        scroller.classList.toggle('login__scroll--about-visible', touchDistance < 0)
-      }
+      event.preventDefault()
+      const hiddenDistance = card.getBoundingClientRect().height + 24
+      const touchDistance = touchStartY - currentTouchY
+      touchProgress = Math.min(Math.max(touchProgress + touchDistance / hiddenDistance, 0), 1)
+      touchStartY = currentTouchY
+      card.style.transform = `translate(-50%, ${(1 - touchProgress) * hiddenDistance}px)`
     }
 
-    const handleTouchEnd = (event) => {
-      const touchEndY = event.changedTouches[0]?.clientY
-      if (touchStartY === null || touchEndY === undefined) return
-
-      const touchDistance = touchEndY - touchStartY
-      if (Math.abs(touchDistance) >= 10) {
-        scroller.classList.toggle('login__scroll--about-visible', touchDistance < 0)
-      }
-
+    const finishTouch = () => {
+      if (touchStartY === null) return
+      scroller.classList.toggle('login__scroll--about-visible', touchProgress >= 0.5)
+      scroller.classList.remove('login__scroll--dragging')
+      card.getBoundingClientRect()
+      releaseFrameId = window.requestAnimationFrame(() => {
+        card.style.removeProperty('transform')
+      })
       touchStartY = null
     }
 
     scroller.addEventListener('wheel', handleWheel, { passive: false })
     scroller.addEventListener('touchstart', handleTouchStart, { passive: true })
-    scroller.addEventListener('touchmove', handleTouchMove, { passive: true })
-    scroller.addEventListener('touchend', handleTouchEnd, { passive: true })
+    scroller.addEventListener('touchmove', handleTouchMove, { passive: false })
+    scroller.addEventListener('touchend', finishTouch, { passive: true })
+    scroller.addEventListener('touchcancel', finishTouch, { passive: true })
     return () => {
+      window.cancelAnimationFrame(releaseFrameId)
       scroller.removeEventListener('wheel', handleWheel)
       scroller.removeEventListener('touchstart', handleTouchStart)
       scroller.removeEventListener('touchmove', handleTouchMove)
-      scroller.removeEventListener('touchend', handleTouchEnd)
+      scroller.removeEventListener('touchend', finishTouch)
+      scroller.removeEventListener('touchcancel', finishTouch)
     }
   }, [])
 
@@ -77,10 +91,6 @@ export default function LoginPage() {
 
   const handleAboutScroll = () => {
     scrollRef.current?.classList.add('login__scroll--about-visible')
-
-    if (!window.matchMedia('(min-width: 768px)').matches) {
-      aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }
   }
 
   return (
