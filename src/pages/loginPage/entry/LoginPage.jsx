@@ -8,9 +8,7 @@ import { hasValidSession } from '../../../utils/authStorage'
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const scrollRef = useRef(null)
   const aboutRef = useRef(null)
-  const animateScrollRef = useRef(null)
 
   useEffect(() => {
     if (hasValidSession()) {
@@ -18,112 +16,17 @@ export default function LoginPage() {
     }
   }, [navigate])
 
-  useEffect(() => {
-    const scroller = scrollRef.current
-    if (!scroller) return
-    const animationDuration = 650
-    let animationFrameId = null
-    let completionTimeoutId = null
-    let activeTargetScrollTop = null
-    let touchStartY = null
-
-    const getLastPanelScrollTop = () => scroller.scrollHeight - scroller.clientHeight
-
-    const finishScroll = (targetScrollTop) => {
-      window.cancelAnimationFrame(animationFrameId)
-      window.clearTimeout(completionTimeoutId)
-      scroller.scrollTop = targetScrollTop
-      activeTargetScrollTop = null
-      scroller.classList.remove('login__scroll--snapping')
-    }
-
-    const animateScroll = (targetScrollTop) => {
-      if (activeTargetScrollTop === targetScrollTop) return
-
-      const startScrollTop = scroller.scrollTop
-      const distance = targetScrollTop - startScrollTop
-      const startTime = window.performance.now()
-
-      window.cancelAnimationFrame(animationFrameId)
-      window.clearTimeout(completionTimeoutId)
-      activeTargetScrollTop = targetScrollTop
-      scroller.classList.add('login__scroll--snapping')
-
-      const step = (currentTime) => {
-        const progress = Math.min((currentTime - startTime) / animationDuration, 1)
-        const easedProgress = 1 - (1 - progress) ** 3
-        scroller.scrollTop = startScrollTop + distance * easedProgress
-
-        if (progress < 1) {
-          animationFrameId = window.requestAnimationFrame(step)
-          return
-        }
-
-        finishScroll(targetScrollTop)
-      }
-
-      animationFrameId = window.requestAnimationFrame(step)
-      completionTimeoutId = window.setTimeout(() => {
-        finishScroll(targetScrollTop)
-      }, animationDuration + 100)
-    }
-
-    const handleWheel = (event) => {
-      if (event.ctrlKey || Math.abs(event.deltaY) < 4) return
-
-      const targetScrollTop = event.deltaY > 0 ? getLastPanelScrollTop() : 0
-      if (Math.abs(scroller.scrollTop - targetScrollTop) < 1) return
-
-      event.preventDefault()
-      animateScroll(targetScrollTop)
-    }
-
-    const handleTouchStart = (event) => {
-      touchStartY = event.touches[0]?.clientY ?? null
-    }
-
-    const handleTouchEnd = (event) => {
-      if (touchStartY === null) return
-
-      const touchEndY = event.changedTouches[0]?.clientY ?? touchStartY
-      const deltaY = touchStartY - touchEndY
-      touchStartY = null
-
-      if (Math.abs(deltaY) < 24) return
-      animateScroll(deltaY > 0 ? getLastPanelScrollTop() : 0)
-    }
-
-    animateScrollRef.current = () => animateScroll(getLastPanelScrollTop())
-    scroller.addEventListener('wheel', handleWheel, { passive: false })
-    scroller.addEventListener('touchstart', handleTouchStart, { passive: true })
-    scroller.addEventListener('touchend', handleTouchEnd, { passive: true })
-
-    return () => {
-      animateScrollRef.current = null
-      window.cancelAnimationFrame(animationFrameId)
-      window.clearTimeout(completionTimeoutId)
-      scroller.removeEventListener('wheel', handleWheel)
-      scroller.removeEventListener('touchstart', handleTouchStart)
-      scroller.removeEventListener('touchend', handleTouchEnd)
-    }
-  }, [])
-
   const handleLogin = () => {
     window.location.href = `${import.meta.env.VITE_SERVER_DOMAIN}/oauth2/authorization/google`
   }
 
   const handleAboutScroll = () => {
-    if (animateScrollRef.current) {
-      animateScrollRef.current()
-      return
-    }
-
     aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <GradientLayout>
-      <main ref={scrollRef} className='login__scroll'>
+      <main className='login__scroll'>
         <section className='login__panel login__panel--hero'>
           <div className='login__intro'>
             <img src={authLogo} alt='HubSpace' className='login__logo' />
