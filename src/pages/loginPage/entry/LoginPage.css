@@ -8,11 +8,6 @@
   overscroll-behavior-y: contain;
 }
 
-.login__scroll.login__scroll--positioning {
-  scroll-behavior: auto;
-  scroll-snap-type: none;
-}
-
 .login__panel {
   position: relative;
   width: 100%;

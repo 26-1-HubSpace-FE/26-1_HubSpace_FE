@@ -20,40 +20,42 @@ export default function LoginPage() {
   useEffect(() => {
     const scroller = scrollRef.current
     if (!scroller) return
-    let previousScrollTop = scroller.scrollTop
-
-    const handleScroll = () => {
-      const currentScrollTop = scroller.scrollTop
-
-      if (currentScrollTop > previousScrollTop) {
-        scroller.classList.add('login__scroll--about-visible')
-      } else if (currentScrollTop < previousScrollTop) {
-        scroller.classList.remove('login__scroll--about-visible')
-      }
-
-      previousScrollTop = currentScrollTop
-    }
+    let touchStartY = null
 
     const handleWheel = (event) => {
       if (event.ctrlKey || Math.abs(event.deltaY) < 4) return
 
-      event.preventDefault()
+      if (window.matchMedia('(min-width: 768px)').matches) {
+        event.preventDefault()
+      }
+
       const showAbout = event.deltaY > 0
       scroller.classList.toggle('login__scroll--about-visible', showAbout)
-      scroller.classList.add('login__scroll--positioning')
-      scroller.scrollTop = showAbout ? scroller.clientHeight : 0
-      previousScrollTop = scroller.scrollTop
-
-      window.requestAnimationFrame(() => {
-        scroller.classList.remove('login__scroll--positioning')
-      })
     }
 
-    scroller.addEventListener('scroll', handleScroll, { passive: true })
+    const handleTouchStart = (event) => {
+      touchStartY = event.touches[0]?.clientY ?? null
+    }
+
+    const handleTouchEnd = (event) => {
+      const touchEndY = event.changedTouches[0]?.clientY
+      if (touchStartY === null || touchEndY === undefined) return
+
+      const touchDistance = touchEndY - touchStartY
+      if (Math.abs(touchDistance) >= 10) {
+        scroller.classList.toggle('login__scroll--about-visible', touchDistance < 0)
+      }
+
+      touchStartY = null
+    }
+
     scroller.addEventListener('wheel', handleWheel, { passive: false })
+    scroller.addEventListener('touchstart', handleTouchStart, { passive: true })
+    scroller.addEventListener('touchend', handleTouchEnd, { passive: true })
     return () => {
-      scroller.removeEventListener('scroll', handleScroll)
       scroller.removeEventListener('wheel', handleWheel)
+      scroller.removeEventListener('touchstart', handleTouchStart)
+      scroller.removeEventListener('touchend', handleTouchEnd)
     }
   }, [])
 
@@ -62,7 +64,11 @@ export default function LoginPage() {
   }
 
   const handleAboutScroll = () => {
-    aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
+    scrollRef.current?.classList.add('login__scroll--about-visible')
+
+    if (!window.matchMedia('(min-width: 768px)').matches) {
+      aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (
