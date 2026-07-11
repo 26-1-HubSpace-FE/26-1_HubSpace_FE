@@ -33,15 +33,14 @@ export default function LoginPage() {
       <section className='login__about' aria-labelledby='login-about-title'>
         <div className='login__about-heading'>
           <span className='login__about-label'>HubSpace 안내</span>
-          <h3 id='login-about-title'>이벤트 신청 관리를 더 간단하게</h3>
         </div>
 
         <div className='login__about-features'>
           <p className='login__about-feature'>
             <span className='login__about-number' aria-hidden='true'>01</span>
             <span>
-              <strong>신청 정보를 한곳에서</strong>
-              Google Forms로 실시간 신청을 받거나 CSV·TSV 데이터를 업로드해 관리할 수 있어요.
+              <strong>신청 확인 환경을 간편하게</strong>
+              Google Forms로 신청을 받거나 CSV·TSV 데이터를 업로드해 신청 내역 조회 페이지를 만들 수 있어요.
             </span>
           </p>
           <p className='login__about-feature'>
