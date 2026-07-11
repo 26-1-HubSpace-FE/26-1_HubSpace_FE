@@ -32,10 +32,10 @@ export default function LoginPage() {
 
       <div className='login__about'>
         <p className='login__about-text'>
-          HubSpace helps event managers create Google Forms for event registration and allows applicants to check whether their registration was successfully submitted.
+          허브스페이스는 이벤트 관리자가 Google Forms를 생성해 실시간으로 신청을 받거나, CSV·TSV 형식의 기존 신청 데이터를 업로드하여 관리할 수 있는 서비스입니다. 신청자는 이벤트 관리자가 제공한 조회 URL에서 자신의 정보를 입력하고 신청 내역을 확인할 수 있습니다.
         </p>
         <p className='login__about-text'>
-          HubSpace uses Google Forms access only to create and manage registration forms for event registration.
+          허브스페이스는 이벤트 신청용 Google Form을 생성하고 관리하기 위한 목적으로만 Google Forms 접근 권한을 사용합니다.
         </p>
       </div>
     </GradientLayout>
