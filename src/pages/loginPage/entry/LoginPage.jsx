@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
-import googleIcon from '../../../assets/auth/auth-google-logo.svg'
+import googleIcon from '../../../assets/auth/auth-google-icon.svg'
 import authLogo from '../../../assets/auth/auth-logo.png'
 import { hasValidSession } from '../../../utils/authStorage'
 
@@ -118,8 +118,11 @@ export default function LoginPage() {
           </div>
 
           <div className='login__actions'>
-            <button onClick={handleLogin} className='login__button'>
-              <img src={googleIcon} alt='Google 계정으로 계속하기' />
+            <button type='button' onClick={handleLogin} className='login__button'>
+              <span className='login__button-icon' aria-hidden='true'>
+                <img src={googleIcon} alt='' />
+              </span>
+              <span>Google 계정으로 계속하기</span>
             </button>
 
             <button type='button' className='login__scroll-hint' onClick={handleAboutScroll}>
