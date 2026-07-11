@@ -49,12 +49,12 @@
 }
 
 .login__intro {
-  top: clamp(72px, 10svh, 100px);
+  top: clamp(92px, 13svh, 120px);
 }
 
 .login__actions {
-  bottom: clamp(86px, 12svh, 112px);
-  gap: 12px;
+  bottom: clamp(112px, 15svh, 136px);
+  gap: 22px;
 }
 
 .login__logo {
@@ -326,11 +326,11 @@
   }
 
   .login__intro {
-    top: clamp(100px, 14svh, 145px);
+    top: clamp(120px, 17svh, 170px);
   }
 
   .login__actions {
-    bottom: clamp(90px, 12svh, 118px);
+    bottom: clamp(110px, 15svh, 140px);
   }
 
   .login__logo {
@@ -404,11 +404,11 @@
   }
 
   .login__intro {
-    top: clamp(130px, 17svh, 175px);
+    top: clamp(155px, 20svh, 195px);
   }
 
   .login__actions {
-    bottom: clamp(64px, 8svh, 86px);
+    bottom: clamp(96px, 12.5svh, 125px);
   }
 
   .login__title {
