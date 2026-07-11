@@ -178,10 +178,15 @@
 
 .login__actions .login__button:hover {
   transform: translateX(-50%) translateY(-2px);
-  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(103, 118, 190, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(232, 239, 255, 0.98),
+    rgba(239, 230, 255, 0.98)
+  );
   box-shadow:
-    0 18px 38px rgba(68, 83, 142, 0.16),
-    inset 0 1px 0 #fff;
+    0 18px 38px rgba(78, 91, 158, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .login__actions .login__button:active {
