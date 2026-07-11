@@ -22,6 +22,8 @@ export default function LoginPage() {
     if (!scroller) return
     const card = scroller.querySelector('.login__about')
     let touchStartY = null
+    let gestureStartY = null
+    let touchLastY = null
     let touchProgress = 0
     let releaseFrameId = null
 
@@ -36,6 +38,8 @@ export default function LoginPage() {
     const handleTouchStart = (event) => {
       window.cancelAnimationFrame(releaseFrameId)
       touchStartY = event.touches[0]?.clientY ?? null
+      gestureStartY = touchStartY
+      touchLastY = touchStartY
 
       const cardRect = card.getBoundingClientRect()
       const bottom = Number.parseFloat(window.getComputedStyle(card).bottom) || 0
@@ -56,18 +60,27 @@ export default function LoginPage() {
       const touchDistance = touchStartY - currentTouchY
       touchProgress = Math.min(Math.max(touchProgress + touchDistance / hiddenDistance, 0), 1)
       touchStartY = currentTouchY
+      touchLastY = currentTouchY
       card.style.transform = `translate(-50%, ${(1 - touchProgress) * hiddenDistance}px)`
     }
 
-    const finishTouch = () => {
+    const finishTouch = (event) => {
       if (touchStartY === null) return
-      scroller.classList.toggle('login__scroll--about-visible', touchProgress >= 0.5)
+      touchLastY = event.changedTouches[0]?.clientY ?? touchLastY
+      const gestureDistance = gestureStartY - touchLastY
+      const showAbout = Math.abs(gestureDistance) >= 6
+        ? gestureDistance > 0
+        : touchProgress >= 0.5
+
+      scroller.classList.toggle('login__scroll--about-visible', showAbout)
       scroller.classList.remove('login__scroll--dragging')
       card.getBoundingClientRect()
       releaseFrameId = window.requestAnimationFrame(() => {
         card.style.removeProperty('transform')
       })
       touchStartY = null
+      gestureStartY = null
+      touchLastY = null
     }
 
     scroller.addEventListener('wheel', handleWheel, { passive: false })
