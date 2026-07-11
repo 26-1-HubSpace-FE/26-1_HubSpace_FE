@@ -1,10 +1,41 @@
+.login__scroll {
+  position: absolute;
+  inset: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+}
+
+.login__panel {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  padding: 48px 20px 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.login__panel--hero {
+  justify-content: flex-start;
+}
+
+.login__panel--about {
+  justify-content: flex-end;
+}
+
 .login__logo {
   width: 183px;
   height: 69px;
   object-fit: contain;
   display: block;
 
-  margin-top: 60px;
+  margin-top: 12px;
   margin-bottom: 25px;
 }
 
@@ -28,7 +59,7 @@
   font-weight: var(--font-light);
   line-height: normal;
   text-align: center;
-  margin-bottom: 110px;
+  margin-bottom: 0;
   opacity: 0;
   transform: translateY(14px);
   animation: login-text-reveal 0.75s ease-out 0.28s forwards;
@@ -51,6 +82,7 @@
 .login__button {
   width: 161px;
   height: 34px;
+  margin-top: clamp(80px, 15svh, 110px);
 
   border: none;
   background: transparent;
@@ -62,9 +94,48 @@
   height: 100%;
 }
 
+.login__scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 72px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 0;
+  background: transparent;
+  color: #7883a6;
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+  font-size: 11px;
+  font-weight: var(--font-regular);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.login__scroll-arrow {
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid #7185ce;
+  border-bottom: 1.5px solid #7185ce;
+  transform: rotate(45deg);
+  animation: login-scroll-guide 1.5s ease-in-out infinite;
+}
+
+.login__scroll-hint:hover,
+.login__scroll-hint:focus-visible {
+  color: #5470d6;
+}
+
+.login__scroll-hint:focus-visible {
+  outline: 2px solid rgba(84, 112, 214, 0.38);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
 .login__about {
-  margin-top: 40px;
-  margin-bottom: 52px;
+  margin: 0;
   width: min(calc(100% + 16px), 376px);
   padding: 20px;
   box-sizing: border-box;
@@ -189,24 +260,46 @@
   }
 }
 
+@keyframes login-scroll-guide {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(-2px) rotate(45deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(4px) rotate(45deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .login__title,
   .login__description,
   .login__title::after,
-  .login__about {
+  .login__about,
+  .login__scroll-arrow {
     opacity: 1;
     transform: none;
     animation: none;
+  }
+
+  .login__scroll-arrow {
+    transform: rotate(45deg);
   }
 }
 
 /* 태블릿 */
 @media (min-width: 768px) {
+  .login__panel {
+    padding: 64px 40px 78px;
+  }
+
   .login__logo {
     width: 229px;
     height: 87px;
 
-    margin-top: 75px;
+    margin-top: 11px;
     margin-bottom: 31px;
   }
 
@@ -217,16 +310,20 @@
 
   .login__description {
     font-size: 16px;
-    margin-bottom: 137px;
   }
 
   .login__button {
     width: 202px;
     height: 43px;
+    margin-top: clamp(110px, 17svh, 137px);
+  }
+
+  .login__scroll-hint {
+    bottom: 74px;
+    font-size: 12px;
   }
 
   .login__about {
-    margin-top: 40px;
     width: min(100%, 560px);
     padding: 22px;
   }
@@ -257,11 +354,15 @@
 
 /* 데스크탑 */
 @media (min-width: 1024px) {
+  .login__panel {
+    padding: 103px 40px 76px;
+  }
+
   .login__logo {
     width: 305px;
     height: 115px;
 
-    margin-top: 100px;
+    margin-top: 0;
     margin-bottom: 41.5px;
   }
 
@@ -272,16 +373,20 @@
 
   .login__description {
     font-size: 18px;
-    margin-bottom: 183px;
   }
 
   .login__button {
     width: 269px;
     height: 57px;
+    margin-top: clamp(120px, 18svh, 183px);
+  }
+
+  .login__scroll-hint {
+    bottom: 76px;
+    font-size: 13px;
   }
 
   .login__about {
-    margin-top: 40px;
     width: min(100%, 640px);
     padding: 20px 24px;
     gap: 14px;
