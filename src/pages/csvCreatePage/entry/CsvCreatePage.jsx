@@ -232,10 +232,15 @@ export default function CsvCreatePage() {
         </div>
 
         {/* ================= File Upload ================= */}
-        <div className='csvCreate-file'>
+        <div
+          className={`csvCreate-file ${uploadedFile === null ? 'csvCreate-file--required' : ''}`}
+        >
           <div className='csvCreate-file__header'>
             <div className='csvCreate-file__title'>
               <div className='csvCreate-file__title--title'>데이터 파일</div>
+              {uploadedFile === null && (
+                <div className='csvCreate-file__title--step'>먼저 파일을 첨부해주세요</div>
+              )}
             </div>
 
             <div className='csvCreate-file__info'>CSV, TSV만 업로드 가능합니다.</div>
@@ -262,16 +267,17 @@ export default function CsvCreatePage() {
         <div className='csvCreate-field'>
           <div className='csvCreate-field__header'>
             <div className='csvCreate-field__title'>
-              <div className='csvCreate-field__title--title'>식별용 정보 선택</div>
+              <div className='csvCreate-field__title--title'>조회에 사용할 정보</div>
               <div className='csvCreate-field__title--notice'>2개 이상 선택 필수</div>
             </div>
 
             <div className='csvCreate-field__infoBox'>
               <div className='csvCreate-field__info'>
-                신청자가 조회 시 입력할 정보 필드를 선택하세요.
+                신청자가 본인을 조회할 때 입력할 정보를 선택해 주세요. <br/>
+                이름, 학번, 전화번호처럼 신청자를 구분할 수 있는 정보를 2개 이상 선택해야 합니다.
               </div>
               <div className='csvCreate-field__info--notice'>
-                생성 완료 후, 식별용 필드는 수정이 불가능합니다.
+                이벤트를 만든 후에는 변경할 수 없습니다.
               </div>
             </div>
 
@@ -287,12 +293,13 @@ export default function CsvCreatePage() {
 
           <div className='csvCreate-field__header'>
             <div className='csvCreate-field__title'>
-              <div className='csvCreate-field__title--title'>조회 시 함께 보여줄 정보 선택</div>
+              <div className='csvCreate-field__title--title'>조회 결과에 표시할 정보</div>
             </div>
 
             <div className='csvCreate-field__infoBox'>
               <div className='csvCreate-field__info'>
-                조회 결과 화면에 함께 보여줄 필드를 선택하세요. (선택 사항)
+                신청자가 조회했을 때 함께 보여줄 정보를 선택해 주세요. <br/>
+                합격 여부, 좌석 번호, 조 편성 등의 정보를 표시할 수 있습니다. 선택하지 않아도 됩니다.
               </div>
               <div className='csvCreate-field__info--notice'>
                 식별용 필드로 선택한 항목은 선택할 수 없습니다.

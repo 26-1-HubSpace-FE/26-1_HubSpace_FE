@@ -73,8 +73,19 @@
 .csvCreate-file {
   padding: 40px;
   background-color: var(--color-white);
+  border: 2px solid transparent;
   margin-bottom: 44px;
   border-radius: 10px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.csvCreate-file--required {
+  border-color: rgba(45, 59, 134, 0.45);
+  background-color: rgba(247, 249, 255, 0.98);
+  box-shadow: 0 8px 24px rgba(45, 59, 134, 0.1);
 }
 
 .csvCreate-file__header {
@@ -93,6 +104,15 @@
   font-size: 18px;
   font-weight: var(--font-medium);
   color: var(--color-text);
+}
+
+.csvCreate-file__title--step {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(45, 59, 134, 0.08);
+  color: var(--color-main);
+  font-size: 11px;
+  font-weight: var(--font-medium);
 }
 
 .csvCreate-file__title--notice {
