@@ -4,14 +4,14 @@ import './EventInput.css'
 export default function EventInput({
   value,
   onChange,
-  placeholder = '이벤트 관리명을 입력하세요.',
-  title = '이벤트 관리명',
-  info = '폼 제복과 다른 관리자에게만 보여지는 관리용 제목입니다.',
+  placeholder = '이벤트 이름을 입력하세요.',
+  title = '이벤트 이름',
+  // info = '폼 제목과 다른 관리자에게만 보여지는 관리용 제목입니다.',
 }) {
   return (
     <div className='eventInput'>
       <div className='eventInput-title'>{title}</div>
-      <div className='eventInput-info'>{info}</div>
+      {/*<div className='eventInput-info'>{info}</div>*/}
       <div className='eventInput-input'>
         <input
           className='eventInput-input-input'

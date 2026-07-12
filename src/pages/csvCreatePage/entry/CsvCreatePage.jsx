@@ -103,14 +103,6 @@ export default function CsvCreatePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFields])
 
-  const isValid =
-    trimmedTitle.length > 0 &&
-    uploadedFile !== null &&
-    rowCount > 0 &&
-    validFields.length >= 2 &&
-    validFields.length <= 3 &&
-    new Set(validFields).size === validFields.length
-
   /* =========================
      CSV / TSV 파싱 (헤더 + 상위 5행)
   ========================= */
@@ -168,35 +160,40 @@ export default function CsvCreatePage() {
   const handleCreateCsv = async () => {
     if (isSubmitting) return
 
-    if (!columns.length) {
-      toast.error('CSV 파일을 먼저 업로드해주세요.')
+    if (!trimmedTitle) {
+      toast.error('이벤트 이름을 입력해주세요.', { duration: 2000 })
       return
     }
 
-    if (isValid) {
-      try {
-        setIsSubmitting(true)
-
-        await createFileEvent({
-          file: uploadedFile,
-          eventTitle: trimmedTitle,
-          count: rowCount,
-          searchColumns: validFields,
-          displayColumn: selectedColumn === '표시 안 함' ? null : selectedColumn,
-        })
-
-        toast.success('CSV 이벤트가 생성되었습니다!')
-        navigate('/dashboard')
-      } catch (err) {
-        const message = err?.response?.data?.message || 'CSV 이벤트 생성에 실패했습니다.'
-        toast.error(message, { duration: 2000 })
-      } finally {
-        setIsSubmitting(false)
-      }
-    } else {
-      toast.error('이벤트 관리명과 필드를 2개 이상, 중복 없이 선택해주세요.', {
+    if (
+      validFields.length < 2 ||
+      validFields.length > 3 ||
+      new Set(validFields).size !== validFields.length
+    ) {
+      toast.error('조회에 사용할 정보를 2개 이상, 중복 없이 선택해주세요.', {
         duration: 2000,
       })
+      return
+    }
+
+    try {
+      setIsSubmitting(true)
+
+      await createFileEvent({
+        file: uploadedFile,
+        eventTitle: trimmedTitle,
+        count: rowCount,
+        searchColumns: validFields,
+        displayColumn: selectedColumn === '표시 안 함' ? null : selectedColumn,
+      })
+
+      toast.success('CSV 이벤트가 생성되었습니다!')
+      navigate('/dashboard')
+    } catch (err) {
+      const message = err?.response?.data?.message || 'CSV 이벤트 생성에 실패했습니다.'
+      toast.error(message, { duration: 2000 })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
