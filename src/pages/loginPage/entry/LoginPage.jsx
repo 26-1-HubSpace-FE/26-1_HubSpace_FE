@@ -113,8 +113,8 @@ export default function LoginPage() {
           <div className='login__intro'>
             <img src={authLogo} alt='HubSpace' className='login__logo' />
 
-            <h2 className='login__title'>폼 신청 여부를 쉽게 확인할 수 있는 서비스</h2>
-            <p className='login__description'>신청자는 자신의 신청 여부를 확인하고, 관리자는 문의를 줄일 수 있습니다.</p>
+            <h2 className='login__title'>신청 내역과 결과를 간편하게 확인하는 서비스</h2>
+            <p className='login__description'>신청자는 자신의 신청 내역과 결과를 직접 확인하고, 관리자는 반복 문의를 줄일 수 있습니다.</p>
           </div>
 
           <div className='login__actions'>
@@ -142,15 +142,15 @@ export default function LoginPage() {
               <p className='login__about-feature'>
                 <span className='login__about-number' aria-hidden='true'>01</span>
                 <span>
-                  <strong>신청 확인 환경을 간편하게</strong>
-                  Google Forms로 신청을 받거나 CSV·TSV 데이터를 업로드해 신청 내역 조회 페이지를 만들 수 있어요.
+                  <strong>신청·결과 조회 페이지를 간편하게</strong>
+                  Google Forms로 신청을 받거나 CSV·TSV 데이터를 업로드해 신청 내역과 결과를 조회할 수 있는 페이지를 만들 수 있어요.
                 </span>
               </p>
               <p className='login__about-feature'>
                 <span className='login__about-number' aria-hidden='true'>02</span>
                 <span>
-                  <strong>신청 내역은 직접 확인</strong>
-                  신청자는 관리자가 공유한 조회 URL에서 자신의 신청 내역을 바로 확인할 수 있어요.
+                  <strong>신청 내역과 결과를 직접 확인</strong>
+                  신청자는 관리자가 공유한 조회 URL에서 자신의 신청 내역과 결과를 언제든 확인할 수 있어요.
                 </span>
               </p>
             </div>
