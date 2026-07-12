@@ -262,16 +262,16 @@ export default function CsvCreatePage() {
         <div className='csvCreate-field'>
           <div className='csvCreate-field__header'>
             <div className='csvCreate-field__title'>
-              <div className='csvCreate-field__title--title'>폼 생성 필드</div>
+              <div className='csvCreate-field__title--title'>식별용 정보 선택</div>
               <div className='csvCreate-field__title--notice'>2개 이상 선택 필수</div>
             </div>
 
             <div className='csvCreate-field__infoBox'>
               <div className='csvCreate-field__info'>
-                신청자가 조회 시 입력할 정보 필드를 설정하세요.
+                신청자가 조회 시 입력할 정보 필드를 선택하세요.
               </div>
               <div className='csvCreate-field__info--notice'>
-                생성 완료 후, 정보 1, 정보 2, 정보 3은 수정이 불가합니다.
+                생성 완료 후, 식별용 필드는 수정이 불가능합니다.
               </div>
             </div>
 
@@ -287,7 +287,7 @@ export default function CsvCreatePage() {
 
           <div className='csvCreate-field__header'>
             <div className='csvCreate-field__title'>
-              <div className='csvCreate-field__title--title'>결과 표시 필드</div>
+              <div className='csvCreate-field__title--title'>조회 시 함께 보여줄 정보 선택</div>
             </div>
 
             <div className='csvCreate-field__infoBox'>
@@ -295,7 +295,7 @@ export default function CsvCreatePage() {
                 조회 결과 화면에 함께 보여줄 필드를 선택하세요. (선택 사항)
               </div>
               <div className='csvCreate-field__info--notice'>
-                폼 생성 필드로 선택한 항목은 표시 필드로 선택할 수 없습니다.
+                식별용 필드로 선택한 항목은 선택할 수 없습니다.
               </div>
             </div>
 
