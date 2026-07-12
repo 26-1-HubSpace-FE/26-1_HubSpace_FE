@@ -122,7 +122,7 @@ export default function LoginPage() {
               <span className='login__button-icon' aria-hidden='true'>
                 <img src={googleIcon} alt='' />
               </span>
-              <span>Google 계정으로 계속하기</span>
+              <span>Google 계정으로 로그인</span>
             </button>
 
             <button type='button' className='login__scroll-hint' onClick={handleAboutScroll}>
