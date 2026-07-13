@@ -153,12 +153,6 @@ export default function CsvCreatePage() {
   }
 
   const handleSelectDisplayColumn = (value) => {
-    if (value === '표시 안 함') {
-      setSelectedColumns([])
-      setIsOpen(false)
-      return
-    }
-
     setSelectedColumns((current) =>
       current.includes(value)
         ? current.filter((column) => column !== value)
@@ -313,43 +307,91 @@ export default function CsvCreatePage() {
             </div>
 
             <div className='csvCreate-display__field'>
-              <div
+              <button
+                type='button'
                 className={`csvCreate-display__toggle ${
                   !columns.length ? 'csvCreate-display__toggle--disabled' : ''
                 }`}
                 onClick={toggleDisplayDropdown}
+                disabled={!columns.length}
+                aria-expanded={isOpen}
+                aria-controls='csvCreate-display-options'
               >
                 <div
                   className={`csvCreate-display__title ${
                     selectedColumns.length ? 'csvCreate-display__title--selected' : ''
                   }`}
                 >
-                  {selectedColumns.length ? selectedColumns.join(', ') : '표시 안 함'}
+                  {selectedColumns.length ? `${selectedColumns.length}개 선택됨` : '표시할 정보 선택'}
                 </div>
                 <Icon
                   name='detail-field'
                   height={4}
                   className={`csvCreate-display__arrow ${isOpen ? 'open' : ''}`}
                 />
-              </div>
+              </button>
 
               {isOpen && (
-                <div className='csvCreate-display__content'>
-                  <div
-                    className='csvCreate-display__item'
-                    onClick={() => handleSelectDisplayColumn('표시 안 함')}
-                  >
-                    표시 안 함
+                <div
+                  id='csvCreate-display-options'
+                  className='csvCreate-display__content'
+                >
+                  <div className='csvCreate-display__options'>
+                    {displayColumnOptions.length === 0 && (
+                      <div className='csvCreate-display__empty'>선택 가능한 컬럼이 없습니다.</div>
+                    )}
+                    {displayColumnOptions.map((col) => (
+                      <label
+                        key={col}
+                        className={`csvCreate-display__item ${
+                          selectedColumns.includes(col)
+                            ? 'csvCreate-display__item--selected'
+                            : ''
+                        }`}
+                      >
+                        <input
+                          type='checkbox'
+                          className='csvCreate-display__checkbox'
+                          checked={selectedColumns.includes(col)}
+                          onChange={() => handleSelectDisplayColumn(col)}
+                        />
+                        <span>{col}</span>
+                      </label>
+                    ))}
                   </div>
-                  {displayColumnOptions.map((col) => (
-                    <div
-                      key={col}
-                      className={`csvCreate-display__item ${
-                        selectedColumns.includes(col) ? 'csvCreate-display__item--selected' : ''
-                      }`}
-                      onClick={() => handleSelectDisplayColumn(col)}
+                  <div className='csvCreate-display__actions'>
+                    <button
+                      type='button'
+                      className='csvCreate-display__action csvCreate-display__action--clear'
+                      onClick={() => setSelectedColumns([])}
+                      disabled={selectedColumns.length === 0}
                     >
-                      {col}
+                      전체 해제
+                    </button>
+                    <button
+                      type='button'
+                      className='csvCreate-display__action csvCreate-display__action--done'
+                      onClick={() => setIsOpen(false)}
+                    >
+                      선택 완료
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {selectedColumns.length > 0 && (
+                <div className='csvCreate-display__chips' aria-label='선택된 표시 컬럼'>
+                  {selectedColumns.map((column) => (
+                    <div key={column} className='csvCreate-display__chip'>
+                      <span>{column}</span>
+                      <button
+                        type='button'
+                        className='csvCreate-display__chipRemove'
+                        onClick={() => handleSelectDisplayColumn(column)}
+                        aria-label={`${column} 표시 컬럼 제거`}
+                      >
+                        <span aria-hidden='true'>×</span>
+                      </button>
                     </div>
                   ))}
                 </div>
