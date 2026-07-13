@@ -311,6 +311,12 @@
   background-color: #e9f3ff;
 }
 
+.csvCreate-display__item--selected {
+  background-color: #e9f3ff;
+  color: #2d3b86;
+  font-weight: var(--font-medium);
+}
+
 .csvCreate-display__condition {
   display: flex;
   flex-direction: column;

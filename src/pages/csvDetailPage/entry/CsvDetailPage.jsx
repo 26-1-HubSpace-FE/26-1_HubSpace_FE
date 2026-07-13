@@ -14,15 +14,24 @@ export default function CsvDetailPage() {
   const event = csvEvent.data
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedColumn, setSelectedColumn] = useState(event.displayColumn)
+  const [selectedColumns, setSelectedColumns] = useState(event.displayColumns ?? [])
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev)
   }
 
   const handleSelect = (value) => {
-    setSelectedColumn(value)
-    setIsOpen(false) // 선택하면 닫기
+    if (value === '표시 안 함') {
+      setSelectedColumns([])
+      setIsOpen(false)
+      return
+    }
+
+    setSelectedColumns((current) =>
+      current.includes(value)
+        ? current.filter((column) => column !== value)
+        : [...current, value],
+    )
   }
 
   const handleCopyId = (id) => {
@@ -86,7 +95,9 @@ export default function CsvDetailPage() {
           <div className='csvDetail-display__label'>사용자 조회 정보</div>
 
           <div className='csvDetail-display__toggle' onClick={toggleDropdown}>
-            <div className='csvDetail-display__title'>{selectedColumn}</div>
+            <div className='csvDetail-display__title'>
+              {selectedColumns.length ? selectedColumns.join(', ') : '표시 안 함'}
+            </div>
 
             <Icon
               name='detail-field'
@@ -97,18 +108,21 @@ export default function CsvDetailPage() {
 
           {isOpen && (
             <div className='csvDetail-display__content'>
-              <div
-                className={`csvDetail-display__item ${
-                  selectedColumn === event.displayColumn ? 'selected' : ''
-                }`}
-                onClick={() => handleSelect(event.displayColumn)}
-              >
-                {event.displayColumn}
-              </div>
+              {(event.displayColumns ?? []).map((displayColumn) => (
+                <div
+                  key={displayColumn}
+                  className={`csvDetail-display__item ${
+                    selectedColumns.includes(displayColumn) ? 'selected' : ''
+                  }`}
+                  onClick={() => handleSelect(displayColumn)}
+                >
+                  {displayColumn}
+                </div>
+              ))}
 
               <div
                 className={`csvDetail-display__item ${
-                  selectedColumn === '표시 안 함' ? 'selected' : ''
+                  selectedColumns.length === 0 ? 'selected' : ''
                 }`}
                 onClick={() => handleSelect('표시 안 함')}
               >

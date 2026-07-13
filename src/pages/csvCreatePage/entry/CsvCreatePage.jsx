@@ -84,7 +84,7 @@ export default function CsvCreatePage() {
 
   // 조회 표시 필드
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedColumn, setSelectedColumn] = useState('표시 안 함')
+  const [selectedColumns, setSelectedColumns] = useState([])
 
   const navigate = useNavigate()
   const trimmedTitle = eventTitle.trim()
@@ -95,11 +95,11 @@ export default function CsvCreatePage() {
   // 표시 필드로 선택 가능한 컬럼 (조회 필드와 중복 제외)
   const displayColumnOptions = columns.filter((col) => !validFields.includes(col))
 
-  // 조회 필드와 중복되면 표시 필드 선택 해제
+  // 조회 필드와 중복된 표시 필드 선택 해제
   useEffect(() => {
-    if (selectedColumn !== '표시 안 함' && validFields.includes(selectedColumn)) {
-      setSelectedColumn('표시 안 함')
-    }
+    setSelectedColumns((current) =>
+      current.filter((column) => !validFields.includes(column)),
+    )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFields])
 
@@ -137,7 +137,7 @@ export default function CsvCreatePage() {
       setUploadedFile(file)
       setUploadedFileName(file.name)
       setSelectedFields(['선택', '선택', '선택'])
-      setSelectedColumn('표시 안 함')
+      setSelectedColumns([])
       setIsOpen(false)
     }
 
@@ -153,8 +153,17 @@ export default function CsvCreatePage() {
   }
 
   const handleSelectDisplayColumn = (value) => {
-    setSelectedColumn(value)
-    setIsOpen(false)
+    if (value === '표시 안 함') {
+      setSelectedColumns([])
+      setIsOpen(false)
+      return
+    }
+
+    setSelectedColumns((current) =>
+      current.includes(value)
+        ? current.filter((column) => column !== value)
+        : [...current, value],
+    )
   }
 
   const handleCreateCsv = async () => {
@@ -184,7 +193,7 @@ export default function CsvCreatePage() {
         eventTitle: trimmedTitle,
         count: rowCount,
         searchColumns: validFields,
-        displayColumn: selectedColumn === '표시 안 함' ? null : selectedColumn,
+        displayColumns: selectedColumns.length ? selectedColumns : null,
       })
 
       toast.success('CSV 이벤트가 생성되었습니다!')
@@ -312,10 +321,10 @@ export default function CsvCreatePage() {
               >
                 <div
                   className={`csvCreate-display__title ${
-                    selectedColumn !== '표시 안 함' ? 'csvCreate-display__title--selected' : ''
+                    selectedColumns.length ? 'csvCreate-display__title--selected' : ''
                   }`}
                 >
-                  {selectedColumn}
+                  {selectedColumns.length ? selectedColumns.join(', ') : '표시 안 함'}
                 </div>
                 <Icon
                   name='detail-field'
@@ -335,7 +344,9 @@ export default function CsvCreatePage() {
                   {displayColumnOptions.map((col) => (
                     <div
                       key={col}
-                      className='csvCreate-display__item'
+                      className={`csvCreate-display__item ${
+                        selectedColumns.includes(col) ? 'csvCreate-display__item--selected' : ''
+                      }`}
                       onClick={() => handleSelectDisplayColumn(col)}
                     >
                       {col}
