@@ -1,9 +1,8 @@
 .dashBoard {
-  padding: 40px 80px;
+  padding: 40px 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  max-width: 1520px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -13,8 +12,12 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
+  width: calc(100% - 160px);
+  max-width: 1360px;
+  margin: 0 auto;
   padding-bottom: 18px;
   border-bottom: 2px solid var(--color-border);
+  box-sizing: border-box;
 }
 
 .dashBoard-header__header {
@@ -36,7 +39,7 @@
 }
 
 .dashBoard-eventList {
-  padding: 32px 4px 12px;
+  padding: 32px max(84px, calc((100% - 1352px) / 2)) 12px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -65,11 +68,15 @@
 
 @media (max-width: 960px) {
   .dashBoard {
-    padding: 32px 24px;
+    padding: 32px 0;
+  }
+
+  .dashBoard-header {
+    width: calc(100% - 48px);
   }
 
   .dashBoard-eventList {
-    padding: 24px 0 8px;
+    padding: 24px 24px 8px;
     gap: 12px;
   }
 }
