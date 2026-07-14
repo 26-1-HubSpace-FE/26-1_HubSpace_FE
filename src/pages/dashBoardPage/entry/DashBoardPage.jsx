@@ -19,11 +19,7 @@ export default function DashBoardPage() {
             {loading ? '이벤트를 불러오는 중입니다.' : `총 ${count}개의 이벤트를 관리하고 있어요.`}
           </div>
         </div>
-        <EventButton
-          text='+ㅤ새 이벤트'
-          className='dashBoard-header__button--new'
-          onClick={() => setIsModalOpen(true)}
-        />
+        <EventButton text='+ 새 이벤트' onClick={() => setIsModalOpen(true)} />
       </div>
       <div className='dashBoard-eventList'>
         {loading && (
