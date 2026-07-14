@@ -3,6 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: 1520px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -34,9 +35,8 @@
 .formCreate-container {
   flex: 1;
   overflow-y: scroll;
-  padding: 50px max(80px, calc((100% - 1360px) / 2));
+  padding: 50px 80px;
   margin-bottom: 100px;
-  box-sizing: border-box;
 }
 
 .formCreate-header {
