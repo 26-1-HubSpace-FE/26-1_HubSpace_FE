@@ -193,7 +193,8 @@ export default function CsvCreatePage() {
       toast.success('CSV 이벤트가 생성되었습니다!')
       navigate('/dashboard')
     } catch (err) {
-      const message = err?.response?.data?.message || 'CSV 이벤트 생성에 실패했습니다.'
+      const message =
+        err?.response?.data?.message || err?.message || 'CSV 이벤트 생성에 실패했습니다.'
       toast.error(message, { duration: 2000 })
     } finally {
       setIsSubmitting(false)

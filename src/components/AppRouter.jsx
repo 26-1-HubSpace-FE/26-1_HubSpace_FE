@@ -11,9 +11,10 @@ import UserDetailPage from '../pages/userDetailPage/entry/UserDetailPage'
 import UserResultPage from '../pages/userResultPage/entry/UserResultPage'
 import PolicyPage from '../pages/policyPage/entry/PolicyPage'
 import { hasValidSession } from '../utils/authStorage'
+import { isLocalPreviewMode } from '../mocks/localPreview'
 
 const ProtectedRoute = ({ children }) => {
-  return hasValidSession() ? children : <Navigate to='/login' replace />
+  return isLocalPreviewMode || hasValidSession() ? children : <Navigate to='/login' replace />
 }
 
 export const AppRouter = createBrowserRouter([

@@ -5,6 +5,7 @@ import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import googleIcon from '../../../assets/auth/auth-google-icon.svg'
 import authLogo from '../../../assets/auth/auth-logo.png'
 import { hasValidSession } from '../../../utils/authStorage'
+import { isLocalPreviewMode } from '../../../mocks/localPreview'
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ export default function LoginPage() {
   const aboutRef = useRef(null)
 
   useEffect(() => {
-    if (hasValidSession()) {
+    if (isLocalPreviewMode || hasValidSession()) {
       navigate('/dashboard', { replace: true })
     }
   }, [navigate])

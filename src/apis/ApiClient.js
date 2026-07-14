@@ -6,6 +6,7 @@ import {
   refreshAuthSession,
   shouldRefreshAccessToken,
 } from '../utils/authStorage'
+import { isLocalPreviewMode, LOCAL_PREVIEW_READ_ONLY_MESSAGE } from '../mocks/localPreview'
 
 // Axios 인스턴스 생성
 export const api = axios.create({
@@ -85,11 +86,15 @@ export const ensureFreshAccessToken = async ({ force = false } = {}) => {
 // ------------------------------
 api.interceptors.request.use(
   async (config) => {
+    const requireAuth = config.requireAuth ?? false
+    if (requireAuth && isLocalPreviewMode) {
+      return Promise.reject(new Error(LOCAL_PREVIEW_READ_ONLY_MESSAGE))
+    }
+
     const key = getRequestKey(config)
     if (pendingRequests.has(key)) return Promise.reject(new Error('중복 요청 차단됨'))
     pendingRequests.set(key, true)
 
-    const requireAuth = config.requireAuth ?? false
     if (requireAuth) {
       try {
         const accessToken = await ensureFreshAccessToken()
