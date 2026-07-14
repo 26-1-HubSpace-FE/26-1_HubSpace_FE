@@ -64,7 +64,7 @@
 }
 
 .dashBoard-header__title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: var(--font-bold);
   letter-spacing: -0.025em;
   color: var(--color-text);
@@ -126,7 +126,7 @@
   }
 
   .dashBoard-header__title {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .dashBoard-eventList {
@@ -141,7 +141,7 @@
   }
 
   .dashBoard-header__title {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .dashBoard-header__info {
