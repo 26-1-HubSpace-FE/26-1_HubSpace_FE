@@ -1,6 +1,7 @@
 /* button 버튼 */
 import buttonCopyForm from '../../assets/button/button-copy-form.svg?react'
 import buttonCopySearch from '../../assets/button/button-copy-search.svg?react'
+import buttonFile from '../../assets/button/button-file.svg?react'
 import buttonMore from '../../assets/button/button-more.svg?react'
 
 /* dashboard 대시보드 사용 아이콘 */
@@ -25,6 +26,7 @@ import detailInput from '../../assets/detail/detail-input.svg?react'
 export const IconMap = {
   'button-copy-form': buttonCopyForm,
   'button-copy-search': buttonCopySearch,
+  'button-file': buttonFile,
   'button-more': buttonMore,
   'dashboard-active': dashboardActive,
   'dashboard-csv': dashboardCsv,

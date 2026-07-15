@@ -244,9 +244,14 @@ export default function CsvCreatePage() {
               )}
             </div>
 
-            <div className='csvCreate-file__info'>CSV, TSV만 업로드 가능합니다.</div>
+            {/*<div className='csvCreate-file__info'>CSV, TSV만 업로드 가능합니다.</div>*/}
 
-            <div className='csvCreate-file__upload'>
+            <label
+              htmlFor='csvCreateFileInput'
+              className={`csvCreate-file__upload ${
+                uploadedFileName ? 'csvCreate-file__upload--selected' : ''
+              }`}
+            >
               <input
                 id='csvCreateFileInput'
                 className='csvCreate-file__uploadInput'
@@ -254,13 +259,32 @@ export default function CsvCreatePage() {
                 accept='.csv,.tsv'
                 onChange={handleFileChange}
               />
-              <label htmlFor='csvCreateFileInput' className='csvCreate-file__uploadButton'>
-                파일 첨부
-              </label>
-              <div className='csvCreate-file__uploadName'>
-                {uploadedFileName || '선택된 파일 없음'}
-              </div>
-            </div>
+              <span className='csvCreate-file__uploadIcon' aria-hidden='true'>
+                <Icon name='button-file' width={34} height={38} />
+              </span>
+              <span className='csvCreate-file__uploadCopy'>
+                <span className='csvCreate-file__uploadTitle'>
+                  {uploadedFileName ? '파일이 선택되었습니다' : 'CSV 또는 TSV 파일 선택'}
+                </span>
+                <span className='csvCreate-file__uploadDescription'>
+                  {uploadedFileName
+                    ? '다른 파일은 이곳을 눌러주세요.'
+                    : '이곳을 눌러 파일을 업로드하세요.'}
+                </span>
+                {uploadedFileName && (
+                  <span
+                    className='csvCreate-file__uploadFileName'
+                    title={uploadedFileName}
+                    aria-live='polite'
+                  >
+                    {uploadedFileName}
+                  </span>
+                )}
+              </span>
+              {/*<span className='csvCreate-file__uploadAction'>*/}
+              {/*  {uploadedFileName ? '파일 변경' : '파일 선택'}*/}
+              {/*</span>*/}
+            </label>
           </div>
         </div>
 

@@ -207,3 +207,104 @@
   display: flex;
   justify-content: right;
 }
+
+@media (max-width: 960px) {
+  .formCreate-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .formCreate-container {
+    padding: 32px 24px 40px;
+  }
+
+  .formCreate-header {
+    padding-bottom: 28px;
+  }
+
+  .formCreate-title {
+    line-height: 1.3;
+  }
+
+  .formCreate-info {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .formCreate-name,
+  .formCreate-field {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .formCreate-name {
+    margin-bottom: 24px;
+  }
+
+  .formCreate-field {
+    margin-bottom: 28px;
+  }
+
+  .formCreate .eventInput {
+    gap: 10px;
+  }
+
+  .formCreate .eventInput-title {
+    font-size: 16px;
+  }
+
+  .formCreate .eventInput-input-input {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .formCreate-field__title {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .formCreate-field__title--title {
+    font-size: 16px;
+  }
+
+  .formCreate-field__title--notice {
+    padding: 3px 8px;
+  }
+
+  .formCreate-field__infoBox {
+    padding: 12px;
+  }
+
+  .formCreate-field__info,
+  .formCreate-field__info--notice {
+    line-height: 1.5;
+  }
+
+  .formCreate-field__field {
+    padding: 28px 0 32px;
+  }
+
+  .formCreate-fieldInputRow {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .formCreate-fieldInput {
+    flex: none;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .formCreate-fieldInput__input {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .formCreate-field__condition {
+    gap: 8px;
+    padding: 14px;
+    line-height: 1.5;
+  }
+}
