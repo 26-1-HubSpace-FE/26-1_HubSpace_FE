@@ -1,6 +1,6 @@
 .dashBoard {
   padding: 40px 0;
-  height: calc(100svh - 100px);
+  height: calc(100svh - var(--admin-header-height, 100px));
   display: flex;
   flex-direction: column;
   width: 100%;
