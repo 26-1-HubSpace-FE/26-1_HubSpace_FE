@@ -1,6 +1,6 @@
 .formCreate {
   position: relative;
-  height: 100vh;
+  height: calc(100svh - var(--admin-header-height, 100px));
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -33,9 +33,10 @@
 
 .formCreate-container {
   flex: 1;
-  overflow-y: scroll;
-  padding: 50px max(80px, calc((100% - 1360px) / 2));
-  margin-bottom: 100px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 50px max(80px, calc((100% - 1360px) / 2))
+    calc(88px + env(safe-area-inset-bottom));
   box-sizing: border-box;
 }
 
@@ -217,7 +218,7 @@
 
 @media (max-width: 767px) {
   .formCreate-container {
-    padding: 32px 24px 40px;
+    padding: 32px 24px calc(88px + env(safe-area-inset-bottom));
   }
 
   .formCreate-header {
