@@ -116,8 +116,13 @@
 
 .eventItem-link__link {
   min-width: 0;
-  overflow-wrap: anywhere;
-  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eventItem-link__copy {
+  flex-shrink: 0;
 }
 
 .eventItem-link__copy,
