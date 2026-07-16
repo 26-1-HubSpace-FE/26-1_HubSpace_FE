@@ -14,10 +14,6 @@ import dashboardImageForm from '../../assets/dashboard/dashboard-image-form.svg?
 import dashboardImageCsv from '../../assets/dashboard/dashboard-image-csv.svg?react'
 import dashboardView from '../../assets/dashboard/dashboard-view.svg?react'
 
-/* default 기본 이미지, 로고 등 */
-import defaultLogo from '../../assets/default/default-logo.svg?react'
-import defaultProfile from '../../assets/default/default-profile.svg?react'
-
 /* detail 이벤트 상세 페이지 아이콘 */
 import detailCopy from '../../assets/detail/detail-copy.svg?react'
 import detailField from '../../assets/detail/detail-field.svg?react'
@@ -36,8 +32,6 @@ export const IconMap = {
   'dashboard-image-form': dashboardImageForm,
   'dashboard-image-csv': dashboardImageCsv,
   'dashboard-view': dashboardView,
-  'default-logo': defaultLogo,
-  'default-profile': defaultProfile,
   'detail-copy': detailCopy,
   'detail-field': detailField,
   'detail-input': detailInput,
