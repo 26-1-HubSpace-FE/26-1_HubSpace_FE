@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { apiDeletePrivate } from '../../../utils/ApiUtil'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
-export default function EventItem({ event }) {
+export default function EventItem({ event, onEditTitle }) {
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const actionMenuRef = useRef(null)
@@ -23,6 +23,11 @@ export default function EventItem({ event }) {
   }, [])
 
   const handleMoreClick = () => setIsActionMenuOpen((prev) => !prev)
+
+  const handleEditTitle = () => {
+    setIsActionMenuOpen(false)
+    onEditTitle(event)
+  }
 
   const handleCopyUrl = (url) => {
     navigator.clipboard
@@ -116,6 +121,14 @@ export default function EventItem({ event }) {
           />
           {isActionMenuOpen && (
             <div className='eventItem-actionMenu'>
+              <button
+                type='button'
+                className='eventItem-actionMenu__edit'
+                onClick={handleEditTitle}
+                disabled={isDeleting}
+              >
+                이름 수정
+              </button>
               <button
                 type='button'
                 className='eventItem-actionMenu__delete'

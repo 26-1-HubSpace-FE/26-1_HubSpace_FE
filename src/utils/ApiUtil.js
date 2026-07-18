@@ -6,7 +6,7 @@ export const apiGetPublic = (url, config = {}) => api.get(url, { ...config, requ
 export const apiPostPublic = (url, data, config = {}) =>
   api.post(url, data, { ...config, requireAuth: false })
 
-// Private GET / POST / PUT / DELETE
+// Private GET / POST / PUT / PATCH / DELETE
 export const apiGetPrivate = (url, config = {}) =>
   isLocalPreviewMode
     ? getLocalPreviewPrivateGet(url)
@@ -15,5 +15,7 @@ export const apiPostPrivate = (url, data, config = {}) =>
   api.post(url, data, { ...config, requireAuth: true })
 export const apiPutPrivate = (url, data, config = {}) =>
   api.put(url, data, { ...config, requireAuth: true })
+export const apiPatchPrivate = (url, data, config = {}) =>
+  api.patch(url, data, { ...config, requireAuth: true })
 export const apiDeletePrivate = (url, config = {}) =>
   api.delete(url, { ...config, requireAuth: true })

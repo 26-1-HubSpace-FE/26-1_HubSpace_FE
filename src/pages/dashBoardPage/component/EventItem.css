@@ -153,19 +153,29 @@
   z-index: 30;
 }
 
+.eventItem-actionMenu__edit,
 .eventItem-actionMenu__delete {
   width: 100%;
   text-align: left;
   padding: 8px 10px;
   border-radius: 6px;
-  color: var(--color-exit);
   font-size: 13px;
 }
 
+.eventItem-actionMenu__edit {
+  color: var(--color-text);
+}
+
+.eventItem-actionMenu__delete {
+  color: var(--color-exit);
+}
+
+.eventItem-actionMenu__edit:hover,
 .eventItem-actionMenu__delete:hover {
   background-color: var(--color-box-conditional);
 }
 
+.eventItem-actionMenu__edit:disabled,
 .eventItem-actionMenu__delete:disabled {
   opacity: 0.6;
   cursor: default;

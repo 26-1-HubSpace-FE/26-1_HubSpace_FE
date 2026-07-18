@@ -2,13 +2,15 @@ import './DashBoardPage.css'
 import EventItem from '../component/EventItem'
 import { useState } from 'react'
 import EventCreateModal from '../component/EventCreateModal'
+import EventTitleEditModal from '../component/EventTitleEditModal'
 import EventButton from '../../../components/eventButton/EventButton'
 import { useFetchEvents } from '../apis/fetchEvents'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function DashBoardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { events, count, loading, error } = useFetchEvents()
+  const [editingEvent, setEditingEvent] = useState(null)
+  const { events, count, loading, error, updateEventTitleLocally } = useFetchEvents()
 
   return (
     <div className='dashBoard'>
@@ -57,12 +59,21 @@ export default function DashBoardPage() {
           !error &&
           events.length > 0 &&
           events.map((event, index) => (
-            <EventItem key={`${event.id}-${event.createdAt}-${index}`} event={event} />
+            <EventItem
+              key={`${event.id}-${event.createdAt}-${index}`}
+              event={event}
+              onEditTitle={setEditingEvent}
+            />
           ))}
       </div>
 
       {/* 모달 */}
       <EventCreateModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <EventTitleEditModal
+        event={editingEvent}
+        onClose={() => setEditingEvent(null)}
+        onUpdated={updateEventTitleLocally}
+      />
     </div>
   )
 }

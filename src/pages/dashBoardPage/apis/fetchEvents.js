@@ -39,5 +39,11 @@ export const useFetchEvents = () => {
     }
   }, [])
 
-  return { events, count, loading, error }
+  const updateEventTitleLocally = (eventId, eventTitle) => {
+    setEvents((currentEvents) =>
+      currentEvents.map((event) => (event.id === eventId ? { ...event, eventTitle } : event)),
+    )
+  }
+
+  return { events, count, loading, error, updateEventTitleLocally }
 }
