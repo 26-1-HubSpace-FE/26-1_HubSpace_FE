@@ -86,18 +86,16 @@ export default function EventTitleEditModal({ event, onClose, onUpdated }) {
 
         <div className='editTitleModal-header'>
           <div id='editTitleModal-title' className='editTitleModal-header__title'>
-            이벤트 이름 수정
+            이름 수정
           </div>
           <div className='editTitleModal-header__info'>새로운 이벤트 이름을 입력해주세요.</div>
         </div>
 
         <form className='editTitleModal-form' onSubmit={handleSubmit}>
-          <label className='editTitleModal-label' htmlFor='editTitleModal-input'>
-            이벤트 이름
-          </label>
           <input
             id='editTitleModal-input'
             className='editTitleModal-input'
+            aria-label='이벤트 이름'
             value={eventTitle}
             onChange={(e) => setEventTitle(e.target.value)}
             placeholder='이벤트 이름을 입력하세요.'
