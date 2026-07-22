@@ -50,6 +50,7 @@ export default function EventItem({ event, onEditTitle }) {
       const isSuccess = res?.isSuccess ?? res?.success ?? false
 
       if (!isSuccess) {
+        setIsDeleting(false)
         toast.error(res?.message || '이벤트 삭제에 실패했습니다.', { duration: 2000 })
         return
       }
@@ -66,7 +67,6 @@ export default function EventItem({ event, onEditTitle }) {
         duration: 2000,
       })
       console.error('이벤트 삭제 실패:', err)
-    } finally {
       setIsDeleting(false)
     }
   }
