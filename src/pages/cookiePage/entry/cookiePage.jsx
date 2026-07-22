@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { setAuthSession } from '../../../utils/authStorage'
+import {
+  consumeGoogleConsentReturnPath,
+  hasPendingGoogleConsent,
+} from '../../../utils/googleConsentStorage'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 import './cookiePage.css'
 
@@ -9,6 +13,15 @@ export default function CookiePage() {
 
   useEffect(() => {
     const exchangeToken = async () => {
+      const searchParams = new URLSearchParams(window.location.search)
+      const oauthError = searchParams.get('oauthError')
+
+      if (oauthError && hasPendingGoogleConsent()) {
+        const returnPath = consumeGoogleConsentReturnPath() || '/newform'
+        navigate(`${returnPath}?googleConsent=denied`, { replace: true })
+        return
+      }
+
       try {
         const res = await fetch(`${import.meta.env.VITE_SERVER_DOMAIN}/jwt/exchange`, {
           method: 'POST',
@@ -24,8 +37,10 @@ export default function CookiePage() {
           refreshToken: data.refreshToken,
         })
 
-        // 로그인 완료 후 메인 페이지로 이동
-        navigate('/dashboard', { replace: true })
+        const returnPath = consumeGoogleConsentReturnPath()
+        navigate(returnPath ? `${returnPath}?googleConsent=success` : '/dashboard', {
+          replace: true,
+        })
       } catch (err) {
         const msg = err?.message || '소셜 로그인 실패'
         alert(msg)
