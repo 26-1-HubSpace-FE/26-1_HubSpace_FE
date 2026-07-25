@@ -280,7 +280,7 @@
 .csvCreate-field__title {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -302,6 +302,12 @@
   color: var(--color-exit);
 }
 
+.csvCreate-field__title--optional {
+  background: var(--color-box-conditional);
+  border-color: var(--color-border);
+  color: var(--color-text-additional);
+}
+
 .csvCreate-field__infoBox {
   display: flex;
   flex-direction: column;
@@ -315,7 +321,12 @@
 .csvCreate-field__info {
   font-size: 12px;
   font-weight: var(--font-light);
+  line-height: 1.55;
   color: var(--color-text-additional);
+}
+
+.csvCreate-field__infoExample {
+  color: var(--color-disabled);
 }
 
 .csvCreate-field__info--notice {

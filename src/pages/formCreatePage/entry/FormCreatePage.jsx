@@ -131,7 +131,7 @@ export default function FormCreatePage() {
           <div className='formCreate-field__header'>
             <div className='formCreate-field__title'>
               <div className='formCreate-field__title--title'>폼 생성 필드</div>
-              <div className='formCreate-field__title--notice'>2개 이상 선택 필수</div>
+              <div className='formCreate-field__title--notice'>2개 이상 입력 필수</div>
             </div>
 
             <div className='formCreate-field__infoBox'>

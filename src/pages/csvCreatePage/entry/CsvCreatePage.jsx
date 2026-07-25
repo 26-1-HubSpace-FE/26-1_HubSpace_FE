@@ -293,17 +293,18 @@ export default function CsvCreatePage() {
           <div className='csvCreate-field__header'>
             <div className='csvCreate-field__title'>
               <div className='csvCreate-field__title--title'>조회에 사용할 정보</div>
-              <div className='csvCreate-field__title--notice'>2개 이상 선택 필수</div>
+              <div className='csvCreate-field__title--notice'>2개 이상 필수</div>
             </div>
 
             <div className='csvCreate-field__infoBox'>
               <div className='csvCreate-field__info'>
-                신청자가 본인을 조회할 때 입력할 정보를 선택해 주세요. <br/>
-                이름, 학번, 전화번호처럼 신청자를 구분할 수 있는 정보를 2개 이상 선택해야 합니다.
+                신청자 확인에 사용할 정보를 선택해 주세요.
+                <br />
+                <span className='csvCreate-field__infoExample'>예시: 이름, 학번, 사번</span>
               </div>
-              <div className='csvCreate-field__info--notice'>
-                이벤트를 만든 후에는 변경할 수 없습니다.
-              </div>
+              {/*<div className='csvCreate-field__info--notice'>*/}
+              {/*  생성 후 변경 불가*/}
+              {/*</div>*/}
             </div>
 
             <div className='csvCreate-field__field'>
@@ -319,16 +320,20 @@ export default function CsvCreatePage() {
           <div className='csvCreate-field__header'>
             <div className='csvCreate-field__title'>
               <div className='csvCreate-field__title--title'>조회 결과에 표시할 정보</div>
+              <div className='csvCreate-field__title--notice csvCreate-field__title--optional'>
+                선택
+              </div>
             </div>
 
             <div className='csvCreate-field__infoBox'>
               <div className='csvCreate-field__info'>
-                신청자가 조회했을 때 함께 보여줄 정보를 선택해 주세요. <br/>
-                합격 여부, 좌석 번호, 조 편성 등의 정보를 표시할 수 있습니다. 선택하지 않아도 됩니다.
+                조회 결과에 보여줄 정보를 선택해 주세요.
+                <br />
+                <span className='csvCreate-field__infoExample'>예시: 합격 여부</span>
               </div>
-              <div className='csvCreate-field__info--notice'>
-                식별용 필드로 선택한 항목은 선택할 수 없습니다.
-              </div>
+              {/*<div className='csvCreate-field__info--notice'>*/}
+              {/*  생성 후 변경 불가*/}
+              {/*</div>*/}
             </div>
 
             <div className='csvCreate-display__field'>

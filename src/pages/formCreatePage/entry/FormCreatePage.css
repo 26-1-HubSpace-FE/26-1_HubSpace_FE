@@ -83,7 +83,7 @@
 .formCreate-field__title {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -125,6 +125,11 @@
   font-size: 12px;
   font-weight: var(--font-medium);
   color: var(--color-exit);
+}
+
+.formCreate-field__info,
+.formCreate-field__info--notice {
+  line-height: 1.5;
 }
 
 .formCreate-field__field {
