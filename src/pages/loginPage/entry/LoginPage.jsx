@@ -112,7 +112,9 @@ export default function LoginPage() {
       <main ref={scrollRef} className='login__scroll'>
         <section className='login__panel login__panel--hero'>
           <div className='login__intro'>
-            <img src={authLogo} alt='HubSpace' className='login__logo' />
+            <h1 className='login__brand'>
+              <img src={authLogo} alt='허브스페이스 HubSpace' className='login__logo' />
+            </h1>
 
             <h2 className='login__title'>신청 내역과 결과를 간편하게 확인하는 서비스</h2>
             <p className='login__description'>신청자는 자신의 신청 내역과 결과를 직접 확인하고, 관리자는 반복 문의를 줄일 수 있습니다.</p>

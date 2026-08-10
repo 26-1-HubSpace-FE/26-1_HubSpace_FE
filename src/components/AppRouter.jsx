@@ -12,53 +12,59 @@ import UserResultPage from '../pages/userResultPage/entry/UserResultPage'
 import PolicyPage from '../pages/policyPage/entry/PolicyPage'
 import { hasValidSession } from '../utils/authStorage'
 import { isLocalPreviewMode } from '../mocks/localPreview'
+import SeoController from './seo/SeoController'
 
 const ProtectedRoute = ({ children }) => {
   return isLocalPreviewMode || hasValidSession() ? children : <Navigate to='/login' replace />
 }
 
 export const AppRouter = createBrowserRouter([
-  // 공개 홈/로그인 페이지
   {
-    path: '/',
-    element: <LoginPage />,
-  },
-  {
-    path: '/login',
-    element: <Navigate to='/' replace />,
-  },
-
-  // 소셜 로그인 후 쿠키 페이지
-  {
-    path: '/cookie',
-    element: <CookiePage />,
-  },
-
-  // 검색/결과 페이지 (로그인 여부 확인 optional)
-  { path: '/search', element: <UserDetailPage /> },
-  { path: '/result', element: <UserResultPage /> },
-  { path: '/privacy', element: <PolicyPage type='privacy' /> },
-  { path: '/terms', element: <PolicyPage type='terms' /> },
-
-  // AdminLayout 하위 페이지
-  {
-    path: '/',
-    element: (
-      <ProtectedRoute>
-        <AdminLayout />
-      </ProtectedRoute>
-    ),
+    element: <SeoController />,
     children: [
-      { path: 'dashboard', element: <DashBoardPage /> },
-      { path: 'newcsv', element: <CsvCreatePage /> },
-      { path: 'newform', element: <FormCreatePage /> },
-      { path: 'editcsv/:id', element: <CsvDetailPage /> },
-      { path: 'editform/:id', element: <FormDetailPage /> },
+      // 공개 홈/로그인 페이지
+      {
+        path: '/',
+        element: <LoginPage />,
+      },
+      {
+        path: '/login',
+        element: <Navigate to='/' replace />,
+      },
+
+      // 소셜 로그인 후 쿠키 페이지
+      {
+        path: '/cookie',
+        element: <CookiePage />,
+      },
+
+      // 검색/결과 페이지 (로그인 여부 확인 optional)
+      { path: '/search', element: <UserDetailPage /> },
+      { path: '/result', element: <UserResultPage /> },
+      { path: '/privacy', element: <PolicyPage type='privacy' /> },
+      { path: '/terms', element: <PolicyPage type='terms' /> },
+
+      // AdminLayout 하위 페이지
+      {
+        path: '/',
+        element: (
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        ),
+        children: [
+          { path: 'dashboard', element: <DashBoardPage /> },
+          { path: 'newcsv', element: <CsvCreatePage /> },
+          { path: 'newform', element: <FormCreatePage /> },
+          { path: 'editcsv/:id', element: <CsvDetailPage /> },
+          { path: 'editform/:id', element: <FormDetailPage /> },
+        ],
+      },
+      {
+        path: '*',
+        element: <LoginPage />,
+      },
     ],
-  },
-  {
-    path: '*',
-    element: <LoginPage />,
   },
 ])
 
