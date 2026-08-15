@@ -100,8 +100,9 @@ li[data-sonner-toast][data-type='info'].user-detail__syncToast {
 }
 
 li[data-sonner-toast].user-detail__syncToast [data-icon] {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 28px;
   width: 28px;
   height: 28px;
@@ -109,9 +110,11 @@ li[data-sonner-toast].user-detail__syncToast [data-icon] {
   border-radius: 9px;
   background: rgba(70, 97, 216, 0.1);
   color: #4661d8;
+  line-height: 0;
 }
 
 li[data-sonner-toast].user-detail__syncToast [data-icon] svg {
+  display: block;
   width: 17px;
   height: 17px;
   margin: 0;
