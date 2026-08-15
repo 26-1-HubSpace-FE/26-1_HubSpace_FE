@@ -3,7 +3,7 @@ import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import GradientButton from '../../../components/gradientButton/GradientButton'
 import './UserResultPage.css'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { processUserResult } from '../utils/UserFieldConfig'
+import { isGoogleFormsEvent, processUserResult } from '../utils/UserFieldConfig'
 
 import { fetchUserSearch } from '../apis/fetchUserSearch'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
@@ -43,7 +43,7 @@ export default function UserResultPage() {
       setLoading(true)
       try {
         const userApiResponse = await fetchUserSearch(eventId, userSearchData)
-        const processResult = processUserResult(userApiResponse, eventDetail, userSearchData)
+        const processResult = processUserResult(userApiResponse, eventDetail)
         console.debug('[UserResultPage][ProcessedResult]', processResult)
         setUserSearchResult(processResult)
         setErrorMessage('')
@@ -97,6 +97,18 @@ export default function UserResultPage() {
 
   // 돌아가기 버튼 클릭 시 실행
   const handleGoBack = () => {
+    if (
+      userSearchResult.userResultType === 'notFound' &&
+      isGoogleFormsEvent(eventDetail)
+    ) {
+      const searchParams = new URLSearchParams({ eventId: String(eventId) })
+      navigate(`/search?${searchParams.toString()}`, {
+        replace: true,
+        state: { userSearchData },
+      })
+      return
+    }
+
     navigate(-1) // 브라우저 히스토리 기준 이전 페이지
   }
 
@@ -135,13 +147,13 @@ export default function UserResultPage() {
             <div className='result__status-icon result__status-icon--no'>
               <AlertIcon />
             </div>
-            <h2 className='user-result__status-title'>일치하는 정보가 없습니다.</h2>
+            <h2 className='user-result__status-title'>{userSearchResult.userResultTitle}</h2>
             <p className='user-result__status-subtitle'>{userSearchResult.userResultMessage}</p>
           </div>
         )}
 
         <div className='user-result__button'>
-          <GradientButton type="button" onClick={handleGoBack} className='user-result__backButton'>
+          <GradientButton type='button' onClick={handleGoBack} className='user-result__backButton'>
             <span>다시 조회하기</span>
           </GradientButton>
         </div>

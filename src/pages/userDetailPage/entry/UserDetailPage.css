@@ -81,6 +81,39 @@
   margin-bottom: 32px;
 }
 
+.user-detail__description--withNotice {
+  margin-bottom: 14px;
+}
+
+.user-detail__syncNotice {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  margin-bottom: 32px;
+  border-left: 3px solid rgba(183, 193, 231, 0.8);
+  border-radius: 0 8px 8px 0;
+  background: var(--color-box-conditional);
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+}
+
+.user-detail__syncNoticeTitle {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: var(--font-medium);
+  line-height: 1.5;
+}
+
+.user-detail__syncNoticeDescription {
+  margin: 0;
+  color: var(--color-text-additional);
+  font-size: 12px;
+  font-weight: var(--font-light);
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
 /* 폼 전체 컨테이너 */
 .user-detail__form {
   width: 100%;
@@ -200,6 +233,23 @@
     margin-bottom: 44px;
   }
 
+  .user-detail__description--withNotice {
+    margin-bottom: 16px;
+  }
+
+  .user-detail__syncNotice {
+    padding: 14px 16px;
+    margin-bottom: 44px;
+  }
+
+  .user-detail__syncNoticeTitle {
+    font-size: 14px;
+  }
+
+  .user-detail__syncNoticeDescription {
+    font-size: 13px;
+  }
+
   .user-detail__field {
     margin-bottom: 28px;
   }
@@ -256,6 +306,23 @@
   .user-detail__description {
     font-size: 18px;
     margin-bottom: 56px;
+  }
+
+  .user-detail__description--withNotice {
+    margin-bottom: 18px;
+  }
+
+  .user-detail__syncNotice {
+    padding: 16px 18px;
+    margin-bottom: 56px;
+  }
+
+  .user-detail__syncNoticeTitle {
+    font-size: 15px;
+  }
+
+  .user-detail__syncNoticeDescription {
+    font-size: 14px;
   }
 
   .user-detail__field {

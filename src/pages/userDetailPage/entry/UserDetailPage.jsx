@@ -1,9 +1,12 @@
 import './UserDetailPage.css'
 import GradientButton from '../../../components/gradientButton/GradientButton'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
-import { getUserFieldPlaceholder } from '../../userResultPage/utils/UserFieldConfig'
+import {
+  getUserFieldPlaceholder,
+  isGoogleFormsEvent,
+} from '../../userResultPage/utils/UserFieldConfig'
 import { useFetchEventDetail } from '../apis/fetchEventDetail'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 import authLogo from '../../../assets/auth/auth-logo.png'
@@ -11,6 +14,7 @@ import authLogo from '../../../assets/auth/auth-logo.png'
 // 사용자 이벤트 신청 조회 페이지
 export default function UserDetailPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const eventId = useSearchParams()[0].get('eventId')
 
   // api로 이벤트 정보 조회
@@ -65,16 +69,26 @@ export default function UserDetailPage() {
     )
   }
 
-  return <UserDetailForm eventDetail={eventDetail} eventId={eventId} navigate={navigate} />
+  return (
+    <UserDetailForm
+      eventDetail={eventDetail}
+      eventId={eventId}
+      navigate={navigate}
+      restoredUserSearchData={location.state?.userSearchData}
+    />
+  )
 }
 
-function UserDetailForm({ eventDetail, eventId, navigate }) {
-  const initialFormData = {}
-  eventDetail.searchColumns.forEach((columnName) => {
-    initialFormData[columnName] = ''
+function UserDetailForm({ eventDetail, eventId, navigate, restoredUserSearchData }) {
+  const [userFormData, setUserFormData] = useState(() => {
+    const initialFormData = {}
+    eventDetail.searchColumns.forEach((columnName) => {
+      const restoredValue = restoredUserSearchData?.[columnName]
+      initialFormData[columnName] = typeof restoredValue === 'string' ? restoredValue : ''
+    })
+    return initialFormData
   })
-
-  const [userFormData, setUserFormData] = useState(initialFormData)
+  const isGoogleForms = isGoogleFormsEvent(eventDetail)
 
   // input 값 변경 시 실행 함수
   const handlerUserInput = (e) => {
@@ -104,7 +118,21 @@ function UserDetailForm({ eventDetail, eventId, navigate }) {
         </a>
         <div className='user-detail__card'>
           <h1 className='user-detail__title'>{eventDetail.eventTitle || '신청 조회'}</h1>
-          <p className='user-detail__description'>정보 입력 후 신청 여부를 확인할 수 있습니다.</p>
+          <p
+            className={`user-detail__description${isGoogleForms ? ' user-detail__description--withNotice' : ''}`}
+          >
+            정보 입력 후 신청 여부를 확인할 수 있습니다.
+          </p>
+
+          {isGoogleForms && (
+            <div className='user-detail__syncNotice'>
+              <strong className='user-detail__syncNoticeTitle'>방금 신청하셨나요?</strong>
+              <p className='user-detail__syncNoticeDescription'>
+                Google Forms 신청 정보는 바로 반영되지 않을 수 있어요. 반영까지 약 1~2분 정도
+                걸릴 수 있으니 잠시 후 다시 확인해 주세요.
+              </p>
+            </div>
+          )}
 
           <form className='user-detail__form' onSubmit={handleSearch}>
             {/* 관리자가 선택한 필드만 동적으로 랜더링 */}
