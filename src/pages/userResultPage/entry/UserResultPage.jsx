@@ -104,7 +104,10 @@ export default function UserResultPage() {
       const searchParams = new URLSearchParams({ eventId: String(eventId) })
       navigate(`/search?${searchParams.toString()}`, {
         replace: true,
-        state: { userSearchData },
+        state: {
+          userSearchData,
+          showSyncDelayNotice: true,
+        },
       })
       return
     }

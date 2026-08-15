@@ -2,7 +2,8 @@ import './UserDetailPage.css'
 import GradientButton from '../../../components/gradientButton/GradientButton'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import {
   getUserFieldPlaceholder,
   isGoogleFormsEvent,
@@ -19,6 +20,29 @@ export default function UserDetailPage() {
 
   // api로 이벤트 정보 조회
   const { eventDetail, loading, error } = useFetchEventDetail(eventId)
+
+  useEffect(() => {
+    if (!eventDetail || !location.state?.showSyncDelayNotice) return
+
+    if (isGoogleFormsEvent(eventDetail)) {
+      toast.info('방금 신청하셨나요?', {
+        description:
+          'Google Forms 신청 정보는 바로 반영되지 않을 수 있어요. 반영까지 약 1~2분 정도 걸릴 수 있으니 잠시 후 다시 확인해 주세요.',
+        duration: 6000,
+      })
+    }
+
+    navigate(
+      {
+        pathname: location.pathname,
+        search: location.search,
+      },
+      {
+        replace: true,
+        state: { userSearchData: location.state?.userSearchData },
+      },
+    )
+  }, [eventDetail, location.pathname, location.search, location.state, navigate])
 
   // 임시 로딩 화면
   if (loading) {
@@ -88,7 +112,6 @@ function UserDetailForm({ eventDetail, eventId, navigate, restoredUserSearchData
     })
     return initialFormData
   })
-  const isGoogleForms = isGoogleFormsEvent(eventDetail)
 
   // input 값 변경 시 실행 함수
   const handlerUserInput = (e) => {
@@ -118,21 +141,7 @@ function UserDetailForm({ eventDetail, eventId, navigate, restoredUserSearchData
         </a>
         <div className='user-detail__card'>
           <h1 className='user-detail__title'>{eventDetail.eventTitle || '신청 조회'}</h1>
-          <p
-            className={`user-detail__description${isGoogleForms ? ' user-detail__description--withNotice' : ''}`}
-          >
-            정보 입력 후 신청 여부를 확인할 수 있습니다.
-          </p>
-
-          {isGoogleForms && (
-            <div className='user-detail__syncNotice'>
-              <strong className='user-detail__syncNoticeTitle'>방금 신청하셨나요?</strong>
-              <p className='user-detail__syncNoticeDescription'>
-                Google Forms 신청 정보는 바로 반영되지 않을 수 있어요. 반영까지 약 1~2분 정도
-                걸릴 수 있으니 잠시 후 다시 확인해 주세요.
-              </p>
-            </div>
-          )}
+          <p className='user-detail__description'>정보 입력 후 신청 여부를 확인할 수 있습니다.</p>
 
           <form className='user-detail__form' onSubmit={handleSearch}>
             {/* 관리자가 선택한 필드만 동적으로 랜더링 */}
