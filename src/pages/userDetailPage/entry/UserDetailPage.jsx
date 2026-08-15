@@ -29,6 +29,8 @@ export default function UserDetailPage() {
         description:
           'Google Forms 신청 정보는 바로 반영되지 않을 수 있어요. 반영까지 약 1~2분 정도 걸릴 수 있으니 잠시 후 다시 확인해 주세요.',
         duration: 6000,
+        richColors: false,
+        className: 'user-detail__syncToast',
       })
     }
 
