@@ -4,6 +4,7 @@ import GradientButton from '../../../components/gradientButton/GradientButton'
 import './UserResultPage.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { isGoogleFormsEvent, processUserResult } from '../utils/UserFieldConfig'
+import { toast } from 'sonner'
 
 import { fetchUserSearch } from '../apis/fetchUserSearch'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
@@ -58,6 +59,26 @@ export default function UserResultPage() {
     fetchData()
   }, [eventId, eventDetail, userSearchData])
 
+  useEffect(() => {
+    if (
+      userSearchResult?.userResultType !== 'notFound' ||
+      !isGoogleFormsEvent(eventDetail)
+    ) {
+      return
+    }
+
+    const syncDelayToastId = toast.info('방금 신청하셨나요?', {
+      id: `google-forms-sync-delay-${eventId}`,
+      description:
+        'Google Forms 신청 정보는 바로 반영되지 않을 수 있어요. 반영까지 약 1~2분 정도 걸릴 수 있으니 잠시 후 다시 확인해 주세요.',
+      duration: 6000,
+      richColors: false,
+      className: 'user-result__syncToast',
+    })
+
+    return () => toast.dismiss(syncDelayToastId)
+  }, [eventDetail, eventId, userSearchResult])
+
   // 로딩 중
   if (loading) {
     return (
@@ -104,10 +125,7 @@ export default function UserResultPage() {
       const searchParams = new URLSearchParams({ eventId: String(eventId) })
       navigate(`/search?${searchParams.toString()}`, {
         replace: true,
-        state: {
-          userSearchData,
-          showSyncDelayNotice: true,
-        },
+        state: { userSearchData },
       })
       return
     }

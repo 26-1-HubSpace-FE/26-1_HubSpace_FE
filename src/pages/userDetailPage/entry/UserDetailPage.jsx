@@ -2,12 +2,8 @@ import './UserDetailPage.css'
 import GradientButton from '../../../components/gradientButton/GradientButton'
 import GradientLayout from '../../../components/gradientLayout/GradientLayout'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { toast } from 'sonner'
-import {
-  getUserFieldPlaceholder,
-  isGoogleFormsEvent,
-} from '../../userResultPage/utils/UserFieldConfig'
+import { useState } from 'react'
+import { getUserFieldPlaceholder } from '../../userResultPage/utils/UserFieldConfig'
 import { useFetchEventDetail } from '../apis/fetchEventDetail'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 import authLogo from '../../../assets/auth/auth-logo.png'
@@ -20,31 +16,6 @@ export default function UserDetailPage() {
 
   // api로 이벤트 정보 조회
   const { eventDetail, loading, error } = useFetchEventDetail(eventId)
-
-  useEffect(() => {
-    if (!eventDetail || !location.state?.showSyncDelayNotice) return
-
-    if (isGoogleFormsEvent(eventDetail)) {
-      toast.info('방금 신청하셨나요?', {
-        description:
-          'Google Forms 신청 정보는 바로 반영되지 않을 수 있어요. 반영까지 약 1~2분 정도 걸릴 수 있으니 잠시 후 다시 확인해 주세요.',
-        duration: 6000,
-        richColors: false,
-        className: 'user-detail__syncToast',
-      })
-    }
-
-    navigate(
-      {
-        pathname: location.pathname,
-        search: location.search,
-      },
-      {
-        replace: true,
-        state: { userSearchData: location.state?.userSearchData },
-      },
-    )
-  }, [eventDetail, location.pathname, location.search, location.state, navigate])
 
   // 임시 로딩 화면
   if (loading) {

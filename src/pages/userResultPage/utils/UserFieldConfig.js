@@ -19,9 +19,8 @@ export const processUserResult = (userApiResponse, eventDetail) => {
     if (isGoogleFormsEvent(eventDetail)) {
       return {
         userResultType: 'notFound',
-        userResultTitle: '신청 정보를 아직 찾지 못했어요.',
-        userResultMessage:
-          '방금 Google Form을 제출했다면 정보가 반영되기까지 약 1~2분 정도 걸릴 수 있어요. 잠시 후 다시 확인해 주세요.',
+        userResultTitle: '신청 정보를 찾지 못했어요.',
+        userResultMessage: '입력하신 정보가 정확한지 다시 한 번 확인해 주세요.',
       }
     }
 
