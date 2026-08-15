@@ -413,6 +413,12 @@ li[data-sonner-toast].user-result__syncToast
 }
 
 @media (min-width: 1024px) {
+  li[data-sonner-toast][data-type='info'].user-result__syncToast {
+    left: 50%;
+    width: 560px;
+    translate: -50% 0;
+  }
+
   .user-result__container {
     max-width: 840px;
   }
