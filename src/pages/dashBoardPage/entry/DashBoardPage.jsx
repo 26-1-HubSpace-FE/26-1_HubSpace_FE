@@ -2,13 +2,15 @@ import './DashBoardPage.css'
 import EventItem from '../component/EventItem'
 import { useState } from 'react'
 import EventCreateModal from '../component/EventCreateModal'
+import EventTitleEditModal from '../component/EventTitleEditModal'
 import EventButton from '../../../components/eventButton/EventButton'
 import { useFetchEvents } from '../apis/fetchEvents'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 export default function DashBoardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { events, count, loading, error } = useFetchEvents()
+  const [editingEvent, setEditingEvent] = useState(null)
+  const { events, count, loading, error, updateEventTitleLocally } = useFetchEvents()
 
   return (
     <div className='dashBoard'>
@@ -19,11 +21,7 @@ export default function DashBoardPage() {
             {loading ? '이벤트를 불러오는 중입니다.' : `총 ${count}개의 이벤트를 관리하고 있어요.`}
           </div>
         </div>
-        <EventButton
-          text='+ㅤ새 이벤트'
-          className='dashBoard-header__button--new'
-          onClick={() => setIsModalOpen(true)}
-        />
+        <EventButton text='+ 새 이벤트' onClick={() => setIsModalOpen(true)} />
       </div>
       <div className='dashBoard-eventList'>
         {loading && (
@@ -61,12 +59,21 @@ export default function DashBoardPage() {
           !error &&
           events.length > 0 &&
           events.map((event, index) => (
-            <EventItem key={`${event.id}-${event.createdAt}-${index}`} event={event} />
+            <EventItem
+              key={`${event.id}-${event.createdAt}-${index}`}
+              event={event}
+              onEditTitle={setEditingEvent}
+            />
           ))}
       </div>
 
       {/* 모달 */}
       <EventCreateModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <EventTitleEditModal
+        event={editingEvent}
+        onClose={() => setEditingEvent(null)}
+        onUpdated={updateEventTitleLocally}
+      />
     </div>
   )
 }

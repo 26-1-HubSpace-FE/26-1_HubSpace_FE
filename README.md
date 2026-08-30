@@ -1,5 +1,13 @@
 # React + Vite
 
+## 로컬 UI 미리보기
+
+`npm run dev`로 실행하면 Google 로그인을 생략하고 관리자 화면을 확인할 수 있습니다.
+헤더의 사용자 정보와 대시보드 이벤트 목록은 로컬 mock 데이터를 사용합니다.
+
+로컬 미리보기는 조회와 입력 UI 확인 전용입니다. 생성·삭제 요청은 실제 서버로 전송되지 않습니다.
+`npm run build`, `npm run preview`, 배포 환경에서는 기존 Google 로그인과 실제 API를 사용합니다.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

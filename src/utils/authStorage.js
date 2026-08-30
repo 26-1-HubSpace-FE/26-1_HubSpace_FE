@@ -2,12 +2,12 @@ const ACCESS_TOKEN_KEY = 'accessToken'
 const REFRESH_TOKEN_KEY = 'refreshToken'
 const EXPIRES_AT_KEY = 'authExpiresAt'
 const AUTH_EVENT_NAME = 'auth-session-changed'
+export const REFRESH_THRESHOLD_MS = 60 * 1000
 
-// 기본 세션 유지 시간: 1시간
-// TODO: 액세스토큰 만료되면 리프레시 토큰으로 자동으로 리프레시 해주는 로직이 필요할듯. 정식으로 할 때
+// 백엔드 access token 만료 시간 기준
 const SESSION_DURATION_MS = 60 * 60 * 1000
 
-const PUBLIC_PATHS = ['/login', '/cookie', '/search', '/result']
+const PUBLIC_PATHS = ['/', '/login', '/cookie', '/search', '/result', '/privacy', '/terms']
 
 const emitAuthChange = () => {
   window.dispatchEvent(new Event(AUTH_EVENT_NAME))
@@ -48,6 +48,17 @@ export const getRemainingSessionTime = () => {
   const expiresAt = getAuthExpiresAt()
   if (!expiresAt) return 0
   return Math.max(expiresAt - Date.now(), 0)
+}
+
+export const shouldRefreshAccessToken = () => {
+  const remainingTime = getRemainingSessionTime()
+  return remainingTime > 0 && remainingTime <= REFRESH_THRESHOLD_MS
+}
+
+export const getRefreshDelay = () => {
+  const remainingTime = getRemainingSessionTime()
+  if (remainingTime <= 0) return 0
+  return Math.max(remainingTime - REFRESH_THRESHOLD_MS, 0)
 }
 
 export const getAccessToken = () => {

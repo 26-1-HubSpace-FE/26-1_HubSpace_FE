@@ -1,4 +1,12 @@
 /* 모바일 - 기본 */
+.user-detail__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-55px);
+}
+
 .user-detail__card {
   width: 100%;
   max-width: 411px;
@@ -9,17 +17,17 @@
   align-items: center;
 }
 
+.user-detail__logoLink {
+  display: block;
+  line-height: 0;
+  margin-bottom: 24px;
+}
+
 .user-detail__logo {
   display: block;
   width: 183px;
-  height: 70px;
-  background-image: url('../../../assets/auth/auth-logo.svg');
-
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  margin-bottom: 24px;
+  height: 69px;
+  object-fit: contain;
 }
 
 .user-detail__loading {
@@ -50,11 +58,13 @@
   color: var(--color-text);
   font-family: 'SpoqaHanSansNeo', sans-serif;
   font-size: 16px;
-
   font-weight: var(--font-medium);
   line-height: normal;
   text-align: center;
-
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-bottom: 10px;
 }
 
@@ -83,40 +93,40 @@
 .user-detail__field {
   display: flex;
   flex-direction: column;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .user-detail__field:last-of-type {
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
 /* 라벨 스타일 */
 .user-detail__label {
   color: var(--color-text);
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: var(--font-regular);
   line-height: normal;
 
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 /* 입력 필드 스타일 */
 .user-detail__input {
   color: var(--color-text);
   font-family: 'SpoqaHanSansNeo', sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: var(--font-regular);
   line-height: normal;
 
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid var(--color-border);
-  height: 29px;
+  height: 42px;
   background: transparent;
 
   width: 100%;
   box-sizing: border-box;
-  padding: 0 9px;
+  padding: 0 14px;
 
   transition: border-color 0.2s;
 }
@@ -130,12 +140,15 @@
 .user-detail__input::placeholder {
   color: var(--color-input);
   font-weight: var(--font-light);
+  font-size: 16px;
 }
 
 .user-detail__submitButton {
   overflow: hidden;
   isolation: isolate;
   background: transparent;
+  min-height: 50px;
+  font-size: 16px;
   transition:
     color 0.3s ease,
     transform 0.25s ease,
@@ -156,9 +169,20 @@
 
 /* 태블릿 */
 @media (min-width: 768px) {
+  .user-detail__container {
+    transform: none;
+  }
+
+  .user-detail__card {
+    max-width: 560px;
+  }
+
   .user-detail__logo {
     width: 229px;
     height: 87px;
+  }
+
+  .user-detail__logoLink {
     margin-bottom: 40px;
   }
 
@@ -198,17 +222,25 @@
   .user-detail__input::placeholder {
     font-size: 15px;
   }
+
+  .user-detail__submitButton {
+    min-height: 52px;
+    font-size: 18px;
+  }
 }
 
 /* 데스크탑 */
 @media (min-width: 1024px) {
   .user-detail__card {
-    max-width: 411px;
+    max-width: 620px;
   }
 
   .user-detail__logo {
     width: 306px;
     height: 116px;
+  }
+
+  .user-detail__logoLink {
     margin-bottom: 57.5px;
   }
 
@@ -247,5 +279,10 @@
 
   .user-detail__input::placeholder {
     font-size: 16px;
+  }
+
+  .user-detail__submitButton {
+    min-height: 56px;
+    font-size: 20px;
   }
 }

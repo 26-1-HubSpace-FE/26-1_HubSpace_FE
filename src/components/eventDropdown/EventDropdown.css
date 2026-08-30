@@ -39,6 +39,11 @@
   color: var(--color-input);
 }
 
+.eventDropdown__title--selected {
+  color: #2d3b86;
+  font-weight: var(--font-medium);
+}
+
 .eventDropdown__arrow {
   transition: transform 0.2s;
 }

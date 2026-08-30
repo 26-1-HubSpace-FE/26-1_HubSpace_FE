@@ -9,56 +9,61 @@ import FormCreatePage from '../pages/formCreatePage/entry/FormCreatePage'
 import FormDetailPage from '../pages/formDetailPage/entry/FormDetailPage'
 import UserDetailPage from '../pages/userDetailPage/entry/UserDetailPage'
 import UserResultPage from '../pages/userResultPage/entry/UserResultPage'
+import PolicyPage from '../pages/policyPage/entry/PolicyPage'
 import { hasValidSession } from '../utils/authStorage'
-
-const RootRedirect = () => {
-  const isLoggedIn = hasValidSession()
-  return <Navigate to={isLoggedIn ? '/dashboard' : '/login'} replace />
-}
+import { isLocalPreviewMode } from '../mocks/localPreview'
+import SeoController from './seo/SeoController'
 
 const ProtectedRoute = ({ children }) => {
-  return hasValidSession() ? children : <Navigate to='/login' replace />
+  return isLocalPreviewMode || hasValidSession() ? children : <Navigate to='/login' replace />
 }
 
 export const AppRouter = createBrowserRouter([
-  // 로그인 페이지
   {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '*',
-    element: <LoginPage />,
-  },
-  {
-    path: '/',
-    element: <RootRedirect />,
-  },
-
-  // 소셜 로그인 후 쿠키 페이지
-  {
-    path: '/cookie',
-    element: <CookiePage />,
-  },
-
-  // 검색/결과 페이지 (로그인 여부 확인 optional)
-  { path: '/search', element: <UserDetailPage /> },
-  { path: '/result', element: <UserResultPage /> },
-
-  // AdminLayout 하위 페이지
-  {
-    path: '/',
-    element: (
-      <ProtectedRoute>
-        <AdminLayout />
-      </ProtectedRoute>
-    ),
+    element: <SeoController />,
     children: [
-      { path: 'dashboard', element: <DashBoardPage /> },
-      { path: 'newcsv', element: <CsvCreatePage /> },
-      { path: 'newform', element: <FormCreatePage /> },
-      { path: 'editcsv/:id', element: <CsvDetailPage /> },
-      { path: 'editform/:id', element: <FormDetailPage /> },
+      // 공개 홈/로그인 페이지
+      {
+        path: '/',
+        element: <LoginPage />,
+      },
+      {
+        path: '/login',
+        element: <Navigate to='/' replace />,
+      },
+
+      // 소셜 로그인 후 쿠키 페이지
+      {
+        path: '/cookie',
+        element: <CookiePage />,
+      },
+
+      // 검색/결과 페이지 (로그인 여부 확인 optional)
+      { path: '/search', element: <UserDetailPage /> },
+      { path: '/result', element: <UserResultPage /> },
+      { path: '/privacy', element: <PolicyPage type='privacy' /> },
+      { path: '/terms', element: <PolicyPage type='terms' /> },
+
+      // AdminLayout 하위 페이지
+      {
+        path: '/',
+        element: (
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        ),
+        children: [
+          { path: 'dashboard', element: <DashBoardPage /> },
+          { path: 'newcsv', element: <CsvCreatePage /> },
+          { path: 'newform', element: <FormCreatePage /> },
+          { path: 'editcsv/:id', element: <CsvDetailPage /> },
+          { path: 'editform/:id', element: <FormDetailPage /> },
+        ],
+      },
+      {
+        path: '*',
+        element: <LoginPage />,
+      },
     ],
   },
 ])

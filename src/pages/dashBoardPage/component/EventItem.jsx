@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { apiDeletePrivate } from '../../../utils/ApiUtil'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
-export default function EventItem({ event }) {
+export default function EventItem({ event, onEditTitle }) {
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const actionMenuRef = useRef(null)
@@ -23,6 +23,11 @@ export default function EventItem({ event }) {
   }, [])
 
   const handleMoreClick = () => setIsActionMenuOpen((prev) => !prev)
+
+  const handleEditTitle = () => {
+    setIsActionMenuOpen(false)
+    onEditTitle(event)
+  }
 
   const handleCopyUrl = (url) => {
     navigator.clipboard
@@ -45,6 +50,7 @@ export default function EventItem({ event }) {
       const isSuccess = res?.isSuccess ?? res?.success ?? false
 
       if (!isSuccess) {
+        setIsDeleting(false)
         toast.error(res?.message || '이벤트 삭제에 실패했습니다.', { duration: 2000 })
         return
       }
@@ -61,7 +67,6 @@ export default function EventItem({ event }) {
         duration: 2000,
       })
       console.error('이벤트 삭제 실패:', err)
-    } finally {
       setIsDeleting(false)
     }
   }
@@ -83,16 +88,18 @@ export default function EventItem({ event }) {
         <div className='eventItem-header__header'>
           <div className='eventItem-title'>
             <div className='eventItem-title__title'>{event.eventTitle}</div>
-            <Icon
-              name={event.isActive === true ? 'dashboard-active' : 'dashboard-disable'}
-              height={21}
-              className='eventItem-title__status'
-            />
-            <Icon
-              name={event.eventType === 'FORM' ? 'dashboard-form' : 'dashboard-csv'}
-              height={21}
-              className='eventItem-title__format'
-            />
+            <div className='eventItem-title__badges'>
+              <Icon
+                name={event.isActive === true ? 'dashboard-active' : 'dashboard-disable'}
+                height={21}
+                className='eventItem-title__status'
+              />
+              <Icon
+                name={event.eventType === 'FORM' ? 'dashboard-form' : 'dashboard-csv'}
+                height={21}
+                className='eventItem-title__format'
+              />
+            </div>
           </div>
           <div className='eventItem-info'>
             <div className='eventItem-info__info'>
@@ -114,6 +121,14 @@ export default function EventItem({ event }) {
           />
           {isActionMenuOpen && (
             <div className='eventItem-actionMenu'>
+              <button
+                type='button'
+                className='eventItem-actionMenu__edit'
+                onClick={handleEditTitle}
+                disabled={isDeleting}
+              >
+                이름 수정
+              </button>
               <button
                 type='button'
                 className='eventItem-actionMenu__delete'
@@ -142,7 +157,7 @@ export default function EventItem({ event }) {
         {event.eventType === 'FORM' && (
           <div className='eventItem-apply'>
             <div className='eventItem-link__info'>
-              <div className='eventItem-link__title'>신청용 링크</div>
+              <div className='eventItem-link__title'>폼 링크</div>
               <div className='eventItem-link__link'>{event.formUrl}</div>
             </div>
             <Icon

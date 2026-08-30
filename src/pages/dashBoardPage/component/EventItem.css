@@ -2,9 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
   background-color: var(--color-white);
-  padding: 30px;
+  padding: 26px 30px;
+  border: 1px solid rgba(189, 198, 231, 0.42);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(57, 74, 138, 0.04);
 }
 
 .eventItem-loadingOverlay {
@@ -18,6 +21,7 @@
   gap: 14px;
   background: rgba(255, 255, 255, 0.84);
   backdrop-filter: blur(3px);
+  border-radius: 14px;
 }
 
 .eventItem-loadingSpinner {
@@ -33,6 +37,7 @@
 .eventItem-header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .eventItem-header__header {
@@ -45,6 +50,12 @@
   display: flex;
   gap: 16px;
   align-items: center;
+}
+
+.eventItem-title__badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .eventItem-title__title {
@@ -74,24 +85,25 @@
   min-width: 0;
 }
 
-.eventItem-search {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  padding: 18px 24px;
-  background-color: var(--color-box-view);
-  color: var(--color-action-view);
-  align-items: center;
-}
-
+.eventItem-search,
 .eventItem-apply {
   display: flex;
   flex: 1;
   min-width: 0;
-  padding: 18px 24px;
+  padding: 16px 22px;
+  border-radius: 10px;
+  align-items: center;
+  gap: 12px;
+}
+
+.eventItem-search {
+  background-color: var(--color-box-view);
+  color: var(--color-action-view);
+}
+
+.eventItem-apply {
   background-color: var(--color-box-apply);
   color: var(--color-action-apply);
-  align-items: center;
 }
 
 .eventItem-link__info {
@@ -104,8 +116,14 @@
 
 .eventItem-link__link {
   min-width: 0;
-  overflow-wrap: anywhere;
-  word-break: break-all;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eventItem-link__copy {
+  flex-shrink: 0;
 }
 
 .eventItem-link__copy,
@@ -136,19 +154,29 @@
   z-index: 30;
 }
 
+.eventItem-actionMenu__edit,
 .eventItem-actionMenu__delete {
   width: 100%;
   text-align: left;
   padding: 8px 10px;
   border-radius: 6px;
-  color: var(--color-exit);
   font-size: 13px;
 }
 
+.eventItem-actionMenu__edit {
+  color: var(--color-text);
+}
+
+.eventItem-actionMenu__delete {
+  color: var(--color-exit);
+}
+
+.eventItem-actionMenu__edit:hover,
 .eventItem-actionMenu__delete:hover {
   background-color: var(--color-box-conditional);
 }
 
+.eventItem-actionMenu__edit:disabled,
 .eventItem-actionMenu__delete:disabled {
   opacity: 0.6;
   cursor: default;

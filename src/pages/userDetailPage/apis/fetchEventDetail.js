@@ -25,7 +25,9 @@ export const useFetchEventDetail = (eventId) => {
         const res = await apiGetPublic(`/v1/events/${eventId}/summary`)
         const payload = res?.data ?? res
 
-        if (!payload || !Array.isArray(payload.searchColumns)) {
+        const hasValidEventType = payload?.eventType === 'FORM' || payload?.eventType === 'FILE'
+
+        if (!payload || !Array.isArray(payload.searchColumns) || !hasValidEventType) {
           throw new Error('이벤트 정보를 불러오지 못했습니다')
         }
 
